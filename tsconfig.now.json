@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.base",
+  "include": [
+    "src/dev.ts"
+  ],
+  "compilerOptions": {
+    "module": "commonjs",
+    "outDir": "./public",
+  }
+}
