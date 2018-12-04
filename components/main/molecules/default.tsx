@@ -1,8 +1,17 @@
 import React from 'react';
-import {Box} from '../atoms';
+import {Box, Title} from '../atoms';
 
-export class Default extends React.PureComponent {
+interface MainDefaultProps {
+  title?: string;
+}
+
+export class Default extends React.PureComponent<MainDefaultProps> {
   render() {
-    return <Box>{this.props.children}</Box>;
+    return (
+      <Box>
+        <Title>{this.props.title}</Title>
+        {this.props.children}
+      </Box>
+    );
   }
 }

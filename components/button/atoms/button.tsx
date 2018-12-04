@@ -2,10 +2,17 @@ import styled from '../../styled';
 import {theme} from '../../../helpers';
 
 export const Button = styled.button`
-  transition: 0.2s;
+  transition: ${theme.transition};
   cursor: pointer;
+  padding: 0.5em 3em;
+  margin-top: 1em;
+  border: 1px solid ${theme.get('HoverItem')};
+  box-shadow: ${theme.boxShadow};
+  font-size: 0.9em;
+  border-radius: ${theme.borderRadius};
 
   &:hover {
     background: ${theme.get('ActivePresence')};
+    color: ${theme.get('HoverItem')};
   }
 `;

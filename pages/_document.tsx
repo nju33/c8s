@@ -17,6 +17,10 @@ export default class IDocument extends Document<{styleTags: string}> {
     return (
       <html>
         <Head>
+          <link
+            href="https://fonts.googleapis.com/css?family=Sawarabi+Gothic"
+            rel="stylesheet"
+          />
           {this.props.styleTags}
         </Head>
         <body>

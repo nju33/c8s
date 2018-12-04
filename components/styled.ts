@@ -13,7 +13,9 @@ export interface ThemeInterface {
   MentionBadge: string;
 }
 
-export type GetThemeFn = (props: {theme: ThemeInterface}) => string;
+export type GetThemeFn = (
+  props: {theme: ThemeInterface},
+) => string | styledComponents.FlattenInterpolation<any>;
 
 const {
   default: styled,

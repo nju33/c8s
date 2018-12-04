@@ -1,6 +1,6 @@
 import React from 'react';
 import App, {Container} from 'next/app';
-import {ThemeProvider} from '../components';
+import {ThemeProvider, ThemeContext} from '../components';
 import {createGlobalStyle} from '../components/styled';
 // tslint:disable-next-line:no-import-side-effect
 import 'normalize.css';
@@ -8,6 +8,11 @@ import {theme, slackTheme} from '../helpers';
 import {withRouter} from 'next/router';
 
 const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: "Sawarabi Gothic";
+    color: ${theme.get('TextColor')};
+  }
+
   a {
     color: ${theme.get('ActivePresence')};
     text-decoration: none;
@@ -40,7 +45,7 @@ export default withRouter(
       }
 
       return slackTheme.parse(
-        '#393939,#606060,#5eabcc,#ffffff,#606060,#c2c2c2,#1BA1E6,#cc5e74',
+        '#ffffff,#e8e8e8,#5eabcc,#ffffff,#e8e8e8,#393939,#1BA1E6,#cc5e74',
       );
     };
 
@@ -50,10 +55,12 @@ export default withRouter(
       return (
         <Container>
           <ThemeProvider theme={this.getTheme()}>
-            <>
-              <GlobalStyle />
-              <Component {...pageProps} />
-            </>
+            <ThemeContext.Provider value={this.getTheme()}>
+              <>
+                <GlobalStyle />
+                <Component {...pageProps} />
+              </>
+            </ThemeContext.Provider>
           </ThemeProvider>
         </Container>
       );

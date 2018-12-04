@@ -1,11 +1,9 @@
 import React from 'react';
 import {DefaultTemplate} from '../templates';
-import {Sidebar, Main} from '../components';
+import {Main} from '../components';
 import readme from '../README.md';
 
 export default class extends DefaultTemplate {
-  Sidebar = () => <Sidebar items={['Button']} />;
-
   Main = () => (
     <Main>
       {

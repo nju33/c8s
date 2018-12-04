@@ -1,17 +1,17 @@
 import React from 'react';
 import {withRouter, WithRouterProps} from 'next/router';
-import {Button, Main} from '../../components';
+import {Main, Stripe} from '../../components';
 import {DefaultTemplate} from '../../templates';
 
 export default withRouter(class extends DefaultTemplate<
   WithRouterProps<{name: string}>
 > {
-  static displayName = 'Components.Button';
+  static displayName = 'Components.stripe';
 
   Main = () => (
-    <Main title="Button">
+    <Main title="Stripe">
       <div>
-        <Button>button</Button>
+        <Stripe apiKey="pk_test_VxoRAVbeCW8oobWvQzI43Dzl" />
       </div>
     </Main>
   );
