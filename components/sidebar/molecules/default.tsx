@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import qs from 'query-string';
 import {Box, List} from '../atoms';
 import {Logo} from '../../logo';
 
@@ -8,10 +9,21 @@ export class Default extends React.PureComponent<{items: string[]}> {
     items: [] as string[],
   };
 
+  getQuery() {
+    // tslint:disable-next-line:no-typeof-undefined
+    return typeof window === 'undefined' ? {} : qs.parse(location.search);
+  }
+
   render() {
     return (
       <Box>
-        <Link prefetch href={{pathname: '/'}}>
+        <Link
+          prefetch
+          href={{
+            pathname: '/',
+            query: this.getQuery(),
+          }}
+        >
           <a style={{display: 'block'}}>
             <Logo />
           </a>
@@ -24,6 +36,7 @@ export class Default extends React.PureComponent<{items: string[]}> {
                   prefetch
                   href={{
                     pathname: `/components/${item.toLocaleLowerCase()}`,
+                    query: this.getQuery(),
                   }}
                 >
                   <a>{item}</a>
