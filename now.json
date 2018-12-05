@@ -2,6 +2,13 @@
   "version": 2,
   "alias": "summary-components",
   "builds": [
-    {"src": "next.config.js", "use": "@now/next", "config": {"maxLambdaSize": "10mb"}}
+    {
+      "src": "next.config.js",
+      "use": "@now/next",
+      "config": {
+        "maxLambdaSize": "10mb",
+        "useBuildUtils": "@now/build-utils@canary"
+      }
+    }
   ]
 }
