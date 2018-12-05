@@ -2,6 +2,6 @@
   "version": 2,
   "alias": "summary-components",
   "builds": [
-    {"src": "next.config.js", "use": "@now/next"}
+    {"src": "next.config.js", "use": "@now/next", "config": {"maxLambdaSize": "10mb"}}
   ]
 }
