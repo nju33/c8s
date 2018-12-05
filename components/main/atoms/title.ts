@@ -1,7 +1,7 @@
 import styled from '../../styled';
 
 export const Title = styled.h1`
-  font-size: 34px;
+  font-size: 27px;
   height: 100px;
   margin: 0;
   display: flex;

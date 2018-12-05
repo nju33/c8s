@@ -1,4 +1,4 @@
-import {ThemeInterface, css} from './../components/styled';
+import {ThemeInterface} from './../components/styled';
 import {GetThemeFn} from '../components/styled';
 
 export const get: (name: keyof ThemeInterface) => GetThemeFn = name => ({
@@ -17,4 +17,8 @@ export const transition = () => {
 
 export const borderRadius = () => {
   return '2px';
+}
+
+export const gutter = () => {
+  return '1em';
 }

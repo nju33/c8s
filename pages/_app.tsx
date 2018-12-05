@@ -17,6 +17,13 @@ const GlobalStyle = createGlobalStyle`
     color: ${theme.get('ActivePresence')};
     text-decoration: none;
   }
+
+  code {
+    background: ${theme.get('HoverItem')};
+    padding: .2em .5em;
+    border-radius: ${theme.borderRadius};
+    color: ${theme.get('ActiveItem')}
+  }
 `;
 
 export default withRouter(

@@ -6,7 +6,7 @@ import {DefaultTemplate} from '../../templates';
 export default withRouter(class extends DefaultTemplate<
   WithRouterProps<{name: string}>
 > {
-  static displayName = 'Components.stripe';
+  static displayName = '/pages/components/stripe';
 
   Main = () => (
     <Main title="Stripe">

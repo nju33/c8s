@@ -39,6 +39,7 @@
   "keywords": [],
   "devDependencies": {
     "@geekcojp/tslint-config": "0.2.1",
+    "@nju33/tsconfig-react-base": "^0.0.2",
     "@types/axios": "0.14.0",
     "@types/body-parser": "1.17.0",
     "@types/camelcase-keys": "4.0.0",

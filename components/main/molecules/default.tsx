@@ -3,6 +3,7 @@ import {Box, Title} from '../atoms';
 
 interface MainDefaultProps {
   title?: string;
+  link?: string;
 }
 
 export class Default extends React.PureComponent<MainDefaultProps> {
