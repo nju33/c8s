@@ -1,0 +1,1 @@
+export {Default as Pagination} from './molecules';

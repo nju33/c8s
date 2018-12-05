@@ -1,6 +1,6 @@
 import React from 'react';
 import {withRouter, WithRouterProps} from 'next/router';
-import {Main} from '../../components';
+import {Main, Tab} from '../../components';
 import {DefaultTemplate} from '../../templates';
 
 export default withRouter(class extends DefaultTemplate<
@@ -11,7 +11,7 @@ export default withRouter(class extends DefaultTemplate<
   Main = () => (
     <Main title="Tab">
       <div>
-        wip
+        <Tab />
       </div>
     </Main>
   );
