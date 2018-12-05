@@ -1,6 +1,6 @@
 import React from 'react';
 import {withRouter, WithRouterProps} from 'next/router';
-import {Main} from '../../components';
+import {Main, Breadcrumb, Section, Table} from '../../components';
 import {DefaultTemplate} from '../../templates';
 
 export default withRouter(class extends DefaultTemplate<
@@ -11,8 +11,17 @@ export default withRouter(class extends DefaultTemplate<
   Main = () => (
     <Main title="Breadcrumb">
       <div>
-        wip
+        <Breadcrumb
+          items={[<a href="/#foo">foo</a>, <a href="/#bar">bar</a>, <>baz</>]}
+        />
       </div>
+
+      <Section title="Props">
+        <Table
+          head={['PropName', 'Type']}
+          body={[[<code>items</code>, <code>React.ReactNode[]</code>]]}
+        />
+      </Section>
     </Main>
   );
 } as any);
