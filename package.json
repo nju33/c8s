@@ -57,6 +57,7 @@
     "dotenv": "6.1.0",
     "html-loader": "^0.5.5",
     "jest": "23.6.0",
+    "lerna": "^3.5.1",
     "markdown-loader": "^4.0.0",
     "next-server": "^0.0.1",
     "prettier": "1.15.3",

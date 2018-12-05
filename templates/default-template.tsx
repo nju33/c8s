@@ -17,7 +17,19 @@ export abstract class DefaultTemplate<P = {}, S = {}> extends React.Component<
         </Head>
         <Flex>
           <Flex item={0}>
-            <Sidebar items={['Button', 'Card', 'Stripe', 'Table']} />
+            <Sidebar
+              items={[
+                'Breadcrumb',
+                'Button',
+                'Card',
+                'Form',
+                'Pagination',
+                'Sidebar',
+                'Stripe',
+                'Tab',
+                'Table',
+              ]}
+            />
           </Flex>
           <Flex item={1}>
             <this.Main />
