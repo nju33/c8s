@@ -25,6 +25,7 @@ export abstract class DefaultTemplate<P = {}, S = {}> extends React.Component<
                 'Form',
                 'Pagination',
                 'Sidebar',
+                'Slider',
                 'Stripe',
                 'Tab',
                 'Table',

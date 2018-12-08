@@ -6,6 +6,7 @@ export * from './main';
 export * from './markdown';
 export * from './pagination';
 export * from './sidebar';
+export * from './slider';
 export * from './stripe';
 export * from './tab';
 export * from './table';
