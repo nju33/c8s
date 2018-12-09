@@ -12,17 +12,18 @@ export default withRouter(class extends DefaultTemplate<
     <Main title="Slider">
       <div>
         <Slider
+          // length={3}
           items={[
             {
               image: 'https://via.placeholder.com/600x480',
               text: 'Lorem ipsum dolor1',
             },
             {
-              image: 'https://via.placeholder.com/600x480',
+              image: 'https://via.placeholder.com/500x480',
               text: 'Lorem ipsum dolor2',
             },
             {
-              image: 'https://via.placeholder.com/600x480',
+              image: 'https://via.placeholder.com/700x480',
               text: 'Lorem ipsum dolor3',
             },
           ]}
