@@ -11,7 +11,30 @@ export default withRouter(class extends DefaultTemplate<
   Main = () => (
     <Main title="Tab">
       <div>
-        <Tab />
+        <Tab
+          items={[
+            {
+              label: 'foo',
+              panel: (
+                <div>
+                  <div>foo</div>
+                  <div>bar</div>
+                  <div>baz</div>
+                </div>
+              ),
+            },
+            {
+              label: 'bar',
+              panel: (
+                <div>
+                  <div>hoge</div>
+                  <div>fuga</div>
+                  <div>piyo</div>
+                </div>
+              ),
+            },
+          ]}
+        />
       </div>
     </Main>
   );
