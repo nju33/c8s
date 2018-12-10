@@ -4,17 +4,18 @@ export interface FunctionsContext {
   onTabClick(value: number | string): () => void;
 }
 
-export interface TabItem {
-  label: string | number;
-  panel: React.ReactNode;
-}
+// export interface TabItem {
+//   label: string | number;
+//   panel: React.ReactNode;
+// }
 
 export interface PropsContext {
   initialHead?: string | number;
-  items: TabItem[];
+  // items: TabItem[];
 }
 
 export interface StateContext {
+  labels: (string | number)[];
   current: string | number;
 }
 

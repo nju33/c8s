@@ -7,17 +7,17 @@ export class Head extends React.PureComponent {
   render() {
     return (
       <Payload.Consumer>
-        {({functions: {onTabClick}, props: {items}, state: {current}}) => {
+        {({functions: {onTabClick}, state: {labels, current}}) => {
           return (
             <Flex>
-              {items.map((item, i) => {
+              {labels.map((label, i) => {
                 return (
                   <Switch
                     key={i}
-                    aria-selected={current === item.label}
-                    onClick={onTabClick(item.label)}
+                    aria-selected={current === label}
+                    onClick={onTabClick(label)}
                   >
-                    {item.label}
+                    {label}
                   </Switch>
                 );
               })}

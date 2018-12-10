@@ -1,1 +1,2 @@
-export * from './default';
+export * from './panel';
+export * from './tab';
