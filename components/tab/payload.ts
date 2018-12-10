@@ -1,17 +1,12 @@
 import React from 'react';
 
 export interface FunctionsContext {
-  onTabClick(value: number | string): () => void;
+  addLabel(label: string | number, defaultSelected: boolean): void;
+  onTabClick(label: string | number): () => void;
 }
 
-// export interface TabItem {
-//   label: string | number;
-//   panel: React.ReactNode;
-// }
-
 export interface PropsContext {
-  initialHead?: string | number;
-  // items: TabItem[];
+  initialLabel?: string | number;
 }
 
 export interface StateContext {

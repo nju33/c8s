@@ -7,9 +7,10 @@ import {
   FunctionsContext,
   PropsContext,
 } from '../payload';
+import {Panel} from './panel';
 
 export interface Children {
-  children: JSX.Element | JSX.Element[];
+  children(Components: {Panel: typeof Panel}): JSX.Element | JSX.Element[];
 }
 
 export class Default extends React.Component<
@@ -19,24 +20,22 @@ export class Default extends React.Component<
   constructor(props: PropsContext & Children) {
     super(props);
 
-    let children: JSX.Element[];
-    if (Array.isArray(props.children)) {
-      children = props.children;
-    } else {
-      children = [props.children];
-    }
-
-    const labels = children.map((child: any) => {
-      if (child.props.label === undefined) {
-        throw new Error('label is required on Panel prop');
-      }
-      return child.props.label;
-    });
     this.state = produce(d => d)({
-      labels,
-      current: props.initialHead || labels[0],
+      labels: [],
+      current: '',
     });
   }
+
+  addLabel: FunctionsContext['addLabel'] = (label, defaultSelected) => {
+    this.setState(
+      produce<StateContext>(draft => {
+        draft.labels.push(label);
+        if (defaultSelected) {
+          draft.current = label;
+        }
+      }),
+    );
+  };
 
   onTabClick: FunctionsContext['onTabClick'] = value => () => {
     this.setState(
@@ -46,33 +45,12 @@ export class Default extends React.Component<
     );
   };
 
-  private getChildren() {
-    let children: JSX.Element[];
-    if (Array.isArray(this.props.children)) {
-      children = this.props.children as JSX.Element[];
-    } else {
-      children = [this.props.children] as JSX.Element[];
-    }
-
-    return children;
-  }
-
-  private getCurrentPanel() {
-    const target = this.getChildren().find(
-      child => child.props.label === this.state.current,
-    );
-    if (target === undefined) {
-      throw new Error('target not found');
-    }
-
-    return target;
-  }
-
   render() {
     return (
       <Payload.Provider
         value={{
           functions: {
+            addLabel: this.addLabel,
             onTabClick: this.onTabClick,
           },
           props: this.props,
@@ -81,7 +59,7 @@ export class Default extends React.Component<
       >
         <div>
           <Head />
-          {this.getCurrentPanel()}
+          {this.props.children({Panel})}
         </div>
       </Payload.Provider>
     );
