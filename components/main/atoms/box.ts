@@ -12,4 +12,8 @@ export const Box = styled.div`
   & > & ${Title} {
     font-size: 18px;
   }
+
+  & > & ${Title} {
+    height: 50px;
+  }
 `;

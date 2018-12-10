@@ -1,6 +1,7 @@
 export * from './breadcrumb';
 export * from './button';
 export * from './card';
+export * from './code-block';
 export * from './logo';
 export * from './main';
 export * from './markdown';
