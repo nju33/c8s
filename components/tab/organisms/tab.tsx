@@ -8,6 +8,7 @@ import {
   PropsContext,
 } from '../payload';
 import {Panel} from './panel';
+import {Box} from '../atoms';
 
 export interface Children {
   children(
@@ -44,7 +45,10 @@ export class Tab extends React.Component<
           state: this.state,
         }}
       >
-        <div>
+        <Box
+          data-position={this.props.position || 'top'}
+          data-ref="organisms/tab"
+        >
           <Head />
           {this.props.children(
             this.props.labels.map(label => {
@@ -55,7 +59,7 @@ export class Tab extends React.Component<
               return APanel;
             }),
           )}
-        </div>
+        </Box>
       </Payload.Provider>
     );
   }

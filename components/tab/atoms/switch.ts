@@ -20,16 +20,23 @@ export const Switch = styled.div`
 
   transition: 0.05s;
   padding: 0.5em 3em;
-  margin: 2px;
+  /* margin: 2px; */
   border-radius: ${theme.borderRadius};
 
-  &:first-child {
-    margin-left: 0;
+  &[data-position='top']:not(:first-child),
+  &[data-position='bottom']:not(:first-child) {
+    margin-left: 2px;
   }
 
-  &:last-child {
-    margin-right: 0;
+  &[data-position='left']:not(:first-child),
+  &[data-position='right']:not(:first-child) {
+    margin-top: 2px;
   }
+
+  /* &[data-position='left']:last-child,
+  &[data-position='right']:last-child {
+    margin-bottom: 0;
+  } */
 
   & + & {
     border-left: 1px solid ${theme.get('HoverItem')};

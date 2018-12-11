@@ -1,19 +1,23 @@
 import React from 'react';
-import Flex from '@nju33/react-flex';
-import {Switch} from '../atoms';
+import {Switch, Box} from '../atoms';
 import {Payload} from '../payload';
 
 export class Head extends React.PureComponent {
   render() {
     return (
       <Payload.Consumer>
-        {({functions: {onTabClick}, props: {labels}, state: {current}}) => {
+        {({
+          functions: {onTabClick},
+          props: {position, labels},
+          state: {current},
+        }) => {
           return (
-            <Flex>
+            <Box data-position={position || 'left'} data-ref="molecules/head">
               {labels.map((label, i) => {
                 return (
                   <Switch
                     key={i}
+                    data-position={position || 'left'}
                     aria-selected={current === label}
                     onClick={onTabClick(label)}
                   >
@@ -21,7 +25,7 @@ export class Head extends React.PureComponent {
                   </Switch>
                 );
               })}
-            </Flex>
+            </Box>
           );
         }}
       </Payload.Consumer>

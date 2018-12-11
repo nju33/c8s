@@ -5,6 +5,7 @@ import {
   StateContext,
   PropsContext,
 } from '../payload';
+import {Box} from '../atoms';
 
 export interface TabPanelProps {
   label: string | number;
@@ -21,7 +22,14 @@ const Original = class extends React.Component<
     if (this.props.state.current !== this.props.label) {
       return null;
     }
-    return this.props.children;
+    return (
+      <Box
+        data-position={this.props.props.position || 'left'}
+        data-ref="organisms/panel"
+      >
+        {this.props.children}
+      </Box>
+    );
   }
 };
 

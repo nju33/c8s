@@ -7,6 +7,7 @@ export interface FunctionsContext {
 export interface PropsContext {
   labels: (string | number)[];
   initialLabel?: string | number;
+  position?: 'top' | 'right' | 'bottom' | 'left';
 }
 
 export interface StateContext {

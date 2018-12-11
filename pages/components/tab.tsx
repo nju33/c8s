@@ -11,7 +11,76 @@ export default withRouter(class extends DefaultTemplate<
   Main = () => (
     <Main title="Tab">
       <div>
-        <Tab labels={['foo', 'bar']}>
+        <Tab labels={['foo', 'bar']} position="top">
+          {([FooPanel, BarPanel]) => {
+            return (
+              <>
+                <FooPanel>
+                  <div>
+                    <div>foo</div>
+                    <div>bar</div>
+                    <div>baz</div>
+                  </div>
+                </FooPanel>
+                <BarPanel>
+                  <div>
+                    <div>hoge</div>
+                    <div>fuga</div>
+                    <div>piyo</div>
+                  </div>
+                </BarPanel>
+              </>
+            );
+          }}
+        </Tab>
+
+        <Tab labels={['foo', 'bar']} position="right">
+          {([FooPanel, BarPanel]) => {
+            return (
+              <>
+                <FooPanel>
+                  <div>
+                    <div>foo</div>
+                    <div>bar</div>
+                    <div>baz</div>
+                  </div>
+                </FooPanel>
+                <BarPanel>
+                  <div>
+                    <div>hoge</div>
+                    <div>fuga</div>
+                    <div>piyo</div>
+                  </div>
+                </BarPanel>
+              </>
+            );
+          }}
+        </Tab>
+
+        <Tab labels={['foo', 'bar']} position="bottom">
+          {([FooPanel, BarPanel]) => {
+            return (
+              <>
+                <FooPanel>
+                  <div>
+                    <div>foo</div>
+                    <div>bar</div>
+                    <div>baz</div>
+                  </div>
+                </FooPanel>
+                <BarPanel>
+                  <div>
+                    <div>hoge</div>
+                    <div>fuga</div>
+                    <div>piyo</div>
+                  </div>
+                </BarPanel>
+              </>
+            );
+          }}
+        </Tab>
+
+        <Tab labels={['foo', 'bar']} position="left">
           {([FooPanel, BarPanel]) => {
             return (
               <>
