@@ -41,24 +41,24 @@ export default withRouter(class extends DefaultTemplate<
 class Example extends React.Component {
   render() {
     return (
-      <Tab>
-        {({Panel}) => {
+      <Tab labels={['foo', 'bar']}>
+        {([FooPanel, BarPanel]) => {
           return (
             <>
-              <Panel label="foo" defaultSelected>
+              <FooPanel>
                 <div>
                   <div>foo</div>
                   <div>bar</div>
                   <div>baz</div>
                 </div>
-              </Panel>
-              <Panel label="bar">
+              </FooPanel>
+              <BarPanel>
                 <div>
                   <div>hoge</div>
                   <div>fuga</div>
                   <div>piyo</div>
                 </div>
-              </Panel>
+              </BarPanel>
             </>
           );
         }}
@@ -74,20 +74,19 @@ class Example extends React.Component {
         <Table
           head={['PropName', 'Type']}
           body={[
+            [<code>labels</code>, <code>(string | number)[]</code>],
+            [
+              <code>initialLabel</code>,
+              <code>undefined | string | number</code>,
+            ],
             [
               <code>children</code>,
-              <code>{'(Components: {Panel}) => JSX.Element'}</code>,
+              <code>{'(Components: JSX.Element[]) => JSX.Element'}</code>,
             ],
           ]}
         />
         <h3>Panel</h3>
-        <Table
-          head={['PropName', 'Type']}
-          body={[
-            [<code>label</code>, <code>string</code>],
-            [<code>defaultSelected</code>, <code>boolean | undefined</code>],
-          ]}
-        />
+        <Table head={['PropName', 'Type']} body={[]} />
       </Section>
     </Main>
   );
