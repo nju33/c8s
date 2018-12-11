@@ -13,3 +13,4 @@ export * from './tab';
 export * from './table';
 export * from './theme';
 export * from './theme-context';
+export * from './youtube';
