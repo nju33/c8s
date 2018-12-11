@@ -1,16 +1,15 @@
 import React from 'react';
 
 export interface FunctionsContext {
-  addLabel(label: string | number, defaultSelected: boolean): void;
   onTabClick(label: string | number): () => void;
 }
 
 export interface PropsContext {
+  labels: (string | number)[];
   initialLabel?: string | number;
 }
 
 export interface StateContext {
-  labels: (string | number)[];
   current: string | number;
 }
 

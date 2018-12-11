@@ -10,32 +10,29 @@ import {
 import {Panel} from './panel';
 
 export interface Children {
-  children(Components: {Panel: typeof Panel}): JSX.Element | JSX.Element[];
+  children(
+    Components: React.NamedExoticComponent<{
+      children: JSX.Element | JSX.Element[];
+    }>[],
+  ): JSX.Element;
 }
 
 export class Default extends React.Component<
   PropsContext & Children,
   StateContext
 > {
-  constructor(props: PropsContext & Children) {
-    super(props);
+  // constructor(props: PropsContext & Children) {
+  //   super(props);
 
-    this.state = produce(d => d)({
-      labels: [],
-      current: '',
-    });
-  }
+  //   this.state = produce(d => d)({
+  //     // labels: [],
+  //     current: '',
+  //   });
+  // }
 
-  addLabel: FunctionsContext['addLabel'] = (label, defaultSelected) => {
-    this.setState(
-      produce<StateContext>(draft => {
-        draft.labels.push(label);
-        if (defaultSelected) {
-          draft.current = label;
-        }
-      }),
-    );
-  };
+  state = produce(d => d)({
+    current: this.props.initialLabel || this.props.labels[0],
+  });
 
   onTabClick: FunctionsContext['onTabClick'] = value => () => {
     this.setState(
@@ -50,7 +47,6 @@ export class Default extends React.Component<
       <Payload.Provider
         value={{
           functions: {
-            addLabel: this.addLabel,
             onTabClick: this.onTabClick,
           },
           props: this.props,
@@ -59,7 +55,13 @@ export class Default extends React.Component<
       >
         <div>
           <Head />
-          {this.props.children({Panel})}
+          {this.props.children(
+            this.props.labels.map(label => {
+              return React.memo(props => {
+                return <Panel label={label}>{props.children}</Panel>;
+              });
+            }),
+          )}
         </div>
       </Payload.Provider>
     );

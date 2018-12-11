@@ -8,7 +8,6 @@ import {
 
 export interface TabPanelProps {
   label: string | number;
-  defaultSelected?: boolean;
 }
 
 const Original = class extends React.Component<
@@ -18,22 +17,6 @@ const Original = class extends React.Component<
     state: StateContext;
   }
 > {
-  static defaultProps = {
-    defaultSelected: false,
-  };
-
-  constructor(
-    props: Required<TabPanelProps> & {
-      functions: FunctionsContext;
-      props: PropsContext;
-      state: StateContext;
-    },
-  ) {
-    super(props);
-
-    props.functions.addLabel(props.label, props.defaultSelected);
-  }
-
   render() {
     if (this.props.state.current !== this.props.label) {
       return null;

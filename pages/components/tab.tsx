@@ -11,24 +11,24 @@ export default withRouter(class extends DefaultTemplate<
   Main = () => (
     <Main title="Tab">
       <div>
-        <Tab>
-          {({Panel}) => {
+        <Tab labels={['foo', 'bar']}>
+          {([FooPanel, BarPanel]) => {
             return (
               <>
-                <Panel label="foo" defaultSelected>
+                <FooPanel>
                   <div>
                     <div>foo</div>
                     <div>bar</div>
                     <div>baz</div>
                   </div>
-                </Panel>
-                <Panel label="bar">
+                </FooPanel>
+                <BarPanel>
                   <div>
                     <div>hoge</div>
                     <div>fuga</div>
                     <div>piyo</div>
                   </div>
-                </Panel>
+                </BarPanel>
               </>
             );
           }}

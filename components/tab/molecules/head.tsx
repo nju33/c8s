@@ -7,9 +7,9 @@ export class Head extends React.PureComponent {
   render() {
     return (
       <Payload.Consumer>
-        {({functions: {onTabClick}, state: {labels, current}}) => {
+        {({functions: {onTabClick}, props: {labels}, state: {current}}) => {
           return (
-            <Flex style={{minHeight: 33.333}}>
+            <Flex>
               {labels.map((label, i) => {
                 return (
                   <Switch
