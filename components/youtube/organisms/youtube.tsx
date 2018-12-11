@@ -1,15 +1,37 @@
 import React from 'react';
-import {Player} from '../atoms';
+import cssxy from 'cssxy';
+import {createPlayer} from '../atoms';
+// import {Player} from '../atoms';
 
 export interface YoutubeProps {
   videoId: string;
+  theme?: {
+    width?: string;
+    height?: string;
+  };
 }
 
 const delay = async () => new Promise(r => setTimeout(r, 1000));
 
 export class Youtube extends React.Component<YoutubeProps> {
+  static defaultProps = {
+    theme: {
+      width: '50vw',
+      height: '50vh',
+    },
+  };
+
   YT!: any;
   player!: any;
+
+  state = {
+    Player: createPlayer(
+      cssxy({
+        ...{width: '50vw', height: '50vh'},
+        ...(this.props.theme as any),
+      }),
+    ),
+  };
 
   static readonly API_URL = 'https://www.youtube.com/iframe_api';
 
@@ -56,6 +78,6 @@ export class Youtube extends React.Component<YoutubeProps> {
   }
 
   render() {
-    return <Player id="ytplayer" />;
+    return <this.state.Player id="ytplayer" />;
   }
 }

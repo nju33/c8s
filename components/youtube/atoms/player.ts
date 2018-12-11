@@ -1,8 +1,8 @@
 import styled from '../../styled';
 
-export const Player = styled.div`
+export const createPlayer = (theme: any) => styled.div`
   max-width: 100%;
-  width: 50vw;
-  height: 50vh;
+  width: ${theme.width};
+  height: ${theme.height};
   background: #000;
-`
+`;

@@ -11,7 +11,10 @@ export default withRouter(class extends DefaultTemplate<
   Main = () => (
     <Main title="Youtube">
       <div>
-        <Youtube videoId="psQkDS3zqRg" />
+        <Youtube
+          videoId="psQkDS3zqRg"
+          theme={{width: '50vw', height: '45vh'}}
+        />
       </div>
 
       <Section title="Code">
@@ -22,7 +25,7 @@ class Example extends React.Component {
     return <Youtube videoId="psQkDS3zqRg" />
   }
 }
-`}
+          `}
         </CodeBlock>
       </Section>
 
