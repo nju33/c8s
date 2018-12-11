@@ -1,1 +1,1 @@
-export {Default as Tab} from './organisms';
+export {Tab} from './organisms';

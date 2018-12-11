@@ -17,19 +17,10 @@ export interface Children {
   ): JSX.Element;
 }
 
-export class Default extends React.Component<
+export class Tab extends React.Component<
   PropsContext & Children,
   StateContext
 > {
-  // constructor(props: PropsContext & Children) {
-  //   super(props);
-
-  //   this.state = produce(d => d)({
-  //     // labels: [],
-  //     current: '',
-  //   });
-  // }
-
   state = produce(d => d)({
     current: this.props.initialLabel || this.props.labels[0],
   });
@@ -57,9 +48,11 @@ export class Default extends React.Component<
           <Head />
           {this.props.children(
             this.props.labels.map(label => {
-              return React.memo(props => {
+              const APanel = React.memo(props => {
                 return <Panel label={label}>{props.children}</Panel>;
               });
+              APanel.displayName = `Panel(${label})`;
+              return APanel;
             }),
           )}
         </div>
