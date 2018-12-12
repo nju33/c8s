@@ -5,6 +5,7 @@ export * from './code-block';
 export * from './logo';
 export * from './main';
 export * from './markdown';
+export * from './masonry';
 export * from './pagination';
 export * from './sidebar';
 export * from './slider';
