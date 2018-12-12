@@ -19,7 +19,7 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
     width: 0,
     height: 0,
     init: false,
-    components: [],
+    componentItems: [],
     stack: [],
     items: [],
   });
@@ -27,7 +27,7 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
   componentDidUpdate(_prevProps: MasonryProps, prevState: MasonryState) {
     const notInitialized = !prevState.init;
     const hasComponents = this.state.components.length > 0;
-    const allReady = this.state.components.every(component => component.ready);
+    const allReady = this.state.componentItems.every(item => item.ready);
 
     if (notInitialized && hasComponents && allReady) {
       this.setState(
@@ -41,29 +41,25 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
     return;
   }
 
-  register = (
-    itemInstance: React.Component<{id: number}> & {
-      boxRef: React.RefObject<any>;
-    },
-  ) => {
+  register: MasonryFunctions['register'] = component => {
     this.setState(
       produce<MasonryState>(draft => {
-        draft.components.push({item: itemInstance, ready: false});
+        draft.componentItems.push({component, ready: false});
       }),
     );
   };
 
-  apportion = itemInstance => {
+  apportion: MasonryFunctions['apportion'] = component => {
     this.setState(
       produce<MasonryState>(draft => {
-        const targetIndex = draft.components.findIndex(
-          component => component.item === itemInstance,
+        const targetIndex = draft.componentItems.findIndex(
+          ({component: aComponent}) => aComponent === component,
         );
         if (targetIndex === -1) {
           return;
         }
 
-        draft.components[targetIndex].ready = true;
+        draft.componentItems[targetIndex].ready = true;
       }),
     );
   };

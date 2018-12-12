@@ -2,16 +2,24 @@ import React from 'react';
 import produce from 'immer';
 import {MasonryPayload, PayloadContext} from '../payload';
 
-export interface MasonryItemState {
-  init: boolean;
-}
-
-interface Props {
+export interface MasonryItemProps {
   col: number;
   payload: MasonryPayload;
 }
 
-export class Original extends React.PureComponent<Props, MasonryItemState> {
+export interface MasonryItemState {
+  init: boolean;
+}
+
+export type MasonryItemComponent = React.Component<
+  MasonryItemProps,
+  MasonryItemState
+> & {boxRef: React.RefObject<HTMLDivElement>};
+
+export class Original extends React.PureComponent<
+  MasonryItemProps,
+  MasonryItemState
+> {
   static displayName = 'Original(MasonryItem)';
 
   boxRef = React.createRef<HTMLDivElement>();
@@ -19,7 +27,7 @@ export class Original extends React.PureComponent<Props, MasonryItemState> {
     init: false,
   });
 
-  constructor(props: Props) {
+  constructor(props: MasonryItemProps) {
     super(props);
 
     props.payload.functions.register(this);

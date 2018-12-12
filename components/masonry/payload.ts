@@ -1,8 +1,9 @@
 import React from 'react';
+import {MasonryItemComponent} from './organisms/item';
 
 export interface MasonryFunctions {
-  register(itemInstance: React.Component<any>): void;
-  apportion(el: any): void;
+  register(component: MasonryItemComponent): void;
+  apportion(component: MasonryItemComponent): void;
 }
 
 export interface MasonryProps {
@@ -12,11 +13,16 @@ export interface MasonryProps {
   }): JSX.Element;
 }
 
+export interface ComponentItem {
+  component: MasonryItemComponent;
+  ready: boolean;
+}
+
 export interface MasonryState {
   width: number;
   height: number;
   init: boolean;
-  components: any[];
+  componentItems: ComponentItem[];
   stack: any[];
   items: any[];
 }
@@ -28,7 +34,10 @@ export interface MasonryPayload {
 }
 
 export const PayloadContext = React.createContext<MasonryPayload>({
+  register() {
+    throw new Error('`register` do not implement');
+  },
   apportion() {
-    throw new Error('no implement');
+    throw new Error('`apportion` do not implement');
   },
 } as any);
