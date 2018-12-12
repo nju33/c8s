@@ -14,15 +14,58 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
     col: 3,
   };
 
-  boxRef: React.RefObject<HTMLDivElement>;
+  boxRef = React.createRef<HTMLDivElement>();
   state = produce(d => d)({
+    width: 0,
+    height: 0,
     init: false,
+    components: [],
     stack: [],
     items: [],
   });
 
-  apportion = () => {
-    console.log(13213);
+  componentDidUpdate(_prevProps: MasonryProps, prevState: MasonryState) {
+    const notInitialized = !prevState.init;
+    const hasComponents = this.state.components.length > 0;
+    const allReady = this.state.components.every(component => component.ready);
+
+    if (notInitialized && hasComponents && allReady) {
+      this.setState(
+        produce<MasonryState>(draft => {
+          draft.init = true;
+        }),
+      );
+      return;
+    }
+
+    return;
+  }
+
+  register = (
+    itemInstance: React.Component<{id: number}> & {
+      boxRef: React.RefObject<any>;
+    },
+  ) => {
+    this.setState(
+      produce<MasonryState>(draft => {
+        draft.components.push({item: itemInstance, ready: false});
+      }),
+    );
+  };
+
+  apportion = itemInstance => {
+    this.setState(
+      produce<MasonryState>(draft => {
+        const targetIndex = draft.components.findIndex(
+          component => component.item === itemInstance,
+        );
+        if (targetIndex === -1) {
+          return;
+        }
+
+        draft.components[targetIndex].ready = true;
+      }),
+    );
   };
 
   componentDidMount() {
@@ -35,11 +78,9 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
       }),
     );
 
-    // this.setState(
-    //   produce<MasonryState>(draft => {
-    //     draft.init = true;
-    //   }),
-    // );
+    setTimeout(() => {
+      console.log(this.state);
+    }, 1000);
   }
 
   render() {
@@ -47,6 +88,7 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
       <PayloadContext.Provider
         value={{
           functions: {
+            register: this.register,
             apportion: this.apportion,
           },
           props: this.props,

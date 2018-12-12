@@ -1,7 +1,8 @@
 import React from 'react';
 
 export interface MasonryFunctions {
-  apportion(): void;
+  register(itemInstance: React.Component<any>): void;
+  apportion(el: any): void;
 }
 
 export interface MasonryProps {
@@ -12,7 +13,10 @@ export interface MasonryProps {
 }
 
 export interface MasonryState {
+  width: number;
+  height: number;
   init: boolean;
+  components: any[];
   stack: any[];
   items: any[];
 }

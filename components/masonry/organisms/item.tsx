@@ -6,30 +6,43 @@ export interface MasonryItemState {
   init: boolean;
 }
 
-export class Original extends React.PureComponent<
-  {payload: MasonryPayload},
-  MasonryItemState
-> {
+interface Props {
+  col: number;
+  payload: MasonryPayload;
+}
+
+export class Original extends React.PureComponent<Props, MasonryItemState> {
   static displayName = 'Original(MasonryItem)';
 
+  boxRef = React.createRef<HTMLDivElement>();
   state = produce(d => d)({
     init: false,
   });
 
+  constructor(props: Props) {
+    super(props);
+
+    props.payload.functions.register(this);
+  }
+
   componentDidMount() {
-    this.setState(
-      produce<MasonryItemState>(draft => {
-        draft.init = true;
-      }),
-    );
+    this.props.payload.functions.apportion(this);
   }
 
   render() {
-    if (!this.state.init) {
-      return <div style={{opacity: 0}}>{this.props.children}</div>;
+    if (!this.props.payload.state.init) {
+      return (
+        <div ref={this.boxRef} data-col={this.props.col} style={{opacity: 0.1}}>
+          {this.props.children}
+        </div>
+      );
     }
 
-    return <div>{this.props.children}</div>;
+    return (
+      <div ref={this.boxRef} data-col={this.props.col}>
+        {this.props.children}
+      </div>
+    );
   }
 }
 

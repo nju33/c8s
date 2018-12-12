@@ -8,6 +8,16 @@ export default withRouter(class extends DefaultTemplate<
 > {
   static displayName = '/pages/components/table';
 
+  items = Array(50)
+    .fill(undefined)
+    .map(() => {
+      return {
+        background: '#444',
+        width: Math.random() * 400 + 200,
+        height: Math.random() * 400 + 200,
+      };
+    });
+
   Main = () => (
     <Main title="Masonry">
       <div>
@@ -15,21 +25,13 @@ export default withRouter(class extends DefaultTemplate<
           {({Item}) => {
             return (
               <>
-                {Array(50)
-                  .fill(undefined)
-                  .map((_item, i) => {
-                    return (
-                      <Item key={i}>
-                        <div
-                          style={{
-                            background: '#444',
-                            width: Math.random() * 400 + 200,
-                            height: Math.random() * 400 + 200,
-                          }}
-                        />
-                      </Item>
-                    );
-                  })}
+                {this.items.map((style, i) => {
+                  return (
+                    <Item key={i} col={Math.random() > 0.8 ? 2 : 1}>
+                      <div style={style} />
+                    </Item>
+                  );
+                })}
               </>
             );
           }}
