@@ -1,4 +1,5 @@
 import React from 'react';
+import produce from 'immer';
 import {
   PayloadContext,
   MasonryProps,
@@ -6,7 +7,6 @@ import {
   MasonryFunctions,
 } from '../payload';
 import {Item} from './item';
-import produce from 'immer';
 
 export class Masonry extends React.Component<MasonryProps, MasonryState>
   implements MasonryFunctions {
@@ -15,18 +15,18 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
   };
 
   boxRef = React.createRef<HTMLDivElement>();
-  state = produce(d => d)({
+  state = produce<MasonryState>(d => d)({
     width: 0,
     height: 0,
     init: false,
-    componentItems: [],
+    componentItems: [] as MasonryState['componentItems'],
     stack: [],
     items: [],
   });
 
   componentDidUpdate(_prevProps: MasonryProps, prevState: MasonryState) {
     const notInitialized = !prevState.init;
-    const hasComponents = this.state.components.length > 0;
+    const hasComponents = this.state.componentItems.length > 0;
     const allReady = this.state.componentItems.every(item => item.ready);
 
     if (notInitialized && hasComponents && allReady) {

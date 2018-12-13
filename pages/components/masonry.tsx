@@ -27,7 +27,18 @@ export default withRouter(class extends DefaultTemplate<
               <>
                 {this.items.map((style, i) => {
                   return (
-                    <Item key={i} col={Math.random() > 0.8 ? 2 : 1}>
+                    <Item
+                      key={i}
+                      assets={[
+                        {
+                          href: `https://dummyimage.com/${style.width}x${
+                            style.height
+                          }`,
+                          as: 'image',
+                        },
+                      ]}
+                      col={Math.random() > 0.8 ? 2 : 1}
+                    >
                       <div style={style} />
                     </Item>
                   );

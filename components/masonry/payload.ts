@@ -1,5 +1,5 @@
 import React from 'react';
-import {MasonryItemComponent} from './organisms/item';
+import {MasonryItemComponent, MasonryItemProps} from './organisms/item';
 
 export interface MasonryFunctions {
   register(component: MasonryItemComponent): void;
@@ -9,12 +9,13 @@ export interface MasonryFunctions {
 export interface MasonryProps {
   col?: number;
   children(Components: {
-    Item: React.MemoExoticComponent<React.SFC<{}>>;
+    Item: React.ExoticComponent<MasonryItemProps>;
   }): JSX.Element;
 }
 
 export interface ComponentItem {
-  component: MasonryItemComponent;
+  // component: MasonryItemComponent;
+  component: any;
   ready: boolean;
 }
 
