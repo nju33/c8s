@@ -6,7 +6,7 @@ import {
   MasonryState,
   MasonryFunctions,
 } from '../payload';
-import {Item} from './item';
+import {Item, MasonryItemProps} from './item';
 
 export class Masonry extends React.Component<MasonryProps, MasonryState>
   implements MasonryFunctions {
@@ -53,11 +53,29 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
     );
   };
 
-  private getMinimumStackIndex(): number {
+  private getMinimumStackIndex(componentProps: MasonryItemProps): number {
     const sizes = this.state.stacks.map(stack => stack.length);
-    const minSize = Math.min(...sizes);
+    const sorted = sizes
+      .map((size, idx) => [idx, size])
+      .sort((a, b) => a[1] - b[1]);
 
-    return sizes.findIndex(size => size === minSize);
+    let targetIndex: number;
+    let i = 0;
+    while (targetIndex === undefined) {
+      if (this.props.col - sorted[i][0] < componentProps.col) {
+        i++;
+      } else {
+        targetIndex = sorted[i][0];
+        break;
+      }
+    }
+
+    return targetIndex;
+  }
+
+  private getHeight() {
+    const sizes = this.state.stacks.map(stack => stack.length);
+    return Math.max(...sizes);
   }
 
   apportion: MasonryFunctions['apportion'] = component => {
@@ -70,14 +88,22 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
           return;
         }
 
-        const stackIndex = this.getMinimumStackIndex();
+        const stackIndex = this.getMinimumStackIndex(component.props);
+        console.log(stackIndex);
         const targetStack = draft.stacks[stackIndex];
         const currentHeight = targetStack.length;
-        targetStack.splice(
-          targetStack.length,
-          0,
-          ...[...Array(component.boxRef.current.clientHeight)].map(() => 1),
-        );
+        [...Array(component.props.col)].map((_, i) => {
+          draft.stacks[stackIndex + i].splice(
+            targetStack.length,
+            0,
+            ...[...Array(component.boxRef.current.clientHeight)].map(() => 1),
+          );
+        });
+        // targetStack.splice(
+        //   targetStack.length,
+        //   0,
+        //   ...[...Array(component.boxRef.current.clientHeight)].map(() => 1),
+        // );
 
         draft.componentItems[targetIndex].ready = true;
         draft.componentItems[targetIndex].stackIndex = stackIndex;
@@ -120,7 +146,10 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
           state: this.state,
         }}
       >
-        <div ref={this.boxRef} style={{position: 'relative'}}>
+        <div
+          ref={this.boxRef}
+          style={{position: 'relative', height: this.getHeight()}}
+        >
           {this.props.children({Item})}
         </div>
       </PayloadContext.Provider>

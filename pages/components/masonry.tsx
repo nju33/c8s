@@ -39,7 +39,7 @@ export default withRouter(class extends DefaultTemplate<
                       ]}
                       col={Math.random() > 0.8 ? 2 : 1}
                     >
-                      <div style={style} />
+                      <div style={{...style, maxWidth: '100%'}} />
                     </Item>
                   );
                 })}
