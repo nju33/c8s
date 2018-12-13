@@ -14,17 +14,46 @@ export interface MasonryProps {
 }
 
 export interface ComponentItem {
-  // component: MasonryItemComponent;
-  component: any;
+  component: MasonryItemComponent;
   ready: boolean;
+  stackIndex: number;
+  position: {
+    left: number;
+    top: number;
+  };
 }
+
+export enum MasonryStackItemType {
+  Empty,
+  Gutter,
+  Component,
+}
+
+export interface MasonryEmptyStackItem {
+  type: MasonryStackItemType.Empty;
+  height: number;
+}
+
+export interface MasonryGutterStackItem {
+  type: MasonryStackItemType.Gutter;
+}
+
+export interface MasonryComponentStackItem {
+  type: MasonryStackItemType.Component;
+  height: number;
+}
+
+export type MasonryStackItem =
+  | MasonryEmptyStackItem
+  | MasonryGutterStackItem
+  | MasonryComponentStackItem;
 
 export interface MasonryState {
   width: number;
   height: number;
   init: boolean;
   componentItems: ComponentItem[];
-  stack: any[];
+  stacks: any[][];
   items: any[];
 }
 

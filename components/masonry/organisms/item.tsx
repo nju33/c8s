@@ -27,7 +27,7 @@ export interface MasonryItemProps {
 }
 
 export interface MasonryItemState {
-  init: boolean;
+  ready: boolean;
 }
 
 export type MasonryItemComponent = React.Component<
@@ -46,9 +46,7 @@ export class Original extends React.PureComponent<
   };
 
   boxRef = React.createRef<HTMLDivElement>();
-  state = produce(d => d)({
-    init: false,
-  });
+  state = produce(d => d)({});
 
   constructor(props: MasonryItemProps) {
     super(props);
@@ -86,13 +84,23 @@ export class Original extends React.PureComponent<
     });
   };
 
+  private getPosition() {
+    const componentItem = this.props.payload.state.componentItems.find(
+      item => item.component === this,
+    );
+
+    return componentItem.position;
+  }
+
   private loadAssets = async () => {
     return Promise.all(this.props.assets.map(this.loadAsset));
   };
 
   async componentDidMount() {
     await this.loadAssets();
-    this.props.payload.functions.apportion(this);
+    setTimeout(() => {
+      this.props.payload.functions.apportion(this);
+    }, 0);
   }
 
   render() {
@@ -105,7 +113,11 @@ export class Original extends React.PureComponent<
     }
 
     return (
-      <div ref={this.boxRef} data-col={this.props.col}>
+      <div
+        ref={this.boxRef}
+        data-col={this.props.col}
+        style={{position: 'absolute', ...this.getPosition()}}
+      >
         {this.props.children}
       </div>
     );
