@@ -16,8 +16,7 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
 
   boxRef = React.createRef<HTMLDivElement>();
   state = produce<MasonryState>(d => d as any)({
-    width: 0,
-    height: 0,
+    sizes: Array(this.props.col + 1).map(() => 0),
     init: false,
     componentItems: [] as MasonryState['componentItems'],
     stacks: [...Array(this.props.col)].map(() => []),
@@ -83,15 +82,31 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
         draft.componentItems[targetIndex].ready = true;
         draft.componentItems[targetIndex].stackIndex = stackIndex;
         draft.componentItems[targetIndex].position = {
-          left: (this.boxRef.current.clientWidth / 3) * stackIndex - 1,
+          left:
+            (this.boxRef.current.clientWidth / 3) * stackIndex -
+            1 +
+            stackIndex * 10,
           top: currentHeight,
         };
       }),
     );
   };
 
-  // componentDidMount() {
-  // }
+  componentDidMount() {
+    const width = this.boxRef.current.clientWidth;
+
+    this.setState(
+      produce<MasonryState>(draft => {
+        draft.sizes = [...Array(this.props.col + 1)].map((_, i) => {
+          if (i === 0) {
+            return 0;
+          }
+
+          return (width / this.props.col) * i + (i * 10 - 1);
+        });
+      }),
+    );
+  }
 
   render() {
     return (

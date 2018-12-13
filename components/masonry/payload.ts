@@ -49,8 +49,9 @@ export type MasonryStackItem =
   | MasonryComponentStackItem;
 
 export interface MasonryState {
-  width: number;
-  height: number;
+  sizes: number[];
+  // width: number;
+  // height: number;
   init: boolean;
   componentItems: ComponentItem[];
   stacks: any[][];

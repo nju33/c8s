@@ -92,6 +92,10 @@ export class Original extends React.PureComponent<
     return componentItem.position;
   }
 
+  private getSize(): {width: number} {
+    return {width: this.props.payload.state.sizes[this.props.col]};
+  }
+
   private loadAssets = async () => {
     return Promise.all(this.props.assets.map(this.loadAsset));
   };
@@ -116,7 +120,12 @@ export class Original extends React.PureComponent<
       <div
         ref={this.boxRef}
         data-col={this.props.col}
-        style={{position: 'absolute', ...this.getPosition()}}
+        style={{
+          position: 'absolute',
+          ...this.getPosition(),
+          ...this.getSize(),
+          overflow: 'hidden',
+        }}
       >
         {this.props.children}
       </div>
