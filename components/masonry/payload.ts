@@ -1,3 +1,4 @@
+import {PQueue} from 'p-queue';
 import React from 'react';
 import {MasonryItemComponent, MasonryItemProps} from './organisms/item';
 
@@ -49,10 +50,9 @@ export type MasonryStackItem =
   | MasonryComponentStackItem;
 
 export interface MasonryState {
+  queue: PQueue;
   sizes: number[];
-  // width: number;
-  // height: number;
-  init: boolean;
+  ready: boolean;
   componentItems: ComponentItem[];
   stacks: any[][];
   items: any[];

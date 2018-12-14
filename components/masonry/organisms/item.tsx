@@ -108,7 +108,7 @@ export class Original extends React.PureComponent<
   }
 
   render() {
-    if (!this.props.payload.state.init) {
+    if (!this.props.payload.state.ready) {
       return (
         <div ref={this.boxRef} data-col={this.props.col} style={{opacity: 0.1}}>
           {this.props.children}

@@ -1,12 +1,15 @@
 import React from 'react';
 import produce from 'immer';
+import PQueue from 'p-queue';
+// import corcer from 'corcer';
+import {corcer} from './corcer';
 import {
   PayloadContext,
   MasonryProps,
   MasonryState,
   MasonryFunctions,
 } from '../payload';
-import {Item, MasonryItemProps} from './item';
+import {Item} from './item';
 
 export class Masonry extends React.Component<MasonryProps, MasonryState>
   implements MasonryFunctions {
@@ -15,23 +18,28 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
   };
 
   boxRef = React.createRef<HTMLDivElement>();
-  state = produce<MasonryState>(d => d as any)({
+  state: MasonryState = produce<MasonryState>(d => d as any)({
+    queue: new PQueue({concurrency: 1}),
     sizes: Array(this.props.col + 1).map(() => 0),
-    init: false,
+    ready: false,
     componentItems: [] as MasonryState['componentItems'],
     stacks: [...Array(this.props.col)].map(() => []),
     items: [],
   });
 
+  shouldComponentUpdate(_, nextState: MasonryState) {
+    return nextState.componentItems.every(item => item.ready);
+  }
+
   componentDidUpdate(_prevProps: MasonryProps, prevState: MasonryState) {
-    const notInitialized = !prevState.init;
-    const hasComponents = this.state.componentItems.length > 0;
+    const notReady = !prevState.ready;
+    const hasComponentItems = this.state.componentItems.length > 0;
     const allReady = this.state.componentItems.every(item => item.ready);
 
-    if (notInitialized && hasComponents && allReady) {
+    if (notReady && hasComponentItems && allReady) {
       this.setState(
         produce<MasonryState>(draft => {
-          draft.init = true;
+          draft.ready = true;
         }),
       );
       return;
@@ -53,24 +61,11 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
     );
   };
 
-  private getMinimumStackIndex(componentProps: MasonryItemProps): number {
+  private getMinimumStackIndex(): number {
     const sizes = this.state.stacks.map(stack => stack.length);
-    const sorted = sizes
-      .map((size, idx) => [idx, size])
-      .sort((a, b) => a[1] - b[1]);
+    const minSize = Math.min(...sizes);
 
-    let targetIndex: number;
-    let i = 0;
-    while (targetIndex === undefined) {
-      if (this.props.col - sorted[i][0] < componentProps.col) {
-        i++;
-      } else {
-        targetIndex = sorted[i][0];
-        break;
-      }
-    }
-
-    return targetIndex;
+    return sizes.indexOf(minSize);
   }
 
   private getHeight() {
@@ -79,43 +74,104 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
   }
 
   apportion: MasonryFunctions['apportion'] = component => {
-    this.setState(
-      produce<MasonryState>(draft => {
-        const targetIndex = draft.componentItems.findIndex(
-          ({component: aComponent}) => aComponent === (component as any),
-        );
-        if (targetIndex === -1) {
-          return;
-        }
+    if (component.boxRef.current === null) {
+      return;
+    }
 
-        const stackIndex = this.getMinimumStackIndex(component.props);
-        console.log(stackIndex);
-        const targetStack = draft.stacks[stackIndex];
-        const currentHeight = targetStack.length;
-        [...Array(component.props.col)].map((_, i) => {
-          draft.stacks[stackIndex + i].splice(
-            targetStack.length,
-            0,
-            ...[...Array(component.boxRef.current.clientHeight)].map(() => 1),
+    this.state.queue.add(() => {
+      const componentWidth = component.boxRef.current.clientWidth;
+      const componentHeight = component.boxRef.current.clientHeight;
+      const stacks = this.state.stacks.map(stack => {
+        return [...stack, ...[...Array(componentHeight)].map(() => 0)];
+      });
+      console.log(component, stacks);
+
+      this.setState(
+        produce<MasonryState>(draft => {
+          const targetIndex = draft.componentItems.findIndex(
+            ({component: aComponent}) => aComponent === (component as any),
           );
-        });
-        // targetStack.splice(
-        //   targetStack.length,
-        //   0,
-        //   ...[...Array(component.boxRef.current.clientHeight)].map(() => 1),
-        // );
+          if (targetIndex === -1) {
+            return;
+          }
 
-        draft.componentItems[targetIndex].ready = true;
-        draft.componentItems[targetIndex].stackIndex = stackIndex;
-        draft.componentItems[targetIndex].position = {
-          left:
-            (this.boxRef.current.clientWidth / 3) * stackIndex -
-            1 +
-            stackIndex * 10,
-          top: currentHeight,
-        };
-      }),
-    );
+          const dough = corcer(stacks);
+          const position: any = (() => {
+            let x = 0;
+            let y = 0;
+
+            /**
+             * ■ ■
+             * ■
+             * ■
+             * ■
+             * ---
+             * ■ ■ ■ ■ → (1)
+             * ■
+             * ↓ (2)
+             */
+            while (y < stacks[x].length) {
+              while (x < stacks.length - (component.props.col - 1)) {
+                const part = dough(y, x, componentHeight, component.props.col);
+
+                if (
+                  part.test(
+                    [...Array(component.props.col)].map(() => {
+                      return [...Array(componentHeight)].map(() => 0);
+                    }),
+                  )
+                ) {
+                  console.log('#', {x: y, y: x}, stacks, part.matrix);
+                }
+
+                if (
+                  part.test(
+                    [...Array(component.props.col)].map(() => {
+                      return [...Array(componentHeight)].map(() => 0);
+                    }),
+                  )
+                ) {
+                  return {x, y};
+                }
+                x++;
+              }
+              x = 0;
+              y++;
+            }
+          })();
+
+          if (position === undefined) {
+            throw new Error('><');
+          }
+          console.log('position', position);
+
+          (() => {
+            let v = position.x;
+            const maxV = v + component.props.col;
+            let w = position.y;
+            const maxW = w + componentHeight;
+
+            while (v < maxV) {
+              while (w < maxW) {
+                console.log('v', v);
+                stacks[v][w] = 1;
+                w++;
+              }
+              v++;
+            }
+          })();
+
+          draft.stacks = stacks;
+
+          draft.componentItems[targetIndex].ready = true;
+          draft.componentItems[targetIndex].stackIndex = position.y;
+          draft.componentItems[targetIndex].position = {
+            left: (componentWidth / 3) * position.x - 1 + position.x * 10,
+            top: position.y,
+          };
+        }),
+      );
+    });
   };
 
   componentDidMount() {

@@ -8,15 +8,49 @@ export default withRouter(class extends DefaultTemplate<
 > {
   static displayName = '/pages/components/table';
 
-  items = Array(50)
-    .fill(undefined)
-    .map(() => {
-      return {
-        background: '#444',
-        width: Math.random() * 400 + 200,
-        height: Math.random() * 400 + 200,
-      };
-    });
+  // items = Array(50)
+  // items = Array(3)
+  //   .fill(undefined)
+  //   .map(() => {
+  //     return {
+  //       background: '#444',
+  //       width: Math.random() * 400 + 200,
+  //       height: Math.random() * 400 + 200,
+  //     };
+  //   });
+
+  items = [
+    {
+      background: 'orange',
+      width: 300,
+      height: 300,
+    },
+    {
+      background: 'gray',
+      width: 300,
+      height: 300,
+    },
+    {
+      background: 'purple',
+      width: 300,
+      height: 300,
+    },
+    {
+      background: 'orange',
+      width: 300,
+      height: 300,
+    },
+    {
+      background: '#444',
+      width: 300,
+      height: 300,
+    },
+    {
+      background: '#222',
+      width: 300,
+      height: 300,
+    },
+  ];
 
   Main = () => (
     <Main title="Masonry">
@@ -37,7 +71,7 @@ export default withRouter(class extends DefaultTemplate<
                           as: 'image',
                         },
                       ]}
-                      col={Math.random() > 0.8 ? 2 : 1}
+                      col={Math.random() > 0.3 ? 2 : 1}
                     >
                       <div style={{...style, maxWidth: '100%'}} />
                     </Item>
