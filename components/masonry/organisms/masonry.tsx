@@ -1,8 +1,6 @@
 import React from 'react';
 import produce from 'immer';
-import PQueue from 'p-queue';
-// import corcer from 'corcer';
-import {corcer} from './corcer';
+import Corcer from 'corcer';
 import {
   PayloadContext,
   MasonryProps,
@@ -13,30 +11,84 @@ import {Item} from './item';
 
 export class Masonry extends React.Component<MasonryProps, MasonryState>
   implements MasonryFunctions {
+  static getDerivedStateFromProps(
+    nextProps: MasonryProps,
+    prevState: MasonryState,
+  ) {
+    // tslint:disable:no-non-null-assertion
+    const col = nextProps.col!;
+    const gutter = nextProps.gutter!;
+    // tslint:enable:no-non-null-assertion
+    if (col !== prevState.col || gutter !== prevState.gutter) {
+      return produce<MasonryState>(draft => {
+        if (col !== prevState.col) {
+          draft.col = col;
+        } else if (gutter !== prevState.gutter) {
+          draft.gutter = gutter;
+        }
+        draft.ready = false;
+        draft.rerun = true;
+        draft.stacks = [...Array(col)].map(() => []);
+      })(prevState);
+    }
+
+    return null;
+  }
+
   static defaultProps = {
     col: 3,
+    gutter: 10,
   };
 
   boxRef = React.createRef<HTMLDivElement>();
   state: MasonryState = produce<MasonryState>(d => d as any)({
-    queue: new PQueue({concurrency: 1}),
-    sizes: Array(this.props.col + 1).map(() => 0),
+    queue: [],
+    rerun: false,
+    boxHeight: 0,
+    // tslint:disable:no-non-null-assertion
+    col: this.props.col!,
+    gutter: this.props.gutter!,
+    sizes: Array(this.props.col! + 1).map(() => 0),
+    stacks: [...Array(this.props.col!)].map(() => []),
+    // tslint:enable:no-non-null-assertion
     ready: false,
     componentItems: [] as MasonryState['componentItems'],
-    stacks: [...Array(this.props.col)].map(() => []),
-    items: [],
   });
 
-  shouldComponentUpdate(_, nextState: MasonryState) {
-    return nextState.componentItems.every(item => item.ready);
+  shouldComponentUpdate(_: unknown, nextState: MasonryState) {
+    return (
+      (nextState.queue.every(Boolean) &&
+        nextState.queue.length === this.state.componentItems.length) ||
+      nextState.componentItems.every(item => item.ready)
+    );
   }
 
-  componentDidUpdate(_prevProps: MasonryProps, prevState: MasonryState) {
-    const notReady = !prevState.ready;
-    const hasComponentItems = this.state.componentItems.length > 0;
-    const allReady = this.state.componentItems.every(item => item.ready);
+  componentDidUpdate(_prevProps: MasonryProps, _prevState: MasonryState) {
+    if (this.state.rerun) {
+      this.setState(
+        produce<MasonryState>(draft => {
+          draft.sizes = this.getSizes();
+          draft.ready = true;
+          draft.rerun = false;
+        }),
+      );
 
-    if (notReady && hasComponentItems && allReady) {
+      setTimeout(() => {
+        this.state.queue.forEach((fn: any) => {
+          fn();
+        });
+      }, 0);
+      return;
+    }
+
+    if (
+      !this.state.ready &&
+      this.state.queue.filter(Boolean).length ===
+        this.state.componentItems.length
+    ) {
+      this.state.queue.forEach((fn: any) => {
+        fn();
+      });
       this.setState(
         produce<MasonryState>(draft => {
           draft.ready = true;
@@ -51,43 +103,35 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
   register: MasonryFunctions['register'] = component => {
     this.setState(
       produce<MasonryState>(draft => {
-        draft.componentItems.push({
+        draft.componentItems[component.props.index] = {
           component: component as any,
           ready: false,
           stackIndex: -1,
           position: {left: -1, top: -1},
-        });
+        };
       }),
     );
   };
-
-  private getMinimumStackIndex(): number {
-    const sizes = this.state.stacks.map(stack => stack.length);
-    const minSize = Math.min(...sizes);
-
-    return sizes.indexOf(minSize);
-  }
-
-  private getHeight() {
-    const sizes = this.state.stacks.map(stack => stack.length);
-    return Math.max(...sizes);
-  }
 
   apportion: MasonryFunctions['apportion'] = component => {
     if (component.boxRef.current === null) {
       return;
     }
-
-    this.state.queue.add(() => {
-      const componentWidth = component.boxRef.current.clientWidth;
-      const componentHeight = component.boxRef.current.clientHeight;
-      const stacks = this.state.stacks.map(stack => {
-        return [...stack, ...[...Array(componentHeight)].map(() => 0)];
-      });
-      console.log(component, stacks);
+    const fn = () => {
+      // tslint:disable:no-non-null-assertion
+      const componentHeight = component.boxRef.current!.clientHeight;
+      const componentCol = component.props.col!;
+      // tslint:enable:no-non-null-assertion
 
       this.setState(
         produce<MasonryState>(draft => {
+          const stacks = draft.stacks.map(stack => {
+            return [
+              ...stack,
+              // tslint:disable-next-line:no-non-null-assertion
+              ...[...Array(componentHeight + this.props.gutter!)].map(() => 0),
+            ];
+          });
           const targetIndex = draft.componentItems.findIndex(
             ({component: aComponent}) => aComponent === (component as any),
           );
@@ -95,97 +139,90 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
             return;
           }
 
-          const dough = corcer(stacks);
-          const position: any = (() => {
-            let x = 0;
-            let y = 0;
+          const corcer = new Corcer<number>(
+            Corcer.transpose(Corcer.flat(stacks, 0)),
+          );
 
-            /**
-             * ■ ■
-             * ■
-             * ■
-             * ■
-             * ---
-             * ■ ■ ■ ■ → (1)
-             * ■
-             * ↓ (2)
-             */
-            while (y < stacks[x].length) {
-              while (x < stacks.length - (component.props.col - 1)) {
-                const part = dough(y, x, componentHeight, component.props.col);
+          const part = corcer.search(
+            Corcer.transpose(
+              Array.from(Array(componentCol)).map(() =>
+                // tslint:disable-next-line:no-non-null-assertion
+                Array.from(Array(componentHeight + this.props.gutter!)).map(
+                  () => 0,
+                ),
+              ),
+            ),
+          );
 
-                if (
-                  part.test(
-                    [...Array(component.props.col)].map(() => {
-                      return [...Array(componentHeight)].map(() => 0);
-                    }),
-                  )
-                ) {
-                  console.log('#', {x: y, y: x}, stacks, part.matrix);
-                }
-
-                if (
-                  part.test(
-                    [...Array(component.props.col)].map(() => {
-                      return [...Array(componentHeight)].map(() => 0);
-                    }),
-                  )
-                ) {
-                  return {x, y};
-                }
-                x++;
-              }
-              x = 0;
-              y++;
-            }
-          })();
-
-          if (position === undefined) {
-            throw new Error('><');
+          if (part === undefined) {
+            throw new Error('undefined');
           }
-          console.log('position', position);
 
-          (() => {
-            let v = position.x;
-            const maxV = v + component.props.col;
-            let w = position.y;
-            const maxW = w + componentHeight;
-
-            while (v < maxV) {
-              while (w < maxW) {
-                console.log('v', v);
-                stacks[v][w] = 1;
-                w++;
+          draft.stacks = Corcer.transpose(part.replaceTo(1, corcer).matrix).map(
+            line => {
+              const reversedLine = line.reverse();
+              const index = reversedLine.indexOf(1);
+              if (index === -1) {
+                return line;
               }
-              v++;
-            }
-          })();
 
-          draft.stacks = stacks;
+              return reversedLine.slice(index).reverse();
+            },
+          );
 
+          // tslint:disable-next-line:no-non-null-assertion
+          const {position} = part.ctx!;
           draft.componentItems[targetIndex].ready = true;
-          draft.componentItems[targetIndex].stackIndex = position.y;
+          draft.componentItems[targetIndex].stackIndex = position.x;
+          const width =
+            // tslint:disable-next-line:no-non-null-assertion
+            this.boxRef.current!.clientWidth -
+            (this.state.col - 1) * this.state.gutter;
           draft.componentItems[targetIndex].position = {
-            left: (componentWidth / 3) * position.x - 1 + position.x * 10,
+            left:
+              // tslint:disable-next-line:no-non-null-assertion
+              (width / this.state.col) * position.x +
+              position.x * this.state.gutter,
             top: position.y,
           };
+
+          if (component.props.index === draft.componentItems.length - 1) {
+            draft.boxHeight = Math.max(
+              ...draft.stacks.map(stack => stack.length),
+            );
+          }
+          // tslint:enable:no-non-null-assertion
+          return;
         }),
       );
-    });
-  };
-
-  componentDidMount() {
-    const width = this.boxRef.current.clientWidth;
+    };
 
     this.setState(
       produce<MasonryState>(draft => {
-        draft.sizes = [...Array(this.props.col + 1)].map((_, i) => {
-          if (i === 0) {
-            return 0;
-          }
+        draft.queue[component.props.index] = fn;
+      }),
+    );
+  };
 
-          return (width / this.props.col) * i + (i * 10 - 1);
-        });
+  private getSizes() {
+    const width =
+      // tslint:disable-next-line:no-non-null-assertion
+      this.boxRef.current!.clientWidth -
+      (this.state.col - 1) * this.state.gutter;
+
+    return [...Array(this.state.col + 1)].map((_, i) => {
+      if (i === 0) {
+        return 0;
+      }
+
+      return (width / this.state.col) * i;
+    });
+  }
+
+  componentDidMount() {
+    this.setState(
+      produce<MasonryState>(draft => {
+        draft.sizes = this.getSizes();
       }),
     );
   }
@@ -204,7 +241,11 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
       >
         <div
           ref={this.boxRef}
-          style={{position: 'relative', height: this.getHeight()}}
+          style={{
+            position: 'relative',
+            height: this.state.boxHeight,
+            overflow: 'hidden',
+          }}
         >
           {this.props.children({Item})}
         </div>

@@ -1,4 +1,3 @@
-import {PQueue} from 'p-queue';
 import React from 'react';
 import {MasonryItemComponent, MasonryItemProps} from './organisms/item';
 
@@ -9,6 +8,7 @@ export interface MasonryFunctions {
 
 export interface MasonryProps {
   col?: number;
+  gutter?: number;
   children(Components: {
     Item: React.ExoticComponent<MasonryItemProps>;
   }): JSX.Element;
@@ -50,12 +50,15 @@ export type MasonryStackItem =
   | MasonryComponentStackItem;
 
 export interface MasonryState {
-  queue: PQueue;
+  col: number;
+  gutter: number;
+  boxHeight: number;
+  queue: (() => void)[];
+  rerun: boolean;
   sizes: number[];
   ready: boolean;
   componentItems: ComponentItem[];
   stacks: any[][];
-  items: any[];
 }
 
 export interface MasonryPayload {

@@ -2,78 +2,95 @@ import React from 'react';
 import {withRouter, WithRouterProps} from 'next/router';
 import {Main, Table, Section, Masonry} from '../../components';
 import {DefaultTemplate} from '../../templates';
+import randomcolor from 'randomcolor';
+
+const createItem = (_: any, i: number) => {
+  const col = i % 5 === 1 ? 2 : 1;
+  return {
+    col,
+    style: {
+      background: randomcolor({
+        luminosity: 'dark',
+      }),
+      width: col * 300,
+      height: col * 300,
+    },
+  };
+};
+
+const items = [...Array(20)].map(createItem);
 
 export default withRouter(class extends DefaultTemplate<
-  WithRouterProps<{name: string}>
+  WithRouterProps<{name: string}>,
+  {
+    col: number;
+    gutter: number;
+  }
 > {
   static displayName = '/pages/components/table';
 
-  // items = Array(50)
-  // items = Array(3)
-  //   .fill(undefined)
-  //   .map(() => {
-  //     return {
-  //       background: '#444',
-  //       width: Math.random() * 400 + 200,
-  //       height: Math.random() * 400 + 200,
-  //     };
-  //   });
+  constructor(props: any) {
+    super(props);
 
-  items = [
-    {
-      background: 'orange',
-      width: 300,
-      height: 300,
-    },
-    {
-      background: 'gray',
-      width: 300,
-      height: 300,
-    },
-    {
-      background: 'purple',
-      width: 300,
-      height: 300,
-    },
-    {
-      background: 'orange',
-      width: 300,
-      height: 300,
-    },
-    {
-      background: '#444',
-      width: 300,
-      height: 300,
-    },
-    {
-      background: '#222',
-      width: 300,
-      height: 300,
-    },
-  ];
+    this.state = {
+      col: 3,
+      gutter: 10,
+    };
+  }
+
+  incrementCol = () => {
+    this.setState({
+      col: this.state.col + 1,
+    });
+  };
+
+  decrementCol = () => {
+    this.setState({
+      col: this.state.col - 1,
+    });
+  };
+
+  incrementGutter = () => {
+    this.setState({
+      gutter: this.state.gutter + 1,
+    });
+  };
+
+  decrementGutter = () => {
+    this.setState({
+      gutter: this.state.gutter - 1,
+    });
+  };
 
   Main = () => (
     <Main title="Masonry">
+      <div style={{marginBottom: '1em'}}>
+        <button onClick={this.incrementCol}>列+</button>
+        <button onClick={this.decrementCol}>列-</button>
+        <button onClick={this.incrementGutter}>間+</button>
+        <button onClick={this.decrementGutter}>間-</button>
+      </div>
       <div>
-        <Masonry>
+        <Masonry col={this.state.col} gutter={this.state.gutter}>
           {({Item}) => {
             return (
               <>
-                {this.items.map((style, i) => {
+                {items.map((style, i) => {
                   return (
                     <Item
                       key={i}
                       assets={[
                         {
-                          href: `https://dummyimage.com/${style.width}x${
-                            style.height
+                          href: `https://dummyimage.com/${style.style.width}x${
+                            style.style.height
                           }`,
                           as: 'image',
                         },
                       ]}
-                      col={Math.random() > 0.3 ? 2 : 1}
+                      index={i}
+                      col={style.col}
                     >
-                      <div style={{...style, maxWidth: '100%'}} />
+                      <div style={{...style.style, maxWidth: '100%'}} />
                     </Item>
                   );
                 })}

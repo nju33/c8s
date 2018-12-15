@@ -1505,6 +1505,11 @@
   resolved "https://registry.yarnpkg.com/@types/query-string/-/query-string-6.1.1.tgz#1cfd9209c8dbd91b940192c8a2b7005d2a743e6f"
   integrity sha512-wRUeF7KN2yxCMw4VoXzPh3GWStbGaiyVjyX22fG7mpSzt6etLvsA2S0g0IuGeXGwVNIlztzVmGP6AxZMmYTQhw==
 
+"@types/randomcolor@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@types/randomcolor/-/randomcolor-0.5.0.tgz#8fd8e56014cf182c966cdb78f1995f47ec5b91db"
+  integrity sha512-odex88/brECZgiSzp6i9rYiNaWAacn862VY358HFiDbxfIUhbbB+6y3Ah7WlXx9g9qNdJGTLZde9blfCSFch4Q==
+
 "@types/range-parser@*":
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.2.tgz#fa8e1ad1d474688a757140c91de6dace6f4abc8d"
@@ -3191,10 +3196,10 @@ copy-descriptor@^0.1.0:
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
 
-corcer@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/corcer/-/corcer-0.0.2.tgz#ffe8d060d653e95d8a78a0eb9c3188339cf2767c"
-  integrity sha512-l9mmyvW21wBhvebzav6DM0Bs7n6DL0x0nEL/gmH6yzR1Gdzi3A/9jhV0n9fNXcG60OpMEKuJtVOY55Vxhdg/pw==
+corcer@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/corcer/-/corcer-0.4.1.tgz#316365511a73596f503547851001a5dfaa914206"
+  integrity sha512-GkuGidx8kvwfF5HCXeWt/8sLDq676gDgFOxN4aZZ1WqtVGyb0FiUn4dnfkTFoA39usQdSo2+o3352CRxVuDb1g==
   dependencies:
     memoizee "^0.4.14"
 
@@ -8053,6 +8058,11 @@ randombytes@^2.0.0, randombytes@^2.0.1, randombytes@^2.0.5:
   integrity sha512-CIQ5OFxf4Jou6uOKe9t1AOgqpeU5fd70A8NPdHSGeYXqXsPe6peOwI0cUl88RWZ6sP1vPMV3avd/R6cZ5/sP1A==
   dependencies:
     safe-buffer "^5.1.0"
+
+randomcolor@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/randomcolor/-/randomcolor-0.5.3.tgz#7f90f2f2a7f6d5a52232161eeaeeaea9ac3b5815"
+  integrity sha1-f5Dy8qf21aUiMhYe6u6uqaw7WBU=
 
 randomfill@^1.0.3:
   version "1.0.4"

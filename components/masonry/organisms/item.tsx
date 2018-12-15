@@ -21,6 +21,7 @@ export interface MasonryItemAsset {
 }
 
 export interface MasonryItemProps {
+  index: number;
   col?: number;
   assets?: MasonryItemAsset[];
   payload?: MasonryPayload;
@@ -51,12 +52,13 @@ export class Original extends React.PureComponent<
   constructor(props: MasonryItemProps) {
     super(props);
 
-    props.payload.functions.register(this);
+    // tslint:disable-next-line:no-non-null-assertion
+    props.payload!.functions.register(this);
   }
 
   private loadAsset = async (asset: MasonryItemAsset) => {
     return new Promise((resolve, reject) => {
-      let tid = setTimeout(() => {
+      let tid: number | undefined = window.setTimeout(() => {
         reject('It was timeout');
       }, 30000);
 
@@ -64,7 +66,8 @@ export class Original extends React.PureComponent<
         `link[ref='prefetch'][href='${asset.href}']`,
       );
       if (node !== null) {
-        node.parentNode.removeChild(node);
+        // tslint:disable-next-line:no-non-null-assertion
+        node.parentNode!.removeChild(node);
       }
 
       const link = document.createElement('link');
@@ -80,37 +83,49 @@ export class Original extends React.PureComponent<
       if (asset.crossorigin !== undefined) {
         link.crossOrigin = asset.crossorigin;
       }
-      document.head.appendChild(link);
+      // tslint:disable-next-line:no-non-null-assertion
+      document.head!.appendChild(link);
     });
   };
 
   private getPosition() {
-    const componentItem = this.props.payload.state.componentItems.find(
+    // tslint:disable-next-line:no-non-null-assertion
+    const componentItem = this.props.payload!.state.componentItems.find(
       item => item.component === this,
     );
 
-    return componentItem.position;
+    // tslint:disable-next-line:no-non-null-assertion
+    return componentItem!.position;
   }
 
   private getSize(): {width: number} {
-    return {width: this.props.payload.state.sizes[this.props.col]};
+    // tslint:disable:no-non-null-assertion
+    return {
+      width:
+        this.props.payload!.state.sizes[this.props.col!] +
+        (this.props.col! - 1) * this.props.payload!.state.gutter,
+    };
+    // tslint:enable:no-non-null-assertion
   }
 
   private loadAssets = async () => {
-    return Promise.all(this.props.assets.map(this.loadAsset));
+    // tslint:disable-next-line:no-non-null-assertion
+    return Promise.all(this.props.assets!.map(this.loadAsset));
   };
 
   async componentDidMount() {
     await this.loadAssets();
     setTimeout(() => {
-      this.props.payload.functions.apportion(this);
+      // tslint:disable-next-line:no-non-null-assertion
+      this.props.payload!.functions.apportion(this);
     }, 0);
   }
 
   render() {
-    if (!this.props.payload.state.ready) {
+    // tslint:disable-next-line:no-non-null-assertion
+    if (!this.props.payload!.state.ready && !this.props.payload!.state.rerun) {
       return (
-        <div ref={this.boxRef} data-col={this.props.col} style={{opacity: 0.1}}>
+        <div ref={this.boxRef} data-col={this.props.col} style={{opacity: 0}}>
           {this.props.children}
         </div>
       );
@@ -121,6 +136,7 @@ export class Original extends React.PureComponent<
         ref={this.boxRef}
         data-col={this.props.col}
         style={{
+          transition: '.2s',
           position: 'absolute',
           ...this.getPosition(),
           ...this.getSize(),
@@ -133,7 +149,7 @@ export class Original extends React.PureComponent<
   }
 }
 
-const Item = React.memo(props => {
+const Item = React.memo<Pick<MasonryItemProps, 'index'>>(props => {
   return (
     <PayloadContext.Consumer>
       {payload => {
