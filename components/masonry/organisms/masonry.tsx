@@ -87,7 +87,7 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
               draft.refresh = false;
             }),
           );
-        }, 5000)
+        }, 0)
       }, 0);
       return;
     }

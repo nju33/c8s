@@ -89,7 +89,7 @@ export class Original extends React.PureComponent<
     });
   };
 
-  private getPosition(props: MasonryItemProps) {
+  private getPosition(props: MasonryItemProps, a?: boolean) {
     // tslint:disable-next-line:no-non-null-assertion
     const componentItem: any = props.payload!.state.componentItems.find(
       item => item.component === this,
@@ -100,7 +100,7 @@ export class Original extends React.PureComponent<
     }
 
     // tslint:disable-next-line:no-non-null-assertion
-    if (props.payload!.state.refresh) {
+    if (!a && props.payload!.state.refresh) {
       return {left: this.state.left, top: this.state.top};
     }
 
@@ -108,10 +108,10 @@ export class Original extends React.PureComponent<
     return componentItem!.position;
   }
 
-  private getSize(props: MasonryItemProps): {width: number} {
+  private getSize(props: MasonryItemProps, a?: boolean): {width: number} {
     // tslint:disable:no-non-null-assertion
     return {
-      width: props.payload!.state.refresh
+      width: !a && props.payload!.state.refresh
         ? this.state.width
         : props.payload!.state.sizes[props.col!] +
           (props.col! - 1) * props.payload!.state.gutter,
@@ -176,11 +176,11 @@ export class Original extends React.PureComponent<
           ref={this.boxRef}
           data-col={this.props.col}
           style={{
-            opacity: 0.5,
+            opacity: 0,
             position: 'absolute',
             overflow: 'hidden',
-            ...this.getPosition(this.props),
-            ...this.getSize(this.props),
+            ...this.getPosition(this.props, true),
+            ...this.getSize(this.props, true),
           }}
         >
           {this.props.children}
