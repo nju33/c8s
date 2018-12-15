@@ -57,6 +57,7 @@ export interface MasonryState {
   rerun: boolean;
   sizes: number[];
   ready: boolean;
+  refresh: boolean;
   componentItems: ComponentItem[];
   stacks: any[][];
 }

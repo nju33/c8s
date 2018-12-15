@@ -1,6 +1,7 @@
 import React from 'react';
 import produce from 'immer';
 import {MasonryPayload, PayloadContext} from '../payload';
+import {FaRegFontAwesomeLogoFull} from 'react-icons/fa';
 
 export interface MasonryItemAsset {
   href: string;
@@ -28,7 +29,7 @@ export interface MasonryItemProps {
 }
 
 export interface MasonryItemState {
-  ready: boolean;
+  width: number;
 }
 
 export type MasonryItemComponent = React.Component<
@@ -47,7 +48,7 @@ export class Original extends React.PureComponent<
   };
 
   boxRef = React.createRef<HTMLDivElement>();
-  state = produce(d => d)({});
+  state = produce(d => d)({width: 0});
 
   constructor(props: MasonryItemProps) {
     super(props);
@@ -88,30 +89,76 @@ export class Original extends React.PureComponent<
     });
   };
 
-  private getPosition() {
+  private getPosition(props: MasonryItemProps) {
     // tslint:disable-next-line:no-non-null-assertion
-    const componentItem = this.props.payload!.state.componentItems.find(
+    const componentItem: any = props.payload!.state.componentItems.find(
       item => item.component === this,
     );
+
+    if (componentItem === undefined) {
+      return {left: 0, top: 0};
+    }
+
+    // tslint:disable-next-line:no-non-null-assertion
+    if (props.payload!.state.refresh) {
+      return {left: this.state.left, top: this.state.top};
+    }
 
     // tslint:disable-next-line:no-non-null-assertion
     return componentItem!.position;
   }
 
-  private getSize(): {width: number} {
+  private getSize(props: MasonryItemProps): {width: number} {
     // tslint:disable:no-non-null-assertion
     return {
-      width:
-        this.props.payload!.state.sizes[this.props.col!] +
-        (this.props.col! - 1) * this.props.payload!.state.gutter,
+      width: props.payload!.state.refresh
+        ? this.state.width
+        : props.payload!.state.sizes[props.col!] +
+          (props.col! - 1) * props.payload!.state.gutter,
     };
     // tslint:enable:no-non-null-assertion
   }
 
+  // tslint:disable-next-line:max-line-length
+  // private delay = async (msec: number) => new Promise(r => setTimeout(r, msec));
+
   private loadAssets = async () => {
     // tslint:disable-next-line:no-non-null-assertion
-    return Promise.all(this.props.assets!.map(this.loadAsset));
+    await Promise.all(this.props.assets!.map(this.loadAsset));
+    // return this.delay(1000);
   };
+
+  getSnapshotBeforeUpdate(prevProps: MasonryItemProps) {
+    // tslint:disable-next-line:no-non-null-assertion
+    if (
+      // tslint:disable-next-line:no-non-null-assertion
+      !prevProps.payload!.state.refresh !== this.props.payload!.state.refresh &&
+      this.state.width !== undefined
+    ) {
+      console.log('SSSS');
+      // tslint:disable:no-non-null-assertion
+      return {
+        ...this.getPosition(prevProps),
+        ...this.getSize(prevProps),
+      };
+      // tslint:enable:no-non-null-assertion
+    }
+
+    return null;
+  }
+
+  componentDidUpdate(_: any, __: any, ss: null | {width: number}) {
+    // console.log('ss', ss);
+    if (ss === null) {
+      return;
+    }
+
+    this.setState(
+      produce<MasonryItemState>(draft => {
+        Object.assign(draft, ss);
+      }),
+    );
+  }
 
   async componentDidMount() {
     await this.loadAssets();
@@ -122,29 +169,40 @@ export class Original extends React.PureComponent<
   }
 
   render() {
-    // tslint:disable-next-line:no-non-null-assertion
-    if (!this.props.payload!.state.ready && !this.props.payload!.state.rerun) {
-      return (
-        <div ref={this.boxRef} data-col={this.props.col} style={{opacity: 0}}>
+    // console.log(this.state);
+    return (
+      <>
+        <div
+          ref={this.boxRef}
+          data-col={this.props.col}
+          style={{
+            opacity: 0.5,
+            position: 'absolute',
+            overflow: 'hidden',
+            ...this.getPosition(this.props),
+            ...this.getSize(this.props),
+          }}
+        >
           {this.props.children}
         </div>
-      );
-    }
-
-    return (
-      <div
-        ref={this.boxRef}
-        data-col={this.props.col}
-        style={{
-          transition: '.2s',
-          position: 'absolute',
-          ...this.getPosition(),
-          ...this.getSize(),
-          overflow: 'hidden',
-        }}
-      >
-        {this.props.children}
-      </div>
+        <div
+          data-col={this.props.col}
+          style={{
+            transition: '.2s',
+            position: 'absolute',
+            overflow: 'hidden',
+            // tslint:disable-next-line:no-non-null-assertion
+            ...(this.props.payload!.state.refresh
+              ? this.state
+              : {
+                  ...this.getPosition(this.props),
+                  ...this.getSize(this.props),
+                }),
+          }}
+        >
+          {this.props.children}
+        </div>
+      </>
     );
   }
 }
