@@ -1,7 +1,11 @@
 {
-  "name": "@nju33/slack-form",
+  "private": true,
+  "workspaces": [
+    "components/masonry"
+  ],
+  "name": "c8s",
   "description": "",
-  "version": "0.0.7",
+  "version": "0.0.0",
   "license": "MIT",
   "_engines": {
     "node": ">=10.13.0",
@@ -39,7 +43,6 @@
   "keywords": [],
   "devDependencies": {
     "@geekcojp/tslint-config": "0.2.1",
-    "@nju33/tsconfig-react-base": "^0.0.2",
     "@types/axios": "0.14.0",
     "@types/body-parser": "1.17.0",
     "@types/camelcase-keys": "4.0.0",
@@ -61,7 +64,7 @@
     "dotenv": "6.1.0",
     "html-loader": "^0.5.5",
     "jest": "23.6.0",
-    "lerna": "^3.5.1",
+    "lerna": "^3.6.0",
     "markdown-loader": "^4.0.0",
     "memoizee": "^0.4.14",
     "next-server": "^0.0.1",

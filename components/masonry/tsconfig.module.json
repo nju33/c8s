@@ -1,0 +1,3 @@
+{
+  "extends": "@nju33/tsconfig-react-module"
+}

@@ -1,0 +1,30 @@
+{
+  "name": "@c8s/masonry",
+  "version": "0.0.0",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "yarn build",
+    "test": ":",
+    "docz.dev": "docz dev --port 6069",
+    "docz.build": "docz build",
+    "build.main": "tsc -P tsconfig.main.json",
+    "build.module": "tsc -P tsconfig.module.json",
+    "build.types": "tsc -P tsconfig.types.json --emitDeclarationOnly"
+  },
+  "peerDependencies": {
+    "react": "^16.6.0"
+  },
+  "dependencies": {
+    "corcer": "^0.4.1",
+    "immer": "^1.9.2"
+  },
+  "devDependencies": {
+    "@nju33/tsconfig-react-main": "^0.0.3",
+    "@nju33/tsconfig-react-module": "^0.0.3",
+    "@nju33/tsconfig-react-types": "^0.0.3"
+  }
+}
