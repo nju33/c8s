@@ -23,6 +23,7 @@ export abstract class DefaultTemplate<P = {}, S = {}> extends React.Component<
                 'Button',
                 'Card',
                 'Form',
+                'Icon',
                 'Masonry',
                 'Pagination',
                 'Sidebar',
