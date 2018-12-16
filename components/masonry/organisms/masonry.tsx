@@ -87,7 +87,7 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
               draft.refresh = false;
             }),
           );
-        }, 0)
+        }, 100);
       }, 0);
       return;
     }
@@ -118,7 +118,6 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
           component: component as any,
           ready: false,
           stackIndex: -1,
-          position: {left: -1, top: -1},
         };
       }),
     );
