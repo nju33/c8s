@@ -12,13 +12,14 @@ const createItem = (_: any, i: number) => {
       background: randomcolor({
         luminosity: 'dark',
       }),
-      width: col * 300,
-      height: col * 300,
+      // width: col * 300,
+      // height: col * 300,
     },
   };
 };
 
-const items = [...Array(20)].map(createItem);
+// const items = [...Array(3)].map(createItem);
+const items = [...Array(10)].map(createItem);
 
 export default withRouter(class extends DefaultTemplate<
   WithRouterProps<{name: string}>,
@@ -81,16 +82,39 @@ export default withRouter(class extends DefaultTemplate<
                       key={i}
                       assets={[
                         {
-                          href: `https://dummyimage.com/${style.style.width}x${
-                            style.style.height
-                          }`,
+                          href: `https://dummyimage.com/500x500`,
                           as: 'image',
                         },
                       ]}
                       index={i}
                       col={style.col}
                     >
-                      <div style={{...style.style, maxWidth: '100%'}} />
+                      <div style={{display: 'block'}}>
+                        <img
+                          src="https://dummyimage.com/500x500"
+                          style={{
+                            maxWidth: '100%',
+                            display: 'block',
+                          }}
+                        />
+                        <div
+                          style={{
+                            ...style.style,
+                            maxWidth: '100%',
+                            color: '#000',
+                          }}
+                        >
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua. Ut enim ad minim veniam, quis
+                          nostrud exercitation ullamco laboris nisi ut aliquip
+                          ex ea commodo consequat. Duis aute irure dolor in
+                          reprehenderit in voluptate velit esse cillum dolore eu
+                          fugiat nulla pariatur. Excepteur sint occaecat
+                          cupidatat non proident, sunt in culpa qui officia
+                          deserunt mollit anim id est laborum.
+                        </div>
+                      </div>
                     </Item>
                   );
                 })}

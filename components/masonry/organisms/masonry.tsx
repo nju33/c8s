@@ -28,6 +28,7 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
         }
         draft.ready = false;
         draft.rerun = true;
+        draft.refresh = true;
         draft.stacks = [...Array(col)].map(() => []);
       })(prevState);
     }
@@ -44,6 +45,7 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
   state: MasonryState = produce<MasonryState>(d => d as any)({
     queue: [],
     rerun: false,
+    refresh: false,
     boxHeight: 0,
     // tslint:disable:no-non-null-assertion
     col: this.props.col!,
@@ -59,7 +61,8 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
     return (
       (nextState.queue.every(Boolean) &&
         nextState.queue.length === this.state.componentItems.length) ||
-      nextState.componentItems.every(item => item.ready)
+      nextState.componentItems.every(item => item.ready) ||
+      this.state.refresh !== nextState.refresh
     );
   }
 
@@ -77,6 +80,14 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
         this.state.queue.forEach((fn: any) => {
           fn();
         });
+
+        setTimeout(() => {
+          this.setState(
+            produce<MasonryState>(draft => {
+              draft.refresh = false;
+            }),
+          );
+        }, 100);
       }, 0);
       return;
     }
@@ -107,7 +118,6 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
           component: component as any,
           ready: false,
           stackIndex: -1,
-          position: {left: -1, top: -1},
         };
       }),
     );

@@ -18,7 +18,7 @@ export interface ComponentItem {
   component: MasonryItemComponent;
   ready: boolean;
   stackIndex: number;
-  position: {
+  position?: {
     left: number;
     top: number;
   };
@@ -57,6 +57,7 @@ export interface MasonryState {
   rerun: boolean;
   sizes: number[];
   ready: boolean;
+  refresh: boolean;
   componentItems: ComponentItem[];
   stacks: any[][];
 }
