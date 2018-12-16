@@ -13,7 +13,8 @@
     "docz.build": "docz build",
     "build.main": "tsc -P tsconfig.main.json",
     "build.module": "tsc -P tsconfig.module.json",
-    "build.types": "tsc -P tsconfig.types.json --emitDeclarationOnly"
+    "build.types": "tsc -P tsconfig.types.json --emitDeclarationOnly",
+    "build": "yarn build.main; yarn build.module; yarn build.types"
   },
   "peerDependencies": {
     "react": "^16.6.0"

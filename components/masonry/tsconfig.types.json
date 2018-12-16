@@ -1,3 +1,10 @@
 {
-  "extends": "@nju33/tsconfig-react-types"
+  "extends": "@nju33/tsconfig-react-types",
+  "include": [
+    "src"
+  ],
+  "exclude": [],
+  "compilerOptions": {
+    "outDir": "dist/types"
+  }
 }
