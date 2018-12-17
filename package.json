@@ -1,7 +1,8 @@
 {
   "private": true,
   "workspaces": [
-    "components/masonry"
+    "components/masonry",
+    "site"
   ],
   "name": "c8s",
   "description": "",
@@ -21,7 +22,7 @@
   "scripts": {
     "_prepare": "yarn build",
     "test": ": # jest",
-    "dev": "next",
+    "dev": "sh -c 'cd site && next'",
     "docz.dev": "docz dev --port 6069",
     "docz.build": "docz build",
     "_build.now": "tsc -P tsconfig.now.json",
