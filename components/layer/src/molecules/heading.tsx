@@ -15,7 +15,7 @@ export const Heading: React.SFC<React.HTMLAttributes<HTMLHeadingElement>> = ({
             <H
               {...headlingProps}
               role="heading"
-              aria-label={(level as unknown) as string}
+              aria-level={level}
             >
               {children}
             </H>
@@ -24,7 +24,14 @@ export const Heading: React.SFC<React.HTMLAttributes<HTMLHeadingElement>> = ({
 
         const tagName = `h${level}` as 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
         const Component = styled(H.withComponent(tagName))``;
-        return <Component {...headlingProps}>{children}</Component>;
+        return (
+          <Component
+            {...headlingProps}
+            aria-level={level}
+          >
+            {children}
+          </Component>
+        );
       }}
     </PayloadContext.Consumer>
   );
