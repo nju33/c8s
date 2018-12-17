@@ -29,7 +29,7 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
         draft.ready = false;
         draft.rerun = true;
         draft.refresh = true;
-        draft.stacks = [...Array(col)].map(() => []);
+        draft.stacks = Array.from(Array(col)).map(() => []);
       })(prevState);
     }
 
@@ -50,8 +50,8 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
     // tslint:disable:no-non-null-assertion
     col: this.props.col!,
     gutter: this.props.gutter!,
-    sizes: Array(this.props.col! + 1).map(() => 0),
-    stacks: [...Array(this.props.col!)].map(() => []),
+    sizes: Array.from(Array(this.props.col! + 1)).map(() => 0),
+    stacks: Array.from(Array(this.props.col!)).map(() => []),
     // tslint:enable:no-non-null-assertion
     ready: false,
     componentItems: [] as MasonryState['componentItems'],
@@ -139,7 +139,9 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
             return [
               ...stack,
               // tslint:disable-next-line:no-non-null-assertion
-              ...[...Array(componentHeight + this.props.gutter!)].map(() => 0),
+              ...Array.from(Array(componentHeight + this.props.gutter!)).map(
+                () => 0,
+              ),
             ];
           });
           const targetIndex = draft.componentItems.findIndex(
@@ -220,7 +222,7 @@ export class Masonry extends React.Component<MasonryProps, MasonryState>
       this.boxRef.current!.clientWidth -
       (this.state.col - 1) * this.state.gutter;
 
-    return [...Array(this.state.col + 1)].map((_, i) => {
+    return Array.from(Array(this.state.col + 1)).map((_, i) => {
       if (i === 0) {
         return 0;
       }

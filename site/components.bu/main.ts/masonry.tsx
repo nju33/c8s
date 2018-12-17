@@ -1,9 +1,8 @@
 import React from 'react';
 import {withRouter, WithRouterProps} from 'next/router';
 import randomcolor from 'randomcolor';
-import Masonry from '@c8s/masonry';
-import Layer from '@c8s/layer';
-import Table from '@c8s/table';
+import {Masonry} from '@c8s/masonry';
+import {Main, Table, Section} from '../../../components';
 import {DefaultTemplate} from '../../templates';
 
 const createItem = (_: any, i: number) => {
@@ -66,9 +65,7 @@ export default withRouter(class extends DefaultTemplate<
   };
 
   Main = () => (
-    <Layer>
-      <Layer.heading>Masonry</Layer.heading>
-
+    <Main title="Masonry">
       <div style={{marginBottom: '1em'}}>
         <button onClick={this.incrementCol}>列+</button>
         <button onClick={this.decrementCol}>列-</button>
@@ -128,11 +125,9 @@ export default withRouter(class extends DefaultTemplate<
         </Masonry>
       </div>
 
-      <Layer>
-        <Layer.heading>Props</Layer.heading>
-
+      <Section title="Props">
         <Table head={['PropName', 'Type']} body={[]} />
-      </Layer>
-    </Layer>
+      </Section>
+    </Main>
   );
 } as any);

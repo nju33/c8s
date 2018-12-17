@@ -1,7 +1,7 @@
 import React from 'react';
 import App, {Container} from 'next/app';
-import {ThemeProvider, ThemeContext} from '../components';
-import {createGlobalStyle} from '../components/styled';
+import {ThemeProvider, ThemeContext, createGlobalStyle} from '@c8s/theme';
+// import {createGlobalStyle} from '@c8s/';
 // tslint:disable-next-line:no-import-side-effect
 import 'normalize.css';
 import {theme, slackTheme} from '../helpers';

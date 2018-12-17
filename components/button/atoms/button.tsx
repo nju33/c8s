@@ -1,5 +1,5 @@
 import styled from '../../styled';
-import {theme} from '../../../helpers';
+import {theme} from '../../../site/helpers';
 
 export const Button = styled.button`
   transition: ${theme.transition};

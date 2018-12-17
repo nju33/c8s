@@ -1,5 +1,5 @@
 {
-  "name": "@c8s/masonry",
+  "name": "@c8s/layer",
   "version": "0.0.0",
   "publishConfig": {
     "access": "public"
@@ -23,15 +23,19 @@
     "build": "yarn build.main; yarn build.module; yarn build.types"
   },
   "peerDependencies": {
-    "react": "^16.6.0"
+    "react": "^16.3.0",
+    "styled-components": "^4.0.0"
   },
   "dependencies": {
-    "corcer": "^0.4.1",
-    "immer": "^1.9.2"
+    "@c8s/theme": "^0.0.0"
   },
   "devDependencies": {
     "@nju33/tsconfig-react-main": "^0.0.3",
     "@nju33/tsconfig-react-module": "^0.0.3",
-    "@nju33/tsconfig-react-types": "^0.0.3"
+    "@nju33/tsconfig-react-types": "^0.0.3",
+    "@types/react": "^16.7.17",
+    "@types/styled-components": "^4.1.3",
+    "react": "^16.6.3",
+    "styled-components": "^4.1.2"
   }
 }

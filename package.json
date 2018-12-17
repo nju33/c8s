@@ -1,7 +1,10 @@
 {
   "private": true,
   "workspaces": [
+    "components/layer",
     "components/masonry",
+    "components/table",
+    "components/theme",
     "site"
   ],
   "name": "c8s",
