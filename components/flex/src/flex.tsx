@@ -19,7 +19,7 @@ interface FlexDirection
     | 'topCenter'
     | 'topRight'
     | 'centerLeft'
-    | 'centerCenter'
+    | 'center'
     | 'centerRight'
     | 'bottomLeft'
     | 'bottomCenter'
@@ -41,7 +41,7 @@ const flexType: FlexType & {[x: string]: number} = {
   topCenter: 1 << 5,
   topRight: 1 << 6,
   centerLeft: 1 << 7,
-  centerCenter: 1 << 8,
+  center: 1 << 8,
   centerRight: 1 << 9,
   bottomLeft: 1 << 10,
   bottomCenter: 1 << 11,
@@ -80,7 +80,7 @@ interface FakeParentFlexComponentProxy {
   topCenter: FlexComponentProxyReturn<'topCenter'>;
   topRight: FlexComponentProxyReturn<'topRight'>;
   centerLeft: FlexComponentProxyReturn<'centerLeft'>;
-  centerCenter: FlexComponentProxyReturn<'centerCenter'>;
+  center: FlexComponentProxyReturn<'center'>;
   centerRight: FlexComponentProxyReturn<'centerRight'>;
   bottomLeft: FlexComponentProxyReturn<'bottomLeft'>;
   bottomCenter: FlexComponentProxyReturn<'bottomCenter'>;
@@ -145,7 +145,7 @@ const createComponent = memoizee(
         }
         break;
       }
-      case Boolean(bit & flexType.centerCenter): {
+      case Boolean(bit & flexType.center): {
         decls.justifyContent = 'center';
         decls.alignItems = 'center';
         break;
@@ -217,7 +217,23 @@ const createFlexProxy = () => {
         key: string,
         receiver: FakeFlexComponentProxy & FakeParentFlexComponentProxy,
       ): any {
-        if (['row', 'column', 'item', 'itemFluid'].indexOf(key) === -1) {
+        if (
+          [
+            'row',
+            'column',
+            'item',
+            'itemFluid',
+            'topLeft',
+            'topCenter',
+            'topRight',
+            'centerLeft',
+            'center',
+            'centerRight',
+            'bottomLeft',
+            'bottomCenter',
+            'bottomRight',
+          ].indexOf(key) === -1
+        ) {
           return Reflect.get(target, key, receiver);
         }
 
@@ -230,7 +246,7 @@ const createFlexProxy = () => {
   );
 };
 
-const Flex = ({}) as FakeFlexComponentProxy;
+const Flex = {} as FakeFlexComponentProxy;
 Object.defineProperties(Flex, {
   row: {
     get: () => createFlexProxy().row,

@@ -1,4 +1,4 @@
 module.exports = {
-  title: '@c8s/flex',
+  title: 'c8s',
   typescript: true,
 }

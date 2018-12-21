@@ -1,10 +1,13 @@
 ---
-name: Flex
+name: '@c8s/flex'
+route: /components/flex
 menu: Components
 ---
 
 import {Playground, PropsTable} from 'docz';
 import {Flex} from './flex';
+
+## @c8s/flex
 
 <Playground>
   {() => {
@@ -13,7 +16,7 @@ import {Flex} from './flex';
         <Flex.row>
           <Flex.itemFluid.row>
             <Flex.itemFluid.column>
-              <Flex.row>item1-1</Flex.row>
+              <Flex.row.center>item1-1</Flex.row.center>
               <Flex.row>item1-2</Flex.row>
             </Flex.itemFluid.column>
           </Flex.itemFluid.row>

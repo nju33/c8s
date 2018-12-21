@@ -32,7 +32,7 @@ import Flex from '@c8s/flex';
     <Flex.row>
       <Flex.itemFluid.row>
         <Flex.itemFluid.column>
-          <Flex.row>item1-1</Flex.row>
+          <Flex.row.center>item1-1</Flex.row.center>
           <Flex.row>item1-2</Flex.row>
         </Flex.itemFluid.column>
       </Flex.itemFluid.row>
