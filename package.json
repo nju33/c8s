@@ -1,7 +1,9 @@
 {
   "private": true,
   "workspaces": [
+    "components/flex",
     "components/layer",
+    "components/pager",
     "components/masonry",
     "components/table",
     "components/theme",
