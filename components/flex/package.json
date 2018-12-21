@@ -15,8 +15,7 @@
   "scripts": {
     "prepare": "yarn build",
     "test": ":",
-    "docz.dev": "docz dev --port 6069",
-    "docz.build": "docz build",
+    "dev": "docz dev --port 2347",
     "build.main": "tsc -P tsconfig.main.json",
     "build.module": "tsc -P tsconfig.module.json",
     "build.types": "tsc -P tsconfig.types.json --emitDeclarationOnly",

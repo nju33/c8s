@@ -1,6 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 import memoizee from 'memoizee';
-import {Flex as FlexTag} from './atoms';
+// import {Flex as FlexTag} from './atoms';
 
 interface FlexProps {
   flex: CSSStyleDeclaration['flex'];
@@ -91,25 +92,28 @@ const createComponent = memoizee(
     const decls: Partial<CSSStyleDeclaration> = {};
     const row = Boolean(bit & flexType.row);
     const column = Boolean(bit & flexType.column);
+    const item = Boolean(bit & flexType.item);
+    const itemFluid = Boolean(bit & flexType.itemFluid);
 
-    // tslint:disable:no-switch-case-fall-through
+    if (row || column) {
+      decls.display = 'flex';
+    }
+
+    if (column) {
+      decls.flexDirection = 'column';
+    }
+
+    if (item) {
+      decls.flex = props.flex || '0';
+    } else if (itemFluid) {
+      decls.flex = props.flex || '1';
+    }
+
     switch (true) {
-      case row: {
-        decls.display = 'flex';
-      }
-      case column: {
-        decls.display = 'flex';
-        decls.flexDirection = 'column';
-      }
-      case Boolean(bit & flexType.item): {
-        decls.flex = props.flex || '0';
-      }
-      case Boolean(bit & flexType.itemFluid): {
-        decls.flex = props.flex || '1';
-      }
       case Boolean(bit & flexType.topLeft): {
         decls.justifyContent = 'flex-start';
         decls.alignItems = 'flex-start';
+        break;
       }
       case Boolean(bit & flexType.topCenter): {
         if (column) {
@@ -119,6 +123,7 @@ const createComponent = memoizee(
           decls.justifyContent = 'center';
           decls.alignItems = 'flex-start';
         }
+        break;
       }
       case Boolean(bit & flexType.topRight): {
         if (column) {
@@ -128,6 +133,7 @@ const createComponent = memoizee(
           decls.justifyContent = 'flex-end';
           decls.alignItems = 'flex-start';
         }
+        break;
       }
       case Boolean(bit & flexType.centerLeft): {
         if (column) {
@@ -137,10 +143,12 @@ const createComponent = memoizee(
           decls.justifyContent = 'flex-start';
           decls.alignItems = 'center';
         }
+        break;
       }
       case Boolean(bit & flexType.centerCenter): {
         decls.justifyContent = 'center';
         decls.alignItems = 'center';
+        break;
       }
       case Boolean(bit & flexType.centerRight): {
         if (column) {
@@ -150,6 +158,7 @@ const createComponent = memoizee(
           decls.justifyContent = 'flex-end';
           decls.alignItems = 'center';
         }
+        break;
       }
       case Boolean(bit & flexType.bottomLeft): {
         if (column) {
@@ -159,6 +168,7 @@ const createComponent = memoizee(
           decls.justifyContent = 'flex-start';
           decls.alignItems = 'flex-end';
         }
+        break;
       }
       case Boolean(bit & flexType.bottomCenter): {
         if (column) {
@@ -168,16 +178,17 @@ const createComponent = memoizee(
           decls.justifyContent = 'center';
           decls.alignItems = 'flex-end';
         }
+        break;
       }
       case Boolean(bit & flexType.bottomRight): {
         decls.justifyContent = 'flex-end';
         decls.alignItems = 'flex-end';
+        break;
       }
-      default: {
-        return decls;
-      }
+      default:
     }
-    // tslint:enable:no-switch-case-fall-through
+
+    return decls;
   },
   {
     normalizer: args => {
@@ -187,24 +198,27 @@ const createComponent = memoizee(
 );
 
 const createFlexProxy = () => {
-  const flag: FlexComponentFlag = {bit: 0b0000000000000};
+  // tslint:disable-next-line:no-empty
+  const flag: FlexComponentFlag = () => {};
+  flag.bit = 0b0000000000000;
 
   return new Proxy<FakeFlexComponentProxy>(
     (flag as unknown) as FakeFlexComponentProxy,
     {
+      apply(_target, _thisArg, args) {
+        const [props] = args;
+
+        const decls = createComponent(flag.bit, props || {});
+        const Tag = styled.div(decls as any);
+        return <Tag>{(props as any).children}</Tag>;
+      },
       get(
         target: FakeFlexComponentProxy & FakeParentFlexComponentProxy,
         key: string,
         receiver: FakeFlexComponentProxy & FakeParentFlexComponentProxy,
       ): any {
-        if (key === '$') {
-          return (props?: Partial<FlexProps>) => {
-            console.log(flag);
-            const decls = createComponent(flag.bit, props || {});
-            return (
-              <FlexTag {...decls as any}>{(props as any).children}</FlexTag>
-            );
-          };
+        if (['row', 'column', 'item', 'itemFluid'].indexOf(key) === -1) {
+          return Reflect.get(target, key, receiver);
         }
 
         const _flag = (target as unknown) as FlexComponentFlag;
@@ -216,7 +230,7 @@ const createFlexProxy = () => {
   );
 };
 
-const Flex = ({flex: FlexTag} as unknown) as FakeFlexComponentProxy;
+const Flex = ({}) as FakeFlexComponentProxy;
 Object.defineProperties(Flex, {
   row: {
     get: () => createFlexProxy().row,

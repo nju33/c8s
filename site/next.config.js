@@ -78,11 +78,15 @@ const webpack = (config, a) => {
   // const ruleForTs = config.module.rules.find(({test}) => test.test('test.tsx'));
 
 
+  config.resolve.modules.push(path.resolve(__dirname, '../node_modules'));
+
   const ruleForTs = config.module.rules.forEach(rule => {
     if (rule.test.test('_.tsx') || rule.test.test('_.jsx')) {
-      rule.include.push(path.resolve(__dirname, '../components'));
+      // rule.include.push(path.resolve(rule.include[0], '../node_modules/@c8s'));
+      // delete rule.include;
+      // delete rule.exclude;
+      // rule.exclude = /node_modules(?!\/@c8s)/;
     }
-    // console.log(rule);
   });
 
   // console.log(JSON.stringify(config, null, 2));

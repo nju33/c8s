@@ -11,13 +11,26 @@ export default withRouter(class extends DefaultTemplate<
   static displayName = '/pages/components/flex';
 
   Main = () => {
+    // console.dir(new Flex().render());
     return (
       <Layer>
         <Layer.heading>Flex</Layer.heading>
         <div>
-          <Flex.column.$>
-            <Flex.item.$>Flex.row</Flex.item.$>
-          </Flex.column.$>
+          <Flex>
+            <div>Flex</div>
+            <Flex.column>
+              <Flex.row>
+                <div>Flex.row1-1</div>
+                <div>Flex.row1-2</div>
+              </Flex.row>
+              <Flex.row>
+                <div>Flex.row2-1</div>
+                <div>Flex.row2-2</div>
+              </Flex.row>
+            </Flex.column>
+          </Flex>
+            {/* aa */}
+          {/* </Flex.row> */}
         </div>
 
         <Layer>

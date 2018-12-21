@@ -1,0 +1,26 @@
+---
+name: Flex
+menu: Components
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Flex} from './flex';
+
+<Playground>
+  {() => {
+    return (
+      <Flex.column>
+        <Flex.row>
+          <Flex.itemFluid.row>
+            <Flex.itemFluid.column>
+              <Flex.row>item1-1</Flex.row>
+              <Flex.row>item1-2</Flex.row>
+            </Flex.itemFluid.column>
+          </Flex.itemFluid.row>
+          <Flex.item>item2</Flex.item>
+        </Flex.row>
+        <Flex.row>Flex</Flex.row>
+      </Flex.column>
+    )
+  }}
+</Playground>
