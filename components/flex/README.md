@@ -28,7 +28,7 @@ import Flex from '@c8s/flex';
 
 ```ts
 () => (
-  <Flex.column>
+  <Flex.column style={{color: '#393939'}}>
     <Flex.row>
       <Flex.itemFluid.row>
         <Flex.itemFluid.column>

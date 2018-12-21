@@ -3,9 +3,21 @@ import styled from 'styled-components';
 import memoizee from 'memoizee';
 // import {Flex as FlexTag} from './atoms';
 
-interface FlexProps {
-  flex: CSSStyleDeclaration['flex'];
-}
+interface FlexProps
+  extends Pick<
+    CSSStyleDeclaration,
+    | 'flex'
+    | 'flexGrow'
+    | 'flexShrink'
+    | 'flexBasis'
+    | 'flexDirection'
+    | 'flexWrap'
+    | 'justifyContent'
+    | 'alignItems'
+    | 'alignContent'
+    | 'alignSelf'
+    | 'order'
+  > {}
 
 type FlexComponent = React.SFC<Partial<FlexProps>>;
 
@@ -206,11 +218,28 @@ const createFlexProxy = () => {
     (flag as unknown) as FakeFlexComponentProxy,
     {
       apply(_target, _thisArg, args) {
-        const [props] = args;
+        const [_props] = args;
+
+        const {children, ...props} = _props as {children: React.ReactNode} & {
+          [x: string]: any;
+        };
+
+        const clonedProps = {...props};
+        delete clonedProps.flex;
+        delete clonedProps.flexGrow;
+        delete clonedProps.flexShrink;
+        delete clonedProps.flexBasis;
+        delete clonedProps.flexDirection;
+        delete clonedProps.flexWrap;
+        delete clonedProps.justifyContent;
+        delete clonedProps.alignItems;
+        delete clonedProps.alignContent;
+        delete clonedProps.alignSelf;
+        delete clonedProps.order;
 
         const decls = createComponent(flag.bit, props || {});
         const Tag = styled.div(decls as any);
-        return <Tag>{(props as any).children}</Tag>;
+        return <Tag {...clonedProps}>{children}</Tag>;
       },
       get(
         target: FakeFlexComponentProxy & FakeParentFlexComponentProxy,
