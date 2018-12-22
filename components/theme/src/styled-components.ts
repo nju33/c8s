@@ -3,14 +3,14 @@ import * as styledComponents from 'styled-components';
 import {ThemedStyledComponentsModule} from 'styled-components';
 
 export interface ThemeInterface {
-  ColumnBG: string;
-  MenuBGHover: string;
-  ActiveItem: string;
-  ActiveItemText: string;
-  HoverItem: string;
-  TextColor: string;
-  ActivePresence: string;
-  MentionBadge: string;
+  columnBG: string;
+  menuBGHover: string;
+  activeItem: string;
+  activeItemText: string;
+  hoverItem: string;
+  textColor: string;
+  activePresence: string;
+  mentionBadge: string;
 }
 
 export type GetThemeFn = (

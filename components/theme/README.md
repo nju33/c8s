@@ -1,11 +1,9 @@
-# @c8s/flex
+# @c8s/theme
 
-A component for flex layout.
-
-[![github](https://badgen.net/badge//nju33,c8s/000?icon=github&list=1)](https://github.com/nju33/c8s/tree/master/components/flex)
-[![npm:version](https://badgen.net/npm/v/c8s/flex?icon=npm&label=)](https://www.npmjs.com/package/@c8s/flex)
+[![github](https://badgen.net/badge//nju33,c8s/000?icon=github&list=1)](https://github.com/nju33/c8s/tree/master/components/theme)
+[![npm:version](https://badgen.net/npm/v/c8s/theme?icon=npm&label=)](https://www.npmjs.com/package/@c8s/theme)
 [![typescript](https://badgen.net/badge/lang/typescript/0376c6?icon=npm)](https://www.typescriptlang.org/)
-[![license](https://badgen.net/npm/license/@c8s/flex)](https://github.com/nju33/c8s/blob/master/LICENSE)
+[![license](https://badgen.net/npm/license/@c8s/theme)](https://github.com/nju33/c8s/blob/master/LICENSE)
 [![browserslist](https://badgen.net/badge/browserslist/chrome,edge/ffd539?list=1)](https://browserl.ist/?q=last+1+chrome+version%2C+last+1+edge+version)
 
 <!-- [![document:typedoc](https://badgen.net/badge/document/typedoc/9602ff)](https://docs--pilaf.netlify.com/) -->
@@ -15,31 +13,22 @@ A component for flex layout.
 
 ```ts
 /**
- * As to prepare of using the `Flex`
+ * As to prepare of using the `theme`
  * 
  * ```sh
- * yarn add @c8s/flex react @types/react styled-components @types/styled-components
+ * yarn add @c8s/theme react @types/react styled-components @types/styled-components
  * ```
  */
-import Flex from '@c8s/flex';
+import Theme, {defaultTheme} from '@c8s/theme';
 ```
 
 ## Example
 
 ```ts
 () => (
-  <Flex.column style={{color: '#393939'}}>
-    <Flex.row>
-      <Flex.itemFluid.row>
-        <Flex.itemFluid.column>
-          <Flex.row.center>item1-1</Flex.row.center>
-          <Flex.row>item1-2</Flex.row>
-        </Flex.itemFluid.column>
-      </Flex.itemFluid.row>
-      <Flex.item>item2</Flex.item>
-    </Flex.row>
-    <Flex.row>Flex</Flex.row>
-  </Flex.column>
+  <Theme theme={defaultTheme}>
+    {/* In this, use `@c8s/*` components */}
+  </Theme>
 );
 ```
 

@@ -1,0 +1,29 @@
+---
+name: '@c8s/layer'
+route: /components/layer
+menu: Components
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Layer} from './organisms'
+
+## @c8s/layer
+
+<Playground>
+  {() => {
+    return (
+      <Layer>
+        <Layer.heading>H1</Layer.heading>
+          <Layer>
+            <Layer.heading>H2</Layer.heading>
+            <Layer>
+              <Layer.heading>H3</Layer.heading>
+              <Layer>
+                <Layer.heading>H4</Layer.heading>
+              </Layer>
+            </Layer>
+          </Layer>
+      </Layer>
+    )
+  }}
+</Playground>

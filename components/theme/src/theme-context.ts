@@ -1,14 +1,16 @@
 import React from 'react';
+import {ThemeInterface} from './styled-components';
+import {parse} from './helpers/slack';
 
-export interface ThemeContextProps {
-  ColumnBG: string;
-  MenuBGHover: string;
-  ActiveItem: string;
-  ActiveItemText: string;
-  HoverItem: string;
-  TextColor: string;
-  ActivePresence: string;
-  MentionBadge: string;
-}
+// tslint:disable-next-line:no-empty-interface
+export interface ThemeContextProps extends ThemeInterface {}
 
-export const ThemeContext = React.createContext<ThemeContextProps>({} as any);
+/**
+ * @see {@link https://slackthemes.net/#/uber_light}
+ */
+const DEFAULT =
+  '#F2F2F4,#E6E6E9,#1FBAD6,#FFFFFF,#C0C0C8,#151525,#1FBAD6,#4CC8DE';
+
+export const ThemeContext = React.createContext<ThemeContextProps>(
+  parse(DEFAULT),
+);
