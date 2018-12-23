@@ -1,6 +1,6 @@
-import {ThemeInterface} from '..';
+import {ThemeColorValues} from '../theme';
 
-export const parse = (themeStr: string): ThemeInterface => {
+export const parse = (themeStr: string): ThemeColorValues => {
   const colors = themeStr.split(',');
 
   return {

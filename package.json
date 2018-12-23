@@ -1,6 +1,7 @@
 {
   "private": true,
   "workspaces": [
+    "components/button",
     "components/flex",
     "components/layer",
     "components/pager",

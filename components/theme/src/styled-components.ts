@@ -1,21 +1,7 @@
 import * as styledComponents from 'styled-components';
 // tslint:disable-next-line:no-duplicate-imports
 import {ThemedStyledComponentsModule} from 'styled-components';
-
-export interface ThemeInterface {
-  columnBG: string;
-  menuBGHover: string;
-  activeItem: string;
-  activeItemText: string;
-  hoverItem: string;
-  textColor: string;
-  activePresence: string;
-  mentionBadge: string;
-}
-
-export type GetThemeFn = (
-  props: {theme: ThemeInterface},
-) => string | styledComponents.FlattenInterpolation<any>;
+import {ThemeValues} from './theme';
 
 const {
   default: styled,
@@ -23,7 +9,7 @@ const {
   createGlobalStyle,
   keyframes,
   ThemeProvider,
-} = styledComponents as ThemedStyledComponentsModule<ThemeInterface>;
+} = styledComponents as ThemedStyledComponentsModule<ThemeValues>;
 
 export {css, createGlobalStyle, keyframes, ThemeProvider};
 export default styled;

@@ -1,0 +1,17 @@
+---
+name: '@c8s/button'
+route: /components/button
+menu: Components
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Theme, theme} from '@c8s/theme';
+import {Button} from './atoms/button';
+
+## @c8s/button
+
+<Playground>
+  {() => {
+    return <Theme theme={theme}><Button>Button</Button></Theme>;
+  }}
+</Playground>
