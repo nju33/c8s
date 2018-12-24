@@ -1,6 +1,7 @@
 {
   "private": true,
   "workspaces": [
+    "components/breadcrumb",
     "components/button",
     "components/flex",
     "components/layer",

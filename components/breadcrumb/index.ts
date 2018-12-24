@@ -1,1 +1,0 @@
-export {Default as Breadcrumb} from './molecules';
