@@ -6,7 +6,7 @@ import {
   Default as DefaultMolecule,
   SliderState,
 } from '../molecules';
-import {createCycle, Cycle} from '../cycle';
+import {createCycle, CycleStep} from '../cycle';
 
 export interface SliderOrganismDefaultProps {
   length?: number;
@@ -43,7 +43,7 @@ export const Default = class extends React.Component<
     console.log(
       this.state.current + this.props.items.length,
       this.props.items.length + this.props.items.length,
-    )
+    );
     return [
       ...this.props.items,
       ...this.props.items,
@@ -120,7 +120,8 @@ export const Default = class extends React.Component<
 
   onTransitionEnd = (ev: React.SyntheticEvent<HTMLUListElement>) => {
     if (
-      ev.currentTarget.getAttribute('data-current-step-is') !== Cycle.Process
+      ev.currentTarget.getAttribute('data-current-step-is') !==
+      CycleStep.Process
     ) {
       return;
     }
@@ -145,12 +146,10 @@ export const Default = class extends React.Component<
         length={this.props.length}
         items={(() => {
           const items = this.getItems();
-          console.log(items)
           const slicedItems = items.slice(0, this.props.length);
-          console.log(slicedItems);
           if (
-            this.state.cycle.value === Cycle.Prepare ||
-            this.state.cycle.value === Cycle.Process
+            this.state.cycle.value === CycleStep.Prepare ||
+            this.state.cycle.value === CycleStep.Process
           ) {
             if (this.state.dir === 'left') {
               return [...slicedItems, this.getNextItem()];
@@ -161,7 +160,7 @@ export const Default = class extends React.Component<
 
           return slicedItems;
         })()}
-        initTransition={this.state.initTransition}
+        initTransition={this.state.initTransitioinitTransitionn}
         step={this.state.cycle.value}
         dir={this.state.dir}
         current={this.state.current}

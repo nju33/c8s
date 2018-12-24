@@ -1,50 +1,50 @@
 import {Machine as machine} from 'xstate';
 import {interpret} from 'xstate/lib/interpreter';
 
-export enum Cycle {
+export enum CycleStep {
   Still = 'still',
   Prepare = 'prepare',
   Process = 'process',
-  Done = 'done',
 }
 
-export const createCycle = () => {
+export interface Cycle {
+  reset(): void;
+  next(): CycleStep;
+  readonly value: CycleStep;
+}
+
+export const createCycle = (): Cycle => {
   let service = interpret(
     machine({
-      initial: Cycle.Process,
+      initial: CycleStep.Process,
       states: {
         still: {
           on: {
-            next: Cycle.Prepare,
+            next: CycleStep.Prepare,
           },
         },
         prepare: {
           on: {
-            next: Cycle.Process,
+            next: CycleStep.Process,
           },
         },
         process: {
           on: {
-            next: Cycle.Still,
+            next: CycleStep.Still,
           },
         },
-        // done: {
-        //   on: {
-        //     next: Cycle.Still,
-        //   },
-        // },
       },
     }),
   ).start();
 
-  let value: Cycle = Cycle.Process;
+  let value: CycleStep = CycleStep.Process;
 
   return {
     reset() {
       service = service.init();
     },
-    next(): Cycle {
-      value = service.send('next').value as Cycle;
+    next(): CycleStep {
+      value = service.send('next').value as CycleStep;
       return value;
     },
     get value() {

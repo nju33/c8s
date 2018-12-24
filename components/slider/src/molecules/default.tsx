@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Item, Image, Container, Pager, Monitor, Cover} from '../atoms';
 import {FaAngleLeft, FaAngleRight} from 'react-icons/fa';
-import {Cycle} from '../cycle';
+import {Cycle, CycleStep} from '../cycle';
 
 // tslint:disable-next-line:no-empty
 const noop = () => {};
@@ -12,6 +12,8 @@ export interface SliderMoleculeDefaultProps {
     text: string;
   }[];
   width: number;
+  initTransition: boolean;
+  dir: 'left' | 'right';
 }
 
 export interface SliderProps {
@@ -21,6 +23,8 @@ export interface SliderProps {
 export interface SliderState {
   current: number;
   left: number;
+  cycle: Cycle;
+  step: CycleStep;
 }
 
 export interface SliderMoleculeDefaultHandlerProps {
@@ -41,7 +45,7 @@ export class Default extends React.PureComponent<
         <Pager
           {...{
             onClick:
-              this.props.step === Cycle.Still
+              this.props.step === CycleStep.Still
                 ? this.props.onLeftPagerClick
                 : noop,
           }}
@@ -73,15 +77,15 @@ export class Default extends React.PureComponent<
         <Pager
           {...{
             onClick:
-              this.props.step === Cycle.Prepare ||
-              this.props.state === Cycle.Process
+              this.props.step === CycleStep.Prepare ||
+              this.props.step === CycleStep.Process
                 ? noop
                 : this.props.onRightPagerClick,
           }}
         >
           <FaAngleRight size={16} />
         </Pager>
-        <Cover aria-hidden={this.props.step === Cycle.Still} />
+        <Cover aria-hidden={this.props.step === CycleStep.Still} />
       </Container>
     );
   }
