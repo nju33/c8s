@@ -1,14 +1,14 @@
 import React from 'react';
 import {Box, Image, Content, A, Title} from '../atoms';
 
-export interface CardMoleculeDefaultProps {
+export interface CardProps {
   image?: string;
   title?: string;
   link?: string;
   linkText?: string;
 }
 
-export class Default extends React.PureComponent<CardMoleculeDefaultProps> {
+export class Card extends React.PureComponent<CardProps> {
   render() {
     return (
       <Box>

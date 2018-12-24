@@ -1,0 +1,63 @@
+---
+name: '@c8s/card'
+route: /components/card
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Theme, theme} from '@c8s/theme';
+import {Card} from './molecules';
+
+## @c8s/breadcrumb
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <Card>カードテキスト</Card>
+      </Theme>
+    );
+  }}
+</Playground>
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <Card image="https://placehold.jp/300x300.png">カードテキスト</Card>
+      </Theme>
+    );
+  }}
+</Playground>
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <Card
+          image="https://placehold.jp/300x300.png"
+          link="https://example.com"
+          linkText="詳細"
+        >
+          カードテキスト
+        </Card>
+      </Theme>
+    );
+  }}
+</Playground>
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <Card
+          image="https://placehold.jp/300x300.png"
+          title="とあるカード"
+          link="https://example.com"
+          linkText="詳細"
+        >
+          カードテキスト
+        </Card>
+      </Theme>
+    );
+  }}
+</Playground>

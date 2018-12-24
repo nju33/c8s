@@ -5023,7 +5023,7 @@ doctrine@^2.0.0:
   dependencies:
     esutils "^2.0.2"
 
-docz-core@^0.13.5:
+docz-core@^0.13.4, docz-core@^0.13.5:
   version "0.13.5"
   resolved "https://registry.yarnpkg.com/docz-core/-/docz-core-0.13.5.tgz#3e06a99d0b771f8a8a3eb8d4c9d4cca809128bf9"
   integrity sha512-j4Bb/Lduxdfvem3qerz52+YNcPNvzIF+qVXSJwobkSgqhzjbm/ut+VUsbtOjPWtzsbbUpX9ZEu5isWw661fURg==
@@ -5091,16 +5091,16 @@ docz-core@^0.13.5:
     ws "^6.1.2"
     yargs "^12.0.5"
 
-docz-theme-default@^0.13.5:
-  version "0.13.5"
-  resolved "https://registry.yarnpkg.com/docz-theme-default/-/docz-theme-default-0.13.5.tgz#1be0839d5beb6da81132c458485125e9a2cc3e20"
-  integrity sha512-V3ZOnPNSHQQisUII5CXREZQBothSPKoL7Wd61fXjIg62Q3oxZuu7ijnp/GAaWgzNnb0zuHEt7nZAMUFs/UKjcA==
+docz-theme-default@0.13.4:
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/docz-theme-default/-/docz-theme-default-0.13.4.tgz#48b8eec28ccab2a99c192750f8bd64b6ce358ce8"
+  integrity sha512-/WNj+WoA+iGJETKL7Garl+n35QNuJaSHs+mBy3l4iBgfSEHjlwJUGfaS9ttz4/2Q+axXkYfbnw8XicVq90L4Lw==
   dependencies:
     "@emotion/core" "^10.0.5"
     "@emotion/styled" "^10.0.5"
     codemirror "^5.42.0"
     copy-text-to-clipboard "^1.0.4"
-    docz "^0.13.5"
+    docz "^0.13.4"
     emotion-theming "^10.0.5"
     facepaint "^1.2.1"
     hotkeys-js "^3.4.1"
@@ -5150,7 +5150,32 @@ docz-utils@^0.13.5:
     unist-util-is "^2.1.2"
     unist-util-visit "^1.4.0"
 
-docz@^0.13.5:
+docz@0.13.4:
+  version "0.13.4"
+  resolved "https://registry.yarnpkg.com/docz/-/docz-0.13.4.tgz#d28ad865471fa72506fe53f49002e3a80a20c544"
+  integrity sha512-EyKqnDDuWW99iVksNx/XwJIuwLJum0W2fL0SpxZ3EDCnR5mF4Suz9YvU1VCFViwPx8uYpCc/FZNXSXeQsL//NQ==
+  dependencies:
+    "@mdx-js/tag" "^0.16.6"
+    "@sindresorhus/slugify" "^0.6.0"
+    array-sort "^1.0.0"
+    callbag-observe "^1.0.0"
+    callbag-subject "^1.0.2"
+    capitalize "^2.0.0"
+    deepmerge "^3.0.0"
+    docz-core "^0.13.4"
+    fast-deep-equal "^2.0.1"
+    lodash "^4.17.11"
+    prop-types "^15.6.2"
+    react "^16.6.3"
+    react-dom "^16.6.3"
+    react-imported-component "^5.2.4"
+    react-router "^4.3.1"
+    react-router-dom "^4.3.1"
+    react-router-hash-link "^1.2.1"
+    ulid "^2.3.0"
+    yargs "^12.0.5"
+
+docz@^0.13.4:
   version "0.13.5"
   resolved "https://registry.yarnpkg.com/docz/-/docz-0.13.5.tgz#a7a9e478e6a2d366d2359219beff2ab1109837eb"
   integrity sha512-6XUY9ItqRXGF53zF7H0plEkAjeSrjKpyoA7ZygwNOf6/c2H368526rqLGZuINfW9gNUQh2sjyexdpOKvqT1xbw==
@@ -5376,9 +5401,9 @@ entities@~1.1.1:
   integrity sha512-f2LZMYl1Fzu7YSBKg+RoROelpOaNrcGmE9AZubeDfrCEia483oW4MI4VyFd5VNHIgQ/7qm1I0wUHK1eJnn2y2w==
 
 env-dot-prop@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/env-dot-prop/-/env-dot-prop-1.1.0.tgz#037b4d6c145b0a4fdd650ac2c76c1fb2661f1dad"
-  integrity sha512-ILnQdlx7/5eH/Sk/awsHj86KDD0ko6uuem8rcJAPgQv3vQyq7UhJhWzhH9DqBigzSGOlJgnJZYzkVyFCGhBYgA==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/env-dot-prop/-/env-dot-prop-1.1.1.tgz#f06cb73e3ebff101192fee5143efa7507b88ae3b"
+  integrity sha512-lpC58NLAg6ukY2DRZ9YX4D/fCWde0hYvpFZA9VKComsfo+9/jPGOOPUu9lmH/YVE/jOSnHJ03I2LlRg0q4rtLA==
   dependencies:
     circular-json "^0.5.9"
     dot-prop "^4.2.0"
@@ -13747,9 +13772,9 @@ webpack-dev-middleware@3.4.0:
     webpack-log "^2.0.0"
 
 webpack-dev-server@^3.1.10:
-  version "3.1.13"
-  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-3.1.13.tgz#72ebc8dab4551f8a8e1fdf6357da97571aee6a23"
-  integrity sha512-o+crjlyTDCAnkZe1CGlP2XLGCgnMN6oSotYdB+r5OGbnf52Dl9T/fCOdKObvanl1jEnMuLBVDnjTXEmCMMksww==
+  version "3.1.14"
+  resolved "https://registry.yarnpkg.com/webpack-dev-server/-/webpack-dev-server-3.1.14.tgz#60fb229b997fc5a0a1fc6237421030180959d469"
+  integrity sha512-mGXDgz5SlTxcF3hUpfC8hrQ11yhAttuUQWf1Wmb+6zo3x6rb7b9mIfuQvAPLdfDRCGRGvakBWHdHOa0I9p/EVQ==
   dependencies:
     ansi-html "0.0.7"
     bonjour "^3.5.0"

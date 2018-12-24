@@ -3,6 +3,7 @@
   "workspaces": [
     "components/breadcrumb",
     "components/button",
+    "components/card",
     "components/flex",
     "components/layer",
     "components/pager",
