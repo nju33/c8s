@@ -10,8 +10,12 @@ export interface CodeBlockOrganismDefaultProps {
   lang: string;
 }
 
-export class Default extends React.Component<CodeBlockOrganismDefaultProps> {
+export class CodeBlock extends React.Component<CodeBlockOrganismDefaultProps> {
   readonly block: React.RefObject<HTMLElement>;
+
+  static defaultProps = {
+    children: '',
+  };
 
   constructor(props: CodeBlockOrganismDefaultProps) {
     super(props);
@@ -20,7 +24,8 @@ export class Default extends React.Component<CodeBlockOrganismDefaultProps> {
   }
 
   componentDidMount() {
-    hljs.highlightBlock(this.block.current);
+    // tslint:disable-next-line:no-non-null-assertion
+    hljs.highlightBlock(this.block!.current!);
   }
 
   render() {

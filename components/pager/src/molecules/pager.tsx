@@ -1,19 +1,19 @@
 import React from 'react';
-import Flex from '@nju33/react-flex';
+import Flex from '@c8s/flex';
 import {Bowl} from '../atoms';
 
 export interface PagerProps {
-  // items: React.ReactNode[];
+  children: React.ReactNode[];
 }
 
 export class Pager extends React.PureComponent<PagerProps> {
   render() {
     return (
-      <Flex inline>
-        {this.props.items.map(item => {
-          return <Bowl>{item}</Bowl>;
+      <Flex.row.center>
+        {this.props.children.map(child => {
+          return <Bowl>{child}</Bowl>;
         })}
-      </Flex>
+      </Flex.row.center>
     );
   }
 }

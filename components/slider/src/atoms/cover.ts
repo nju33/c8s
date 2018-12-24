@@ -1,4 +1,4 @@
-import styled from '../../styled';
+import styled from '@c8s/theme';
 
 export const Cover = styled.div`
   /* ボタンを押した後なので、同じように見せるため */

@@ -1,4 +1,4 @@
-import {Default as Table, TableProps} from './molecules';
+import {Table} from './molecules';
 
 export default Table;
-export {TableProps};
+export {TableProps} from './molecules';

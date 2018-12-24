@@ -1,5 +1,5 @@
 {
-  "name": "@c8s/sidebar",
+  "name": "@c8s/code-block",
   "version": "0.0.0",
   "publishConfig": {
     "access": "public"
@@ -15,8 +15,7 @@
   "scripts": {
     "prepare": "yarn build",
     "test": ":",
-    "docz.dev": "docz dev --port 6069",
-    "docz.build": "docz build",
+    "dev": "docz dev --port 2347",
     "build.main": "tsc -P tsconfig.main.json",
     "build.module": "tsc -P tsconfig.module.json",
     "build.types": "tsc -P tsconfig.types.json --emitDeclarationOnly",
@@ -27,12 +26,16 @@
     "styled-components": "^4.0.0"
   },
   "dependencies": {
-    "@c8s/theme": "^0.0.0"
+    "@c8s/flex": "^0.0.0",
+    "@c8s/theme": "^0.0.0",
+    "highlight.js": "^9.13.1",
+    "vwxy": "^0.1.0"
   },
   "devDependencies": {
     "@nju33/tsconfig-react-main": "^0.0.3",
     "@nju33/tsconfig-react-module": "^0.0.3",
     "@nju33/tsconfig-react-types": "^0.0.3",
+    "@types/highlight.js": "^9.12.3",
     "@types/react": "^16.7.17",
     "@types/styled-components": "^4.1.3",
     "react": "^16.6.3",

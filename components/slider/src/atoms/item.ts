@@ -1,4 +1,4 @@
-import styled from '../../styled';
+import styled from '@c8s/theme';
 
 interface Data {
   'data-length': number;

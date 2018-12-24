@@ -1,5 +1,7 @@
-import styled from '../../styled';
-import {theme} from '../../../helpers';
+import styled from '@c8s/theme';
+import vwxy from 'vwxy';
+
+const transitionDuration = vwxy().theme.transitionDuration;
 
 interface Data {
   'data-state-current': number;
@@ -11,8 +13,6 @@ const push = (props: Data) => {
   return `calc(-100% / ${props['data-length']})`;
 };
 
-
-
 export const Row = styled.ul`
   list-style: none;
   padding: 0;
@@ -20,14 +20,14 @@ export const Row = styled.ul`
   display: flex;
   align-items: center;
   overflow: hidden;
-  transition: ${theme.transition};
+  transition: ${transitionDuration};
 
   &:before,
   &:after {
     content: '';
     display: block;
     flex: 0;
-    transition: ${theme.transition};
+    transition: ${transitionDuration};
   }
 
   &:before {

@@ -1,15 +1,15 @@
 import React from 'react';
-import {Table} from '../atoms';
+import {Table as AtomTable} from '../atoms';
 
 export interface TableProps {
   head: (string | number | JSX.Element)[];
   body: (string | number | JSX.Element)[][];
 }
 
-export class Default extends React.PureComponent<TableProps> {
+export class Table extends React.PureComponent<TableProps> {
   render() {
     return (
-      <Table>
+      <AtomTable>
         <thead>
           <tr>
             {this.props.head.map((item, i) => {
@@ -28,7 +28,7 @@ export class Default extends React.PureComponent<TableProps> {
             );
           })}
         </tbody>
-      </Table>
+      </AtomTable>
     );
   }
 }
