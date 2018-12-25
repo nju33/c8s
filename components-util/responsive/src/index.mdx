@@ -1,0 +1,37 @@
+---
+name: '@c8s/responsive'
+route: /components-util/responsive
+menu: components-util
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Theme, theme} from '@c8s/theme';
+import styled from 'styled-components'
+import {Responsive} from './responsive';
+import Flex from '@c8s/flex';
+
+## @c8s/breadcrumb
+
+<Playground>
+  {() => {
+    const responsive = new Responsive({
+      m: '@media screen and (min-width: 300px)'
+    });
+
+    {/* const ResponsiveFlex = responsive.from({
+      s: <Flex.itemFluid />,
+      m: <Flex.item />,
+    }); */}
+
+    console.log(Flex.itemFluid())
+
+    return (
+      <Flex.row>
+        <Flex.item>item</Flex.item>
+        {/* <ResponsiveFlex>
+          text
+        </ResponsiveFlex> */}
+      </Flex.row>
+    );
+  }}
+</Playground>

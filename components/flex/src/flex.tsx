@@ -220,7 +220,9 @@ const createFlexProxy = () => {
       apply(_target, _thisArg, args) {
         const [_props] = args;
 
-        const {children, ...props} = _props as {children: React.ReactNode} & {
+        const {children, ...props} = {children: null, ..._props} as {
+          children: React.ReactNode;
+        } & {
           [x: string]: any;
         };
 
@@ -238,8 +240,12 @@ const createFlexProxy = () => {
         delete clonedProps.order;
 
         const decls = createComponent(flag.bit, props || {});
-        const Tag = styled.div(decls as any);
-        return <Tag {...clonedProps}>{children}</Tag>;
+        const Tag = styled.div<any>(decls as any);
+        return (
+          <Tag {...clonedProps} _own={Tag}>
+            {children}
+          </Tag>
+        );
       },
       get(
         target: FakeFlexComponentProxy & FakeParentFlexComponentProxy,

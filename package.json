@@ -17,6 +17,7 @@
     "components/tab",
     "components/table",
     "components/theme",
+    "components-util/responsive",
     "site"
   ],
   "name": "c8s",
