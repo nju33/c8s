@@ -13,32 +13,11 @@ import {Card} from './molecules';
   {() => {
     return (
       <Theme theme={theme}>
-        <Card>カードテキスト</Card>
-      </Theme>
-    );
-  }}
-</Playground>
-
-<Playground>
-  {() => {
-    return (
-      <Theme theme={theme}>
-        <Card image="https://placehold.jp/300x300.png">カードテキスト</Card>
-      </Theme>
-    );
-  }}
-</Playground>
-
-<Playground>
-  {() => {
-    return (
-      <Theme theme={theme}>
-        <Card
-          image="https://placehold.jp/300x300.png"
-          link="https://example.com"
-          linkText="詳細"
-        >
-          カードテキスト
+        <Card style={{width: 200, height: 200}}>
+          <Card.img src="https://placehold.jp/200x200.png">
+            <div role="heading">タイトル</div>
+            <div style={{fontSize: 13}}>ほげほげふがふが<br />ほげほげふがふが</div>
+          </Card.img>
         </Card>
       </Theme>
     );
@@ -49,13 +28,33 @@ import {Card} from './molecules';
   {() => {
     return (
       <Theme theme={theme}>
-        <Card
-          image="https://placehold.jp/300x300.png"
-          title="とあるカード"
-          link="https://example.com"
-          linkText="詳細"
-        >
-          カードテキスト
+        <Card>
+          <Card.img src="https://placehold.jp/200x200.png" />
+          <div>
+            <div role="heading">タイトル</div>
+            <div style={{fontSize: 13}}>ほげほげふがふが<br />ほげほげふがふが</div>
+          </div>
+        </Card>
+      </Theme>
+    );
+  }}
+</Playground>
+
+## with Link
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <Card>
+          <a href="#">
+            <Card.img src="https://placehold.jp/200x200.png" />
+            <div>
+              <div role="heading">タイトル</div>
+              <Card.separator />
+              <div style={{fontSize: 13}}>ほげほげふがふが<br />ほげほげふがふが</div>
+            </div>
+          </a>
         </Card>
       </Theme>
     );

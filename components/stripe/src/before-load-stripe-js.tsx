@@ -1,7 +1,7 @@
 import React from 'react';
 import {StripeOrganismDefaultProps} from './organisms';
 
-const ID = 'SUMMARY_COMPONENTS.Stripe';
+const ID = '@c8s/stripe';
 
 export type BeforeLoadStripeJs<C> = (Component: C) => C;
 

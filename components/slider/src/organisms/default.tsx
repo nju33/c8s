@@ -6,7 +6,7 @@ import {
   Default as DefaultMolecule,
   SliderState,
 } from '../molecules';
-import {createCycle, CycleStep} from '../cycle';
+import {createCycle, CycleStep, Cycle} from '../cycle';
 
 export interface SliderOrganismDefaultProps {
   length?: number;
@@ -14,7 +14,7 @@ export interface SliderOrganismDefaultProps {
 
 export const Default = class extends React.Component<
   SliderMoleculeDefaultProps & Required<SliderOrganismDefaultProps>,
-  SliderState
+  SliderState & {cycle: Cycle}
 > {
   static defaultProps = {
     length: 2,
@@ -40,10 +40,6 @@ export const Default = class extends React.Component<
   }
 
   private getItems() {
-    console.log(
-      this.state.current + this.props.items.length,
-      this.props.items.length + this.props.items.length,
-    );
     return [
       ...this.props.items,
       ...this.props.items,
@@ -134,12 +130,7 @@ export const Default = class extends React.Component<
     );
   };
 
-  // shouldComponentUpdate(_, prevState) {
-  //   return prevState.cycle.value !== this.state.cycle.value;
-  // }
-
   render() {
-    // console.log(this.state);
     return (
       <DefaultMolecule
         width={this.props.width}
@@ -160,7 +151,7 @@ export const Default = class extends React.Component<
 
           return slicedItems;
         })()}
-        initTransition={this.state.initTransitioinitTransitionn}
+        initTransition={this.state.initTransition}
         step={this.state.cycle.value}
         dir={this.state.dir}
         current={this.state.current}

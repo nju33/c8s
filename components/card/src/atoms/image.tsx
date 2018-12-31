@@ -7,4 +7,8 @@ export const Image = styled.img`
   &[src=''] {
     display: none;
   }
+
+  & + * {
+    padding: .5em;
+  }
 `;

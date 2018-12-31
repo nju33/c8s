@@ -1,4 +1,4 @@
-import styled from '../../styled';
+import styled from '@c8s/theme';
 
 export const Box = styled.div<{
   'data-position': 'top' | 'right' | 'bottom' | 'left';

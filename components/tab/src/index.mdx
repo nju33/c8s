@@ -1,0 +1,41 @@
+---
+name: '@c8s/tab'
+route: /components/tab
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Theme, theme} from '@c8s/theme';
+import {Tab} from './organisms';
+
+## @c8s/tab
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <Tab labels={['foo', 'bar']} position="top">
+          {([FooPanel, BarPanel]) => {
+            return (
+              <>
+                <FooPanel>
+                  <div>
+                    <div>foo</div>
+                    <div>bar</div>
+                    <div>baz</div>
+                  </div>
+                </FooPanel>
+                <BarPanel>
+                  <div>
+                    <div>hoge</div>
+                    <div>fuga</div>
+                    <div>piyo</div>
+                  </div>
+                </BarPanel>
+              </>
+            );
+          }}
+        </Tab>
+      </Theme>
+    );
+  }}
+</Playground>

@@ -1,11 +1,14 @@
-# @c8s/slider
 
-[![github](https://badgen.net/badge//nju33,c8s/000?icon=github&list=1)](https://github.com/nju33/c8s/tree/master/components/breadcrumb)
-[![npm:version](https://badgen.net/npm/v/c8s/breadcrumb?icon=npm&label=)](https://www.npmjs.com/package/@c8s/breadcrumb)
+
+# @c8s/tab
+
+[![github](https://badgen.net/badge//nju33,c8s/000?icon=github&list=1)](https://github.com/nju33/c8s/tree/master/components/stripe)
+[![npm:version](https://badgen.net/badge//wip/ef753a?icon=npm)](https://www.npmjs.com/package/@c8s/stripe)
 [![typescript](https://badgen.net/badge/lang/typescript/0376c6?icon=npm)](https://www.typescriptlang.org/)
-[![license](https://badgen.net/npm/license/@c8s/breadcrumb)](https://github.com/nju33/c8s/blob/master/LICENSE)
+[![license](https://badgen.net/npm/license/@c8s/stripe)](https://github.com/nju33/c8s/blob/master/LICENSE)
 [![browserslist](https://badgen.net/badge/browserslist/chrome,edge/ffd539?list=1)](https://browserl.ist/?q=last+1+chrome+version%2C+last+1+edge+version)
 
+<!-- [![npm:version](https://badgen.net/npm/v/c8s/stripe?icon=npm&label=)](https://www.npmjs.com/package/@c8s/stripe) -->
 <!-- [![document:typedoc](https://badgen.net/badge/document/typedoc/9602ff)](https://docs--pilaf.netlify.com/) -->
 <!-- [![ci:status](https://badgen.net/circleci/github/nju33/c8s)](https://circleci.com/gh/nju33/c8s) -->
 
@@ -13,13 +16,13 @@
 
 ```ts
 /**
- * As to prepare of using the `Slider`
+ * As to prepare of using the `Tab`
  * 
  * ```sh
- * yarn add @c8s/slider react @types/react styled-components @types/styled-components
+ * yarn add @c8s/stripe react @types/react styled-components @types/styled-components
  * ```
  */
-import Slider from '@c8s/slider';
+import Tab from '@c8s/tab';
 /**
  * This should use with `@c8s/theme`.
  * 
@@ -36,22 +39,6 @@ import {Theme, theme} from '@c8s/theme';
 () => (
   <Theme theme={theme}>
     {/* ... */}
-      <Slider
-        items={[
-          {
-            image: 'https://via.placeholder.com/600x480',
-            text: 'Lorem ipsum dolor1',
-          },
-          {
-            image: 'https://via.placeholder.com/500x480',
-            text: 'Lorem ipsum dolor2',
-          },
-          {
-            image: 'https://via.placeholder.com/700x480',
-            text: 'Lorem ipsum dolor3',
-          },
-        ]}
-      /> 
     {/* ... */}
   </Theme>
 );

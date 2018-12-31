@@ -1,1 +1,3 @@
-export {Default as Slider} from './organisms';
+import {Default} from './organisms';
+
+export default Default

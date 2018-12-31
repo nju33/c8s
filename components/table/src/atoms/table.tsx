@@ -1,20 +1,28 @@
 import styled from '@c8s/theme';
-// import {theme} from '../../../helpers';
+import vwxy from 'vwxy';
+
+const activeItem = vwxy().theme.activeItem();
+const columnBG = vwxy().theme.columnBG();
 
 export const Table = styled.table`
   padding: 0.5em 3em;
   font-size: 0.9em;
+  border-collapse: collapse;
+  border: 1px solid ${columnBG};
 
   & th {
+    color: ${activeItem};
+    font-weight: bold;
+    border-bottom: 1px solid ${activeItem};
   }
 
   & th,
   & td {
-    padding: .5em 1em;
+    padding: .5em .75em;
   }
 
-  & th:not(:last-child),
-  & td:not(:last-child) {
+  & tbody tr:nth-child(odd) {
+    background-color: ${columnBG};
   }
 `;
 

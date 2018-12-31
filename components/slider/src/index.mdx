@@ -1,0 +1,35 @@
+---
+name: '@c8s/slider'
+route: /components/slider
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Theme, theme} from '@c8s/theme';
+import Slider from '.';
+
+## @c8s/slider
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <Slider
+          items={[
+            {
+              image: 'https://via.placeholder.com/600x480',
+              text: 'Lorem ipsum dolor1',
+            },
+            {
+              image: 'https://via.placeholder.com/500x480',
+              text: 'Lorem ipsum dolor2',
+            },
+            {
+              image: 'https://via.placeholder.com/700x480',
+              text: 'Lorem ipsum dolor3',
+            },
+          ]}
+        /> 
+      </Theme>
+    );
+  }}
+</Playground>

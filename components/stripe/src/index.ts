@@ -5,4 +5,4 @@ const Stripe = (beforeLoadStripeJs as BeforeLoadStripeJs<
   React.ComponentClass<StripeOrganismDefaultProps>
 >)(Default);
 
-export {Stripe};
+export default Stripe;

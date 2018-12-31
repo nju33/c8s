@@ -4,9 +4,8 @@ import {
   CardElement,
   ReactStripeElements,
 } from 'react-stripe-elements';
-import {Button} from '../../button';
-import {ThemeContext} from 'styled-components';
-import {ThemeContextProps} from '../../theme-context';
+import Button from '@c8s/button';
+import {ThemeContext, ThemeValues} from '@c8s/theme';
 import {Form, Field} from '../atoms';
 
 export const Default = injectStripe(
@@ -20,32 +19,31 @@ export const Default = injectStripe(
         return;
       }
 
-      const token = await this.props.stripe.createToken();
-      console.log(token);
+      // const token = await this.props.stripe.createToken();
     };
 
     render() {
       return (
         <ThemeContext.Consumer>
-          {(theme: ThemeContextProps) => {
+          {(theme: ThemeValues) => {
             return (
               <Form onSubmit={this.handleSubmit}>
                 <Field>
                   <CardElement
                     style={{
                       base: {
-                        color: theme.TextColor,
+                        color: theme.textColor,
                         lineHeight: '2.1',
                         fontFamily: 'inherit',
                         fontSmoothing: 'antialiased',
                         fontSize: '16px',
                         '::placeholder': {
-                          color: theme.HoverItem,
+                          color: theme.hoverItem,
                         },
                       },
                       invalid: {
-                        color: theme.MentionBadge,
-                        iconColor: theme.MentionBadge,
+                        color: theme.mentionBadge,
+                        iconColor: theme.mentionBadge,
                       },
                     }}
                     hidePostalCode

@@ -1,7 +1,7 @@
 import styled from '@c8s/theme';
 import vwxy from 'vwxy';
 
-const transitionDuration = vwxy().theme.transitionDuration;
+const transitionDuration = vwxy().theme.transitionDuration();
 
 interface Data {
   'data-state-current': number;
@@ -20,7 +20,7 @@ export const Row = styled.ul`
   display: flex;
   align-items: center;
   overflow: hidden;
-  transition: ${transitionDuration};
+  transition-duration: ${transitionDuration};
 
   &:before,
   &:after {

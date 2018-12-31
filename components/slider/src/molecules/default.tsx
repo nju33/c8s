@@ -1,7 +1,7 @@
 import React from 'react';
 import {Row, Item, Image, Container, Pager, Monitor, Cover} from '../atoms';
 import {FaAngleLeft, FaAngleRight} from 'react-icons/fa';
-import {Cycle, CycleStep} from '../cycle';
+import {CycleStep} from '../cycle';
 
 // tslint:disable-next-line:no-empty
 const noop = () => {};
@@ -22,15 +22,16 @@ export interface SliderProps {
 
 export interface SliderState {
   current: number;
+  initTransition: boolean;
+  dir: 'left' | 'right';
   left: number;
-  cycle: Cycle;
   step: CycleStep;
 }
 
 export interface SliderMoleculeDefaultHandlerProps {
   onLeftPagerClick(): void;
   onRightPagerClick(): void;
-  onTransitionEnd(): void;
+  onTransitionEnd(ev: React.SyntheticEvent<HTMLElement, Event>): void;
 }
 
 export class Default extends React.PureComponent<
@@ -64,9 +65,9 @@ export class Default extends React.PureComponent<
             data-state-left={this.props.left}
             onTransitionEnd={this.props.onTransitionEnd}
           >
-            {this.props.items.map(item => {
+            {this.props.items.map((item, i) => {
               return (
-                <Item data-length={this.props.length}>
+                <Item key={i} data-length={this.props.length}>
                   <Image src={item.image} />
                   <div>{item.text}</div>
                 </Item>
