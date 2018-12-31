@@ -1,6 +1,6 @@
 import React from 'react';
 import Flex from '@c8s/flex';
-import {Separator} from '../atoms';
+import {Separator, Container} from '../atoms';
 
 export interface BreadcrumbProps {
   items: React.ReactNode[];
@@ -13,16 +13,18 @@ export class Breadcrumb extends React.PureComponent<BreadcrumbProps> {
       : [this.props.children];
 
     return (
-      <Flex.row.centerLeft>
-        {children.map((item, i) => {
-          return (
-            <>
-              {i === 0 ? '' : <Separator />}
-              {item}
-            </>
-          );
-        })}
-      </Flex.row.centerLeft>
+      <Container>
+        <Flex.row.centerLeft>
+          {children.map((item, i) => {
+            return (
+              <>
+                {i === 0 ? '' : <Separator />}
+                {item}
+              </>
+            );
+          })}
+        </Flex.row.centerLeft>
+      </Container>
     );
   }
 }
