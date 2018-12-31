@@ -13,8 +13,14 @@ export interface Components
 export class Responsive {
   constructor(public mediaSizes: Partial<MediaSizes>) {}
 
+  getStyle = (
+    component: React.ReactElement<any>,
+    extendStyle: Partial<CSSStyleDeclaration>,
+  ): any => {
+    return {...Reflect.get(component, 'componentStyle'), ...extendStyle};
+  };
+
   from(components: Partial<Components>, tag: string = 'div') {
-    console.log(components);
     let injected = false;
     let s;
     let m;
@@ -22,55 +28,81 @@ export class Responsive {
     let xl;
 
     if (components.s !== undefined) {
-      s = css`
-        ${(components.xl as any).componentStyle.rules}
+      s = (
+        {s: extendStyle}: {s: Partial<CSSStyleDeclaration>} = {s: {}},
+      ) => css`
+        ${// tslint:disable-next-line:no-non-null-assertion
+        this.getStyle(components.s!, extendStyle)}
       `;
       injected = true;
     }
 
     if (components.m !== undefined) {
       if (injected && this.mediaSizes.m !== undefined) {
-        m = css`
+        m = (
+          {m: extendStyle}: {m: Partial<CSSStyleDeclaration>} = {m: {}},
+        ) => css`
           ${this.mediaSizes.m} {
-            ${(components.m as any).componentStyle.rules}
+            ${// tslint:disable-next-line:no-non-null-assertion
+            this.getStyle(components.m!, extendStyle)}
           }
         `;
       } else {
-        m = css`
-          ${(components.m as any).componentStyle.rules}
+        m = (
+          {m: extendStyle}: {m: Partial<CSSStyleDeclaration>} = {m: {}},
+        ) => css`
+          ${// tslint:disable-next-line:no-non-null-assertion
+          this.getStyle(components.m!, extendStyle)}
         `;
       }
     }
 
     if (components.l !== undefined) {
       if (injected && this.mediaSizes.l !== undefined) {
-        l = css`
+        l = (
+          {l: extendStyle}: {l: Partial<CSSStyleDeclaration>} = {l: {}},
+        ) => css`
           ${this.mediaSizes.l} {
-            ${(components.l as any).componentStyle.rules}
+            ${// tslint:disable-next-line:no-non-null-assertion
+            this.getStyle(components.l!, extendStyle)}
           }
         `;
       } else {
-        l = css`
-          ${(components.s as any).componentStyle.rules}
+        l = (
+          {l: extendStyle}: {l: Partial<CSSStyleDeclaration>} = {l: {}},
+        ) => css`
+          ${// tslint:disable-next-line:no-non-null-assertion
+          this.getStyle(components.l!, extendStyle)}
         `;
       }
     }
 
     if (components.xl !== undefined) {
       if (injected && this.mediaSizes.xl !== undefined) {
-        xl = css`
+        xl = (
+          {xl: extendStyle}: {xl: Partial<CSSStyleDeclaration>} = {xl: {}},
+        ) => css`
           ${this.mediaSizes.xl} {
-            ${(components.xl as any).componentStyle.rules}
+            ${// tslint:disable-next-line:no-non-null-assertion
+            this.getStyle(components.xl!, extendStyle)}
           }
         `;
       } else {
-        xl = css`
-          ${(components.xl as any).componentStyle.rules}
+        xl = (
+          {xl: extendStyle}: {xl: Partial<CSSStyleDeclaration>} = {xl: {}},
+        ) => css`
+          ${// tslint:disable-next-line:no-non-null-assertion
+          this.getStyle(components.xl!, extendStyle)}
         `;
       }
     }
 
-    return (styled as any)[tag]`
+    return (styled as any)[tag]<{
+      s: Partial<CSSStyleDeclaration>;
+      m: Partial<CSSStyleDeclaration>;
+      l: Partial<CSSStyleDeclaration>;
+      xl: Partial<CSSStyleDeclaration>;
+    }>`
       ${s};
       ${m};
       ${l};

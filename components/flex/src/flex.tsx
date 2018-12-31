@@ -99,7 +99,7 @@ interface FakeParentFlexComponentProxy {
   bottomRight: FlexComponentProxyReturn<'bottomRight'>;
 }
 
-const createComponent = memoizee(
+export const createDecls = memoizee(
   (bit: number, props: Partial<FlexProps>) => {
     const decls: Partial<CSSStyleDeclaration> = {};
     const row = Boolean(bit & flexType.row);
@@ -213,6 +213,11 @@ const createFlexProxy = () => {
   // tslint:disable-next-line:no-empty
   const flag: FlexComponentFlag = () => {};
   flag.bit = 0b0000000000000;
+  Object.defineProperty(flag, 'componentStyle', {
+    get() {
+      return createDecls(this.bit, {});
+    },
+  });
 
   return new Proxy<FakeFlexComponentProxy>(
     (flag as unknown) as FakeFlexComponentProxy,
@@ -239,13 +244,9 @@ const createFlexProxy = () => {
         delete clonedProps.alignSelf;
         delete clonedProps.order;
 
-        const decls = createComponent(flag.bit, props || {});
+        const decls = createDecls(flag.bit, props || {});
         const Tag = styled.div<any>(decls as any);
-        return (
-          <Tag {...clonedProps} _own={Tag}>
-            {children}
-          </Tag>
-        );
+        return <Tag {...clonedProps}>{children}</Tag>;
       },
       get(
         target: FakeFlexComponentProxy & FakeParentFlexComponentProxy,
