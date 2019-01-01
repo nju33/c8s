@@ -1,12 +1,15 @@
-# @c8s/button
 
-[![github](https://badgen.net/badge//nju33,c8s/000?icon=github&list=1)](https://github.com/nju33/c8s/tree/master/components/button)
-[![npm:version](https://badgen.net/npm/v/c8s/button?icon=npm&label=)](https://www.npmjs.com/package/@c8s/button)
+
+# @c8s/table
+
+[![github](https://badgen.net/badge//nju33,c8s/000?icon=github&list=1)](https://github.com/nju33/c8s/tree/master/components/table)
+[![npm:version](https://badgen.net/badge//wip/ef753a?icon=npm)](https://www.npmjs.com/package/@c8s/table)
 [![typescript](https://badgen.net/badge/lang/typescript/0376c6?icon=npm)](https://www.typescriptlang.org/)
-[![license](https://badgen.net/npm/license/@c8s/button)](https://github.com/nju33/c8s/blob/master/LICENSE)
+[![license](https://badgen.net/npm/license/@c8s/table)](https://github.com/nju33/c8s/blob/master/LICENSE)
 [![browserslist](https://badgen.net/badge/browserslist/chrome,edge/ffd539?list=1)](https://browserl.ist/?q=last+1+chrome+version%2C+last+1+edge+version)
 [![code style:prettier](https://badgen.net/badge//prettier/ff69b3?label=code%20style)](https://github.com/prettier/prettier)
- 
+
+<!-- [![npm:version](https://badgen.net/npm/v/c8s/table?icon=npm&label=)](https://www.npmjs.com/package/@c8s/table) -->
 <!-- [![document:typedoc](https://badgen.net/badge/document/typedoc/9602ff)](https://docs--pilaf.netlify.com/) -->
 <!-- [![ci:status](https://badgen.net/circleci/github/nju33/c8s)](https://circleci.com/gh/nju33/c8s) -->
 
@@ -14,13 +17,13 @@
 
 ```ts
 /**
- * As to prepare of using the `Button`
+ * As to prepare of using the `Table`
  * 
  * ```sh
- * yarn add @c8s/button @c8s/theme react @types/react styled-components @types/styled-components
+ * yarn add @c8s/table @c8s/theme react @types/react styled-components @types/styled-components
  * ```
  */
-import Button from '@c8s/button';
+import Table from '@c8s/table';
 import {Theme, theme} from '@c8s/theme';
 ```
 
@@ -30,7 +33,10 @@ import {Theme, theme} from '@c8s/theme';
 () => (
   <Theme theme={theme}>
     {/* ... */}
-      <Button>Button</Button>
+      <Table
+        head={['foo', 'bar', 'baz']}
+        body={[[1, 2, 3], ['hoge', 'fuga', 'piyo']]}
+      />
     {/* ... */}
   </Theme>
 );

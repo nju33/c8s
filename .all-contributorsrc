@@ -4,7 +4,8 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "files": [
-    "components/flex/README.md",
+    "components/*/README.md",
+    "components-util/*/README.md",
     "README.md"
   ],
   "imageSize": 55,
