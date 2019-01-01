@@ -5,19 +5,19 @@ import {Editor} from '../atoms';
 // tslint:disable-next-line:no-import-side-effect
 import 'highlight.js/styles/darcula.css';
 
-export interface CodeBlockOrganismDefaultProps {
+export interface CodeBlockProps {
   children: string;
   lang: string;
 }
 
-export class CodeBlock extends React.Component<CodeBlockOrganismDefaultProps> {
+export class CodeBlock extends React.Component<CodeBlockProps> {
   readonly block: React.RefObject<HTMLElement>;
 
   static defaultProps = {
     children: '',
   };
 
-  constructor(props: CodeBlockOrganismDefaultProps) {
+  constructor(props: CodeBlockProps) {
     super(props);
 
     this.block = React.createRef();

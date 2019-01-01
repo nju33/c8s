@@ -42,5 +42,6 @@
     "@types/styled-components": "4.1.4",
     "react": "16.7.0",
     "styled-components": "4.1.3"
-  }
+  },
+  "gitHead": "13399d589048d140d7744ce2d5352c3b043ad83b"
 }
