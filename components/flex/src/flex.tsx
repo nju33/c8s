@@ -19,7 +19,9 @@ interface FlexProps
     | 'order'
   > {}
 
-type FlexComponent = React.SFC<Partial<FlexProps>>;
+type FlexComponent = React.SFC<
+  Partial<FlexProps> & React.HTMLAttributes<HTMLElement>
+>;
 
 interface FlexComponentProxy
   extends Record<'row' | 'column' | 'item' | 'itemFluid', FlexComponent> {}

@@ -8,6 +8,8 @@ import {Layer} from './organisms'
 
 ## @c8s/layer
 
+### Heading
+
 <Playground>
   {() => {
     return (
@@ -23,6 +25,54 @@ import {Layer} from './organisms'
             </Layer>
           </Layer>
       </Layer>
+    )
+  }}
+</Playground>
+
+### Parallax(wip)
+
+`@c8s/parallax`?
+
+<Playground>
+  {() => {
+    return (
+      <div>
+        <Layer>
+          <Layer.parallax>
+            {Group => {
+              return (
+                <>
+                  <Group>
+                    {Wall => {
+                      return (
+                        <>
+                        <Wall level={1} style={{textAlign: 'center'}}>foo</Wall>
+                        <Wall level={3} style={{textAlign: 'center'}}>bar</Wall>
+                        <Wall level={5} style={{textAlign: 'center'}}>baz</Wall>
+                        </>
+                      )
+                    }}
+                  </Group>
+                  <Group>
+                    {Wall => {
+                      return (
+                        <>
+                        <Wall level={0} style={{textAlign: 'center'}}>bar</Wall>
+                        <Wall level={1} style={{textAlign: 'center'}}>foo</Wall>
+                        <Wall level={2} style={{textAlign: 'center'}}>baz</Wall>
+                        <Wall level={3} style={{textAlign: 'center'}}>hoge</Wall>
+                        <Wall level={4} style={{textAlign: 'center'}}>fuga</Wall>
+                        <Wall level={5} style={{textAlign: 'center'}}>piyo</Wall>
+                        </>
+                      )
+                    }}
+                  </Group>
+                </>
+              );
+            }}
+          </Layer.parallax>
+        </Layer>
+      </div>
     )
   }}
 </Playground>

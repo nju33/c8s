@@ -1,9 +1,10 @@
 import React from 'react';
 import {PayloadContext} from '../payload';
-import {Heading} from '../molecules';
+import {Heading, Parallax} from '../molecules';
 
 export class Layer extends React.Component {
   static heading = Heading;
+  static parallax = Parallax;
 
   render() {
     return (

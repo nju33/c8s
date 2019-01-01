@@ -17,6 +17,7 @@
     "components/tab",
     "components/table",
     "components/theme",
+    "components/youtube",
     "components-util/responsive",
     "site"
   ],

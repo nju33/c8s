@@ -20,6 +20,8 @@
     "svg-url-loader": "^2.3.2"
   },
   "dependencies": {
+    "@c8s/breadcrumb": "^0.0.0",
+    "@c8s/button": "^0.0.0",
     "@c8s/flex": "^0.0.0",
     "@c8s/layer": "^0.0.0",
     "@c8s/masonry": "^0.0.0",

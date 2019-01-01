@@ -1,4 +1,4 @@
-import styled from '../../styled';
+import styled from '@c8s/theme';
 
 export const createPlayer = (theme: any) => styled.div`
   max-width: 100%;
