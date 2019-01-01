@@ -27,7 +27,7 @@ export abstract class DefaultTemplate<P = {}, S = {}> extends React.Component<
                 'Flex',
                 'Layer',
                 'Masonry',
-                'Pagination',
+                'Pager',
                 'Sidebar',
                 'Slider',
                 'Stripe',

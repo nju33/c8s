@@ -5,6 +5,7 @@ import {
   SliderMoleculeDefaultProps,
   Default as DefaultMolecule,
   SliderState,
+  SliderMoleculeDefaultPrivateProps,
 } from '../molecules';
 import {createCycle, CycleStep, Cycle} from '../cycle';
 
@@ -13,9 +14,13 @@ export interface SliderOrganismDefaultProps {
 }
 
 export const Default = class extends React.Component<
-  SliderMoleculeDefaultProps & Required<SliderOrganismDefaultProps>,
+  SliderMoleculeDefaultProps &
+    Partial<SliderMoleculeDefaultPrivateProps> &
+    SliderOrganismDefaultProps,
   SliderState & {cycle: Cycle}
 > {
+  props!: SliderMoleculeDefaultProps & Required<SliderOrganismDefaultProps>;
+
   static defaultProps = {
     length: 2,
   };
@@ -133,7 +138,7 @@ export const Default = class extends React.Component<
   render() {
     return (
       <DefaultMolecule
-        width={this.props.width}
+        // width={this.props.width}
         length={this.props.length}
         items={(() => {
           const items = this.getItems();

@@ -3,7 +3,7 @@ import Flex from '@c8s/flex';
 import {Separator, Container} from '../atoms';
 
 export interface BreadcrumbProps {
-  items: React.ReactNode[];
+  children: React.ReactNode | React.ReactNode[];
 }
 
 export class Breadcrumb extends React.PureComponent<BreadcrumbProps> {

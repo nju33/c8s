@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "@c8s/site",
+  "name": "site",
   "version": "0.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -22,11 +22,16 @@
   "dependencies": {
     "@c8s/breadcrumb": "^0.0.0",
     "@c8s/button": "^0.0.0",
+    "@c8s/card": "^0.0.0",
     "@c8s/flex": "^0.0.0",
     "@c8s/layer": "^0.0.0",
     "@c8s/masonry": "^0.0.0",
+    "@c8s/pager": "^0.0.0",
+    "@c8s/slider": "^0.0.0",
+    "@c8s/tab": "^0.0.0",
     "@c8s/table": "^0.0.0",
     "@c8s/theme": "^0.0.0",
+    "@c8s/youtube": "^0.0.0",
     "@nju33/react-flex": "^1.1.0",
     "randomcolor": "^0.5.3"
   }

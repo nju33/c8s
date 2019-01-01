@@ -11,10 +11,14 @@ export interface SliderMoleculeDefaultProps {
     image: string;
     text: string;
   }[];
-  width: number;
+}
+
+export interface SliderMoleculeDefaultPrivateProps {
+  // width: number;
   initTransition: boolean;
   dir: 'left' | 'right';
 }
+
 
 export interface SliderProps {
   length: number;
