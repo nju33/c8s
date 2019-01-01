@@ -1,6 +1,6 @@
 {
   "name": "@c8s/theme",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -26,7 +26,6 @@
     "react": "^16.3.0",
     "styled-components": "^4.0.0"
   },
-  "dependencies": {},
   "devDependencies": {
     "@nju33/tsconfig-react-main": "0.0.3",
     "@nju33/tsconfig-react-module": "0.0.3",

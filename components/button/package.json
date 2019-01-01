@@ -1,6 +1,6 @@
 {
   "name": "@c8s/button",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "publishConfig": {
     "access": "public"
   },
@@ -26,7 +26,7 @@
     "styled-components": "^4.0.0"
   },
   "dependencies": {
-    "@c8s/theme": "^0.0.0",
+    "@c8s/theme": "^0.0.1",
     "memoizee": "^0.4.14",
     "polished": "^2.3.1",
     "ramda": "^0.26.1",
