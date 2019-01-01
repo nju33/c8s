@@ -30,7 +30,7 @@ export abstract class DefaultTemplate<P = {}, S = {}> extends React.Component<
                 'Pager',
                 // 'Sidebar',
                 'Slider',
-                'Stripe',
+                // 'Stripe',
                 'Tab',
                 'Table',
                 'Youtube',
