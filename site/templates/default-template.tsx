@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head';
 import Flex from '@nju33/react-flex';
 import Sidebar from '../components/sidebar';
-import { Main } from '../components/layout';
+import {Main} from '../components/layout';
 
 export abstract class DefaultTemplate<P = {}, S = {}> extends React.Component<
   P,
@@ -14,7 +14,7 @@ export abstract class DefaultTemplate<P = {}, S = {}> extends React.Component<
     return (
       <>
         <Head>
-          <title>Summary Components</title>
+          <title>c8s</title>
         </Head>
         <Flex>
           <Flex item={0}>
@@ -28,7 +28,7 @@ export abstract class DefaultTemplate<P = {}, S = {}> extends React.Component<
                 'Layer',
                 'Masonry',
                 'Pager',
-                'Sidebar',
+                // 'Sidebar',
                 'Slider',
                 'Stripe',
                 'Tab',

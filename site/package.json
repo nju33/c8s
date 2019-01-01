@@ -28,11 +28,13 @@
     "@c8s/masonry": "^0.0.0",
     "@c8s/pager": "^0.0.0",
     "@c8s/slider": "^0.0.0",
+    "@c8s/stripe": "^0.0.0",
     "@c8s/tab": "^0.0.0",
     "@c8s/table": "^0.0.0",
     "@c8s/theme": "^0.0.0",
     "@c8s/youtube": "^0.0.0",
     "@nju33/react-flex": "^1.1.0",
-    "randomcolor": "^0.5.3"
+    "randomcolor": "^0.5.3",
+    "vwxy": "^0.1.1"
   }
 }

@@ -1,17 +1,19 @@
 ---
-name: '@c8s/slider'
-route: /components/slider
+name: '@c8s/stripe'
+route: /components/stripe
 ---
 
 import {Playground, PropsTable} from 'docz';
 import {Theme, theme} from '@c8s/theme';
+import Stripe from '.';
 
-## @c8s/slider
+## @c8s/stripe
 
 <Playground>
   {() => {
     return (
       <Theme theme={theme}>
+        <Stripe apiKey="xxxx" />
       </Theme>
     );
   }}

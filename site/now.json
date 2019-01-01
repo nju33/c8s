@@ -1,6 +1,7 @@
 {
   "version": 2,
-  "alias": "summary-components",
+  "name": "c8s",
+  "alias": "c8s",
   "builds": [
     {
       "src": "next.config.js",
