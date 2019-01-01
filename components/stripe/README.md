@@ -3,7 +3,7 @@
 # @c8s/stripe
 
 [![github](https://badgen.net/badge//nju33,c8s/000?icon=github&list=1)](https://github.com/nju33/c8s/tree/master/components/stripe)
-[![npm:version](https://badgen.net/npm/v/c8s/stripe?icon=npm&label=)](https://www.npmjs.com/package/@c8s/stripe)
+[![npm:version](https://badgen.net/npm/v/@c8s/stripe?icon=npm&label=)](https://www.npmjs.com/package/@c8s/stripe)
 [![typescript](https://badgen.net/badge/lang/typescript/0376c6?icon=npm)](https://www.typescriptlang.org/)
 [![license](https://badgen.net/npm/license/@c8s/stripe)](https://github.com/nju33/c8s/blob/master/LICENSE)
 [![browserslist](https://badgen.net/badge/browserslist/chrome,edge/ffd539?list=1)](https://browserl.ist/?q=last+1+chrome+version%2C+last+1+edge+version)
