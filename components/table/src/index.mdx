@@ -1,0 +1,23 @@
+---
+name: '@c8s/table'
+route: /components/table
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Theme, theme} from '@c8s/theme';
+import {Table} from './molecules';
+
+## @c8s/table
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <Table
+          head={['foo', 'bar', 'baz']}
+          body={[[1, 2, 3], ['hoge', 'fuga', 'piyo']]}
+        />
+      </Theme>
+    )
+  }}
+</Playground>

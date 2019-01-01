@@ -1,0 +1,53 @@
+---
+name: '@c8s/flex'
+route: /components/flex
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Flex} from './flex';
+import {Responsive} from '@c8s-util/responsive';
+
+## @c8s/flex
+
+<Playground>
+  {() => {
+    return (
+      <Flex.column style={{color: '#393939'}}>
+        <Flex.row>
+          <Flex.itemFluid.row>
+            <Flex.itemFluid.column>
+              <Flex.row.center>item1-1</Flex.row.center>
+              <Flex.row>item1-2</Flex.row>
+            </Flex.itemFluid.column>
+          </Flex.itemFluid.row>
+          <Flex.item>item2</Flex.item>
+        </Flex.row>
+        <Flex.row>Flex</Flex.row>
+      </Flex.column>
+    )
+  }}
+</Playground>
+
+### with Responsive
+
+<Playground>
+  {() => {
+    const responsive = new Responsive({
+      m: '@media screen and (min-width: 410px)'
+    });
+
+    const ResponsiveFlex = responsive.from({
+      s: Flex.itemFluid,
+      m: Flex.item.row,
+    });
+
+    return (
+      <Flex.row>
+        <Flex.item>item</Flex.item>
+        <ResponsiveFlex s={{color: 'orange'}} m={{color: 'blue'}}>
+          text
+        </ResponsiveFlex>
+      </Flex.row>
+    );
+  }}
+</Playground>

@@ -1,0 +1,26 @@
+---
+name: '@c8s/code-block'
+route: /components/code-block
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Theme, theme} from '@c8s/theme';
+import {CodeBlock} from './organisms';
+
+## @c8s/code-block
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+                <CodeBlock lang="jsx">{`
+class Example extends React.Component {
+  render() {
+    return <Youtube videoId="psQkDS3zqRg" />
+  }
+}
+        `}</CodeBlock>
+      </Theme>
+    )
+  }}
+</Playground>

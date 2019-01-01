@@ -1,0 +1,130 @@
+---
+name: '@c8s/masonry'
+route: /components/masonry
+---
+
+import {Playground, PropsTable} from 'docz';
+import {withReducer} from 'recompose';
+import randomcolor from 'randomcolor'
+import {Masonry} from './organisms';
+
+## @c8s/masonry
+
+<Playground>
+  {() => {
+    const reducer = (state, action) => {
+      switch (action.type) {
+        case 'INCREMENT_COL': {
+          state.col += 1;
+          return state;
+        }
+        case 'DECREMENT_COL': {
+          state.col -= 1;
+          return state;
+        }
+        case 'INCREMENT_GUTTER': {
+          state.gutter += 1;
+          return state;
+        }
+        case 'DECREMENT_GUTTER': {
+          state.gutter -= 1;
+          return state;
+        }
+        default: {
+          return state;
+        }
+      }
+    };
+
+    const createItem = (_, i) => {
+      const col = i % 5 === 1 ? 2 : 1;
+      return {
+        col,
+        image: `https://dummyimage.com/${Math.floor(Math.random() * 500 + 300)}x${Math.floor(Math.random() * 500 + 100)}`,
+        style: {
+          background: randomcolor({
+            luminosity: 'dark'
+          })
+        }
+      };
+    };
+    const items = Array.from(Array(10)).map(createItem);
+
+    const Example = withReducer('state', 'dispatch', reducer, {
+      col: 3,
+      gutter: 10
+    })(({state, dispatch}) => {
+      return (
+        <>
+          <div>
+            <button onClick={() => dispatch({type: 'INCREMENT_COL'})}>
+              列+
+            </button>
+            <button onClick={() => dispatch({type: 'DECREMENT_COL'})}>
+              列-
+            </button>
+            <button onClick={() => dispatch({type: 'INCREMENT_GUTTER'})}>
+              間+
+            </button>
+            <button onClick={() => dispatch({type: 'DECREMENT_GUTTER'})}>
+              間-
+            </button>
+          </div>
+          <Masonry col={state.col} gutter={state.gutter}>
+            {({Item}) => {
+              return (
+                <>
+                  {items.map((style, i) => {
+                    return (
+                      <Item
+                        key={i}
+                        assets={[
+                          {
+                            href: style.image,
+                            as: 'image'
+                          }
+                        ]}
+                        index={i}
+                        col={style.col}
+                      >
+                        <div style={{display: 'block'}}>
+                          <img
+                            src={style.image}
+                            style={{
+                              maxWidth: '100%',
+                              display: 'block'
+                            }}
+                          />
+                          <div
+                            style={{
+                              ...style.style,
+                              maxWidth: '100%',
+                              color: '#000'
+                            }}
+                          >
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit, sed do eiusmod tempor incididunt ut labore et
+                            dolore magna aliqua. Ut enim ad minim veniam, quis
+                            nostrud exercitation ullamco laboris nisi ut aliquip
+                            ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in voluptate velit esse cillum dolore
+                            eu fugiat nulla pariatur. Excepteur sint occaecat
+                            cupidatat non proident, sunt in culpa qui officia
+                            deserunt mollit anim id est laborum.
+                          </div>
+                        </div>
+                      </Item>
+                    );
+                  })}
+                </>
+              );
+            }}
+          </Masonry>
+        </>
+      );
+    });
+
+    return <Example />
+  }}
+</Playground>
+

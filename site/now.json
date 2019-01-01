@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "name": "c8s",
+  "alias": "c8s",
+  "builds": [
+    {
+      "src": "next.config.js",
+      "use": "@now/next",
+      "config": {
+        "maxLambdaSize": "10mb",
+        "useBuildUtils": "@now/build-utils@canary"
+      }
+    }
+  ]
+}

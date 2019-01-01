@@ -1,0 +1,26 @@
+---
+name: '@c8s/pager'
+route: /components/pager
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Theme, theme} from '@c8s/theme';
+import {Pager} from './molecules';
+
+## @c8s/pager
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <Pager>
+          <a href="#">{'<'}</a>
+          <a href="#">1</a>
+          <a href="#">2</a>
+          <a>3</a>
+          <a href="#">{'>'}</a>
+        </Pager>
+      </Theme>
+    )
+  }}
+</Playground>

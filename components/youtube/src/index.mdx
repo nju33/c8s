@@ -1,0 +1,23 @@
+---
+name: '@c8s/youtube'
+route: /components/youtube
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Theme, theme} from '@c8s/theme';
+import {Youtube} from './organisms';
+
+## @c8s/youtube
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <Youtube
+          videoId="psQkDS3zqRg"
+          theme={{width: '50vw', height: '45vh'}}
+        />
+      </Theme>
+    );
+  }}
+</Playground>

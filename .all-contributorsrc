@@ -1,0 +1,32 @@
+{
+  "projectName": "c8s",
+  "projectOwner": "nju33",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "components/flex/README.md",
+    "README.md"
+  ],
+  "imageSize": 55,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "nju33",
+      "name": "純",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/15901038?v=4",
+      "profile": "https://nju33.com/",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Aki-Japan",
+      "name": "Aki-Japan",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/42718835?v=4",
+      "profile": "https://github.com/Aki-Japan",
+      "contributions": [
+        "doc"
+      ]
+    }
+  ]
+}
