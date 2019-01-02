@@ -6,7 +6,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/next": "7.0.6",
-    "@types/query-string": "^6.1.1",
+    "@types/query-string": "6.1.1",
     "@types/randomcolor": "0.5.0",
     "@types/react": "16.7.18",
     "@types/styled-components": "4.1.4",
@@ -34,7 +34,7 @@
     "@c8s/theme": "^0.0.2",
     "@c8s/youtube": "^0.0.2",
     "@nju33/react-flex": "1.1.0",
-    "query-string": "^6.2.0",
+    "query-string": "6.2.0",
     "randomcolor": "0.5.3",
     "vwxy": "0.1.1"
   }
