@@ -1,0 +1,35 @@
+{
+  "name": "@c8s/toc",
+  "version": "0.0.2",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/main/index.js",
+  "types": "dist/types/index.d.ts",
+  "module": "dist/module/index.js",
+  "source": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "prepare": "yarn build",
+    "test": ":",
+    "dev": "docz dev --port 2347",
+    "build.main": "tsc -P tsconfig.main.json",
+    "build.module": "tsc -P tsconfig.module.json",
+    "build.types": "tsc -P tsconfig.types.json --emitDeclarationOnly",
+    "build": "yarn build.main; yarn build.module; yarn build.types"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@nju33/tsconfig-react-main": "0.0.3",
+    "@nju33/tsconfig-react-module": "0.0.3",
+    "@nju33/tsconfig-react-types": "0.0.3",
+    "@types/react": "16.7.18",
+    "react": "16.7.0"
+  }
+}
