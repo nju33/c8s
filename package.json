@@ -64,7 +64,7 @@
     "dotenv": "6.2.0",
     "html-loader": "0.5.5",
     "jest": "23.6.0",
-    "lerna": "3.8.0",
+    "lerna": "3.8.4",
     "markdown-loader": "4.0.0",
     "polished": "2.3.1",
     "prettier": "1.15.3",
