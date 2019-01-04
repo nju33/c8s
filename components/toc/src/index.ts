@@ -1,3 +1,3 @@
-import {Breadcrumb} from './molecules';
+import {Toc} from './organisms';
 
-export default Breadcrumb;
+export default Toc;

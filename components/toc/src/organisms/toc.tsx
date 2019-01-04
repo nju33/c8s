@@ -8,36 +8,54 @@ export interface TocHocProps {
 }
 
 // tslint:disable-next-line:no-empty-interface
-export interface TocItem {}
+export interface TocItemProps {
+  title: string;
+}
+
+export type TocBindFn<P = {}> = (
+  Component: React.ComponentType<P>,
+) => (props: P & TocItemProps, idx: number) => JSX.Element;
 
 // tslint:disable-next-line:no-unnecessary-class
-export class Toc {
+export class Toc<P = {}> {
   static provider = TocContext.Provider;
   static consumer = TocContext.Consumer;
 
   private items: any[] = [];
 
-  add = memoizee((idx: number) => () => {
-    return idx;
+  private add = memoizee((idx: number) => (props: TocItemProps): void => {
+    this.items[idx] = props;
+    console.log(this);
   });
 
-  with(elements: React.ReactElement<any>[]) {
-    return elements.map((element, idx) => {
-      React.cloneElement(element, {
-        toc: {
-          add: this.add(idx),
-        },
-      });
-    });
-  }
+  private remove = memoizee((idx: number) => (): void => {
+    this.items.splice(idx, 1);
+  });
+
+  private use = memoizee((idx: number) => {
+    return [this.add(idx), this.remove(idx)];
+  });
+
+  bind = memoizee<TocBindFn<P>>(
+    Component => (props: P & TocItemProps, idx: number) => {
+      const [add, remove] = this.use(idx);
+
+      const TocComponent = class extends React.PureComponent {
+        static displayName = `Toc#from(${Component.displayName})`;
+
+        componentDidMount() {
+          add(props);
+        }
+
+        componentWillUnmount() {
+          remove(props);
+        }
+
+        render() {
+          return <Component {...props as any} />;
+        }
+      };
+      return <TocComponent key={props.title} />;
+    },
+  );
 }
-
-interface AProps {
-  foo: string;
-}
-
-const A: React.SFC<Partial<TocHocProps> & AProps> = () => <></>;
-console.log(<A foo="a" />);
-
-const TocA = Toc.use(A);
-console.log(<TocA foo="a" />);
