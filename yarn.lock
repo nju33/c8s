@@ -1716,22 +1716,10 @@
   resolved "https://registry.yarnpkg.com/@nju33/react-flex/-/react-flex-1.1.0.tgz#b36b62c3071e5d7321e4208ba21e696b9919ec03"
   integrity sha512-2Ox23G+BpN5I5XLrxIwe2xXZKEKhPf4Nu/GhZBRQasxaQgR7qKlwyLJhCpvsspSWuAlNeWdsYJ5LPOiXnTXbag==
 
-"@nju33/tsconfig-base@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-base/-/tsconfig-base-0.0.3.tgz#2a06c352df2f5292316e469f5c47d465cfb944bf"
-  integrity sha512-zkdulCZfvQ4DlIb9Iq7jyBludV/A6Pa5EPJpI0TwLlHg0aAJgDVDe1eSH2DK9V6OGvmkTK8dTRAq+9YwVRMpqQ==
-
 "@nju33/tsconfig-base@^0.0.5":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@nju33/tsconfig-base/-/tsconfig-base-0.0.5.tgz#b486c25667b3a3329e2a1040fab185ebfc99c2f3"
   integrity sha512-hL5ioobDmguNE8hB8BoTlf7BYot+/AQ/aPd/kbSxcOQdu3u8AxBuxo04194BjUUsMfni/XJDV2k4jULa0Nibog==
-
-"@nju33/tsconfig-react-base@^0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-base/-/tsconfig-react-base-0.0.3.tgz#2ffe8502b82af71729ed4ec964872dc3345a9dc2"
-  integrity sha512-G0y9Cevw27Y6ot33j5LiSbZvkXXQUukHJ/2dw3BSi9kE5an6kw6d6mnp6hAeRLo1KKN1FV2pgpZtv4qroGdS8w==
-  dependencies:
-    "@nju33/tsconfig-base" "^0.0.3"
 
 "@nju33/tsconfig-react-base@^0.0.5":
   version "0.0.5"
@@ -1747,12 +1735,12 @@
   dependencies:
     "@nju33/tsconfig-react-base" "^0.0.5"
 
-"@nju33/tsconfig-react-module@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-module/-/tsconfig-react-module-0.0.3.tgz#1c3121277240f802a5937333960ee776255f51e4"
-  integrity sha512-0wFeCXahgKQk9E3I/RjWomsgP1faY/N54TFU/3RJxPgoOPAXZTdiewovoHUSwK034huOGSEsK7NmkC1u68RQIw==
+"@nju33/tsconfig-react-module@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-module/-/tsconfig-react-module-0.0.5.tgz#a6455087472801a7e1eb4ed96231a74c9f72b872"
+  integrity sha512-swx92xEayXNchBfkCFH2uRLFzOizovbBZ+D2oeAC8Yul3vHGID58B7MYImctL1JKnfZCjuUNN8NNuYGfqBoirg==
   dependencies:
-    "@nju33/tsconfig-react-base" "^0.0.3"
+    "@nju33/tsconfig-react-base" "^0.0.5"
 
 "@nju33/tsconfig-react-types@0.0.5":
   version "0.0.5"
