@@ -1721,6 +1721,11 @@
   resolved "https://registry.yarnpkg.com/@nju33/tsconfig-base/-/tsconfig-base-0.0.5.tgz#b486c25667b3a3329e2a1040fab185ebfc99c2f3"
   integrity sha512-hL5ioobDmguNE8hB8BoTlf7BYot+/AQ/aPd/kbSxcOQdu3u8AxBuxo04194BjUUsMfni/XJDV2k4jULa0Nibog==
 
+"@nju33/tsconfig-base@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-base/-/tsconfig-base-0.0.6.tgz#f7343bf66d40d72bd84a818589efac13e640829b"
+  integrity sha512-yrdJUoNNeeIKZi1qdepeurVqytIEG4ryl6Cjk4a6FWyDfFMDA+ydXbUVBo1BuFVuPTAuzukvV3jvh15x1hJVDw==
+
 "@nju33/tsconfig-react-base@^0.0.5":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-base/-/tsconfig-react-base-0.0.5.tgz#092cb915a4938efe85e7f5684fb91c3144889217"
@@ -1728,12 +1733,19 @@
   dependencies:
     "@nju33/tsconfig-base" "^0.0.5"
 
-"@nju33/tsconfig-react-main@0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-main/-/tsconfig-react-main-0.0.5.tgz#df515a201f57075ea253a42ebb9f49899a37b9e0"
-  integrity sha512-eCeURTWU5PjpR/H5LI3TEALGGmU2DkHrnnwrlhk1+NmKFEUc01P/pkeEQsjHC4sAxR5seID6/NLtQ83EJczQYg==
+"@nju33/tsconfig-react-base@^0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-base/-/tsconfig-react-base-0.0.6.tgz#c0276101d8da18d4c720967c0e9c7ad224d54ab4"
+  integrity sha512-tfWeYkZXkaRHzin70dME1EHLGRU6eTDkrsGxcMiHWm0NbQNos8Ts+pPzODlyVAre2D3q2vHH6zKmAh4OwFUprg==
   dependencies:
-    "@nju33/tsconfig-react-base" "^0.0.5"
+    "@nju33/tsconfig-base" "^0.0.6"
+
+"@nju33/tsconfig-react-main@0.0.6":
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-main/-/tsconfig-react-main-0.0.6.tgz#69d5b91896f1d9178cbeb4032df464f162ca3f6d"
+  integrity sha512-O6aRcf6WuLoksSfodVCiX+praYYCR5TP/oOukiSE2tpSJ8Xl+gn10A0t6YIO3zikRUdoEnIzy5Cm2WOmQcQxqQ==
+  dependencies:
+    "@nju33/tsconfig-react-base" "^0.0.6"
 
 "@nju33/tsconfig-react-module@0.0.5":
   version "0.0.5"
