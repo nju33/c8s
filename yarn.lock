@@ -1754,12 +1754,12 @@
   dependencies:
     "@nju33/tsconfig-react-base" "^0.0.3"
 
-"@nju33/tsconfig-react-types@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-types/-/tsconfig-react-types-0.0.3.tgz#dd1a5c67e0fd68c10864f7df8979f7eaa5d9dd85"
-  integrity sha512-fAA2R7s5k6IqcrVCMDDsPed7WZh7n7AriS1+9sxqQuvzvrFXdQYT2J8Mv7S+egYCzfQ/6C9JUAsCPvuqUSCpXw==
+"@nju33/tsconfig-react-types@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-types/-/tsconfig-react-types-0.0.5.tgz#ee326b4c5905404f600dba8ffad95e897154f081"
+  integrity sha512-ooaBvvIj/lUjcHB3JwH01Q5yJegXFsDPrWV0Gi6n7KGx9iedvMUizM7rNBJ6P6CGNwumvYOoWeLzOPgqI3Zjig==
   dependencies:
-    "@nju33/tsconfig-react-base" "^0.0.3"
+    "@nju33/tsconfig-react-base" "^0.0.5"
 
 "@nodelib/fs.stat@^1.1.2":
   version "1.1.3"
