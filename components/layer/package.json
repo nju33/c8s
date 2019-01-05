@@ -30,7 +30,7 @@
     "@c8s/theme": "^0.0.2"
   },
   "devDependencies": {
-    "@nju33/tsconfig-react-main": "0.0.5",
+    "@nju33/tsconfig-react-main": "0.0.6",
     "@nju33/tsconfig-react-module": "0.0.5",
     "@nju33/tsconfig-react-types": "0.0.5",
     "@types/react": "16.7.18",
