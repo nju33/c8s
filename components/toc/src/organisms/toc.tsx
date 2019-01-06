@@ -1,7 +1,8 @@
 import React from 'react';
 import memoizee from 'memoizee';
-
-const TocContext = React.createContext({});
+import gsw from 'gsw';
+import {Provider} from './provider';
+import TocContext from '../context';
 
 export interface TocHocProps {
   toc: any;
@@ -12,24 +13,57 @@ export interface TocItemProps {
   title: string;
 }
 
+export interface TocItemPrivateProps {
+  selected: boolean;
+}
+
+export interface TocItemPrivateOptionalProps {
+  ariaRef: React.RefObject<HTMLElement>;
+}
+
 export type TocBindFn<P = {}> = (
   Component: React.ComponentType<P>,
 ) => (props: P & TocItemProps, idx: number) => JSX.Element;
 
 // tslint:disable-next-line:no-unnecessary-class
 export class Toc<P = {}> {
-  static provider = TocContext.Provider;
+  static provider = Provider;
   static consumer = TocContext.Consumer;
 
-  private items: any[] = [];
+  private intersectionObserver = new IntersectionObserver(entries => {
+    const items = [...this.observer('items')];
+    entries.forEach(entry => {
+      const {target, intersectionRatio} = entry;
 
-  private add = memoizee((idx: number) => (props: TocItemProps): void => {
-    this.items[idx] = props;
-    console.log(this);
+      for (const item of items) {
+        if (target.id !== item.title) {
+          continue;
+        }
+
+        if (intersectionRatio === 0) {
+          item.selected = false;
+        } else {
+          item.selected = true;
+        }
+        break;
+      }
+    });
+    this.observer('items', items);
   });
+  observer = gsw({items: [] as (TocItemProps & TocItemPrivateProps)[]});
+
+  private add = memoizee(
+    (idx: number) => (props: TocItemProps & TocItemPrivateProps): void => {
+      const items = [...this.observer('items')];
+      items[idx] = props;
+      this.observer('items', items);
+    },
+  );
 
   private remove = memoizee((idx: number) => (): void => {
-    this.items.splice(idx, 1);
+    const items = [...this.observer('items')];
+    items.splice(idx, 1);
+    this.observer('items', items);
   });
 
   private use = memoizee((idx: number) => {
@@ -37,25 +71,52 @@ export class Toc<P = {}> {
   });
 
   bind = memoizee<TocBindFn<P>>(
-    Component => (props: P & TocItemProps, idx: number) => {
+    Component => (
+      props: P & TocItemProps & Partial<TocItemPrivateOptionalProps>,
+      idx: number,
+    ) => {
+      const intersectionObserver = this.intersectionObserver;
       const [add, remove] = this.use(idx);
 
       const TocComponent = class extends React.PureComponent {
         static displayName = `Toc#from(${Component.displayName})`;
 
+        private ariaRef = React.createRef<HTMLElement>();
+
+        constructor(thisProps: any) {
+          super(thisProps);
+        }
+
         componentDidMount() {
-          add(props);
+          add({...props, selected: false});
+
+          if (this.ariaRef.current !== null) {
+            this.ariaRef.current.setAttribute('id', props.title);
+            intersectionObserver.observe(this.ariaRef.current);
+          }
         }
 
         componentWillUnmount() {
-          remove(props);
+          remove({...props, selected: false});
         }
 
         render() {
-          return <Component {...props as any} />;
+          return <Component {...props as any} ariaRef={this.ariaRef} />;
         }
       };
       return <TocComponent key={props.title} />;
     },
   );
 }
+
+// const toc = new Toc<{title: string; ariaRef?: React.RefObject<any>}>();
+// const AComponent: React.SFC<{
+//   title: string;
+//   ariaRef?: React.RefObject<any>;
+// }> = props => {
+//   // tslint:disable-next-line:no-non-null-assertion
+//   return <div ref={props.ariaRef!}>{props.title}</div>;
+// };
+// const list = [{title: 'foo'}, {title: 'bar'}, {title: 'baz'}];
+
+// list.map(toc.bind(AComponent));

@@ -4,7 +4,6 @@ route: /components/toc
 ---
 
 import {Playground, PropsTable} from 'docz';
-import {Theme, theme} from '@c8s/theme';
 import {Toc} from './organisms';
 
 ## @c8s/toc
@@ -13,7 +12,8 @@ import {Toc} from './organisms';
   {() => {
     const toc = new Toc();
     const AComponent = props => {
-      return <div>{props.title}</div>
+      console.log('props: ', props);
+      return <div ref={props.ariaRef} style={{marginBottom: 1000}}>{props.title}</div>
     }
     const items = [
       {title: 'foo'},
@@ -22,11 +22,20 @@ import {Toc} from './organisms';
     ];
 
     return (
-      <Theme theme={theme}>
+      <Toc.provider toc={toc}>
         <>
-          {items.map(toc.bind(AComponent))}
+          <ul>
+            <Toc.consumer>
+              {({items}) => {
+                return items.map(item => <li key={item.title}>{item.title}</li>)
+              }}
+            </Toc.consumer>
+          </ul>
         </>
-      </Theme>
+        <div>
+          {items.map(toc.bind(AComponent))}
+        </div>
+      </Toc.provider>
     );
   }}
 </Playground>
