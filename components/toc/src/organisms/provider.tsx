@@ -2,7 +2,7 @@ import React from 'react';
 import {Toc} from './toc';
 import TocContext from '../context';
 
-interface TocProviderProps {
+export interface TocProviderProps {
   toc: Toc;
 }
 

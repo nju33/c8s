@@ -33,6 +33,7 @@ export abstract class DefaultTemplate<P = {}, S = {}> extends React.Component<
                 // 'Stripe',
                 'Tab',
                 'Table',
+                'Toc',
                 'Youtube',
               ]}
             />
