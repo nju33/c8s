@@ -1,0 +1,45 @@
+---
+name: '@c8s/toc'
+route: /components/toc
+---
+
+import {Playground, PropsTable} from 'docz';
+import styled from 'styled-components';
+import {Toc} from './organisms';
+
+## @c8s/toc
+
+<Playground>
+  {() => {
+    const toc = new Toc();
+    const AComponent = props => {
+      return <div ref={props.ariaRef} style={{paddingBottom: 1000}}>{props.title}</div>
+    }
+    const items = [
+      {title: 'foo'},
+      {title: 'bar'},
+      {title: 'baz'},
+    ];
+
+    return (
+      <Toc.provider toc={toc}>
+        <>
+          <ul style={{position: 'fixed', top: 50, right: 50, width: 100}}>
+            <Toc.consumer>
+              {({items}) => {
+                return items.map(item => {
+                  return <li key={item.title} style={{
+                    color: item.selected ? 'orange' : 'inherit'
+                  }} onClick={item.scroll}>{item.title}</li>
+                });
+              }}
+            </Toc.consumer>
+          </ul>
+        </>
+        <div>
+          {items.map(toc.bind(AComponent))}
+        </div>
+      </Toc.provider>
+    );
+  }}
+</Playground>
