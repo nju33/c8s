@@ -4,6 +4,7 @@ route: /components/toc
 ---
 
 import {Playground, PropsTable} from 'docz';
+import styled from 'styled-components';
 import {Toc} from './organisms';
 
 ## @c8s/toc
@@ -12,8 +13,7 @@ import {Toc} from './organisms';
   {() => {
     const toc = new Toc();
     const AComponent = props => {
-      console.log('props: ', props);
-      return <div ref={props.ariaRef} style={{marginBottom: 1000}}>{props.title}</div>
+      return <div ref={props.ariaRef} style={{paddingBottom: 1000}}>{props.title}</div>
     }
     const items = [
       {title: 'foo'},
@@ -24,10 +24,14 @@ import {Toc} from './organisms';
     return (
       <Toc.provider toc={toc}>
         <>
-          <ul>
+          <ul style={{position: 'fixed', top: 50, right: 50, width: 100}}>
             <Toc.consumer>
               {({items}) => {
-                return items.map(item => <li key={item.title}>{item.title}</li>)
+                return items.map(item => {
+                  return <li key={item.title} style={{
+                    color: item.selected ? 'orange' : 'inherit'
+                  }} onClick={item.scroll}>{item.title}</li>
+                });
               }}
             </Toc.consumer>
           </ul>

@@ -15,6 +15,7 @@ export interface TocItemProps {
 
 export interface TocItemPrivateProps {
   selected: boolean;
+  scroll(): void;
 }
 
 export interface TocItemPrivateOptionalProps {
@@ -88,7 +89,21 @@ export class Toc<P = {}> {
         }
 
         componentDidMount() {
-          add({...props, selected: false});
+          add({
+            ...props,
+            selected: false,
+            scroll: () => {
+              const element = this.ariaRef.current;
+              if (element === null) {
+                return;
+              }
+
+              window.scrollTo({
+                top: element.getBoundingClientRect().top + window.pageYOffset,
+                behavior: 'smooth',
+              });
+            },
+          });
 
           if (this.ariaRef.current !== null) {
             this.ariaRef.current.setAttribute('id', props.title);
@@ -97,7 +112,8 @@ export class Toc<P = {}> {
         }
 
         componentWillUnmount() {
-          remove({...props, selected: false});
+          // tslint:disable-next-line:no-empty
+          remove({...props, selected: false, scroll() {}});
         }
 
         render() {
