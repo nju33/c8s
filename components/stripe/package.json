@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "@c8s/stripe",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publishConfig": {
     "access": "public"
   },
@@ -27,9 +27,9 @@
     "styled-components": "^4.0.0"
   },
   "dependencies": {
-    "@c8s/button": "^0.0.2",
-    "@c8s/flex": "^0.0.2",
-    "@c8s/theme": "^0.0.2",
+    "@c8s/button": "^0.0.3",
+    "@c8s/flex": "^0.0.3",
+    "@c8s/theme": "^0.0.3",
     "immer": "1.10.0",
     "react-stripe-elements": "2.0.1",
     "vwxy": "0.1.1"
