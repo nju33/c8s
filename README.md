@@ -24,6 +24,7 @@ A React's components.
 |@c8s/tab|[![npm:version](https://badgen.net/npm/v/@c8s/tab?icon=npm&label=)](https://www.npmjs.com/package/@c8s/tab)|[👀](https://c8s.now.sh/components/tab)|[:octocat:](https://github.com/nju33/c8s/tree/master/components/tab)|
 |@c8s/table|[![npm:version](https://badgen.net/npm/v/@c8s/table?icon=npm&label=)](https://www.npmjs.com/package/@c8s/table)|[👀](https://c8s.now.sh/components/table)|[:octocat:](https://github.com/nju33/c8s/tree/master/components/table)|
 |@c8s/theme|[![npm:version](https://badgen.net/npm/v/@c8s/theme?icon=npm&label=)](https://www.npmjs.com/package/@c8s/theme)|[👀](https://c8s.now.sh/components/theme)|[:octocat:](https://github.com/nju33/c8s/tree/master/components/theme)|
+|@c8s/toc|[![npm:version](https://badgen.net/npm/v/@c8s/toc?icon=npm&label=)](https://www.npmjs.com/package/@c8s/toc)|[👀](https://c8s.now.sh/components/toc)|[:octocat:](https://github.com/nju33/c8s/tree/master/components/toc)|
 |@c8s/youtube|[![npm:version](https://badgen.net/npm/v/@c8s/youtube?icon=npm&label=)](https://www.npmjs.com/package/@c8s/youtube)|[👀](https://c8s.now.sh/components/youtube)|[:octocat:](https://github.com/nju33/c8s/tree/master/components/youtube)|
 
 ## Components Util

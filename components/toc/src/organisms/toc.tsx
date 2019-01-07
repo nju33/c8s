@@ -9,7 +9,7 @@ export interface TocHocProps {
 }
 
 // tslint:disable-next-line:no-empty-interface
-export interface TocItemProps {
+export interface TocItemRequiredProps {
   title: string;
 }
 
@@ -18,16 +18,19 @@ export interface TocItemPrivateProps {
   scroll(): void;
 }
 
-export interface TocItemPrivateOptionalProps {
-  ariaRef: React.RefObject<HTMLElement>;
+export interface TocItemOptionalProps<E extends HTMLElement> {
+  ariaRef: React.RefObject<E>;
 }
 
-export type TocBindFn<P = {}> = (
+export type TocItemProps<E extends HTMLElement> = TocItemRequiredProps &
+  Partial<TocItemOptionalProps<E>>;
+
+export type TocBindFn<P extends TocItemProps<HTMLElement>> = (
   Component: React.ComponentType<P>,
-) => (props: P & TocItemProps, idx: number) => JSX.Element;
+) => (props: P, idx: number) => JSX.Element;
 
 // tslint:disable-next-line:no-unnecessary-class
-export class Toc<P = {}> {
+export class Toc {
   static provider = Provider;
   static consumer = TocContext.Consumer;
 
@@ -51,10 +54,12 @@ export class Toc<P = {}> {
     });
     this.observer('items', items);
   });
-  observer = gsw({items: [] as (TocItemProps & TocItemPrivateProps)[]});
+  observer = gsw({items: [] as (TocItemRequiredProps & TocItemPrivateProps)[]});
 
   private add = memoizee(
-    (idx: number) => (props: TocItemProps & TocItemPrivateProps): void => {
+    (idx: number) => (
+      props: TocItemRequiredProps & TocItemPrivateProps,
+    ): void => {
       const items = [...this.observer('items')];
       items[idx] = props;
       this.observer('items', items);
@@ -71,18 +76,15 @@ export class Toc<P = {}> {
     return [this.add(idx), this.remove(idx)];
   });
 
-  bind = memoizee<TocBindFn<P>>(
-    Component => (
-      props: P & TocItemProps & Partial<TocItemPrivateOptionalProps>,
-      idx: number,
-    ) => {
+  bind = memoizee<TocBindFn<TocItemProps<any>>>(
+    Component => (props: TocItemProps<any>, idx: number) => {
       const intersectionObserver = this.intersectionObserver;
       const [add, remove] = this.use(idx);
 
       const TocComponent = class extends React.PureComponent {
         static displayName = `Toc#from(${Component.displayName})`;
 
-        private ariaRef = React.createRef<HTMLElement>();
+        private ariaRef = React.createRef<any>();
 
         constructor(thisProps: any) {
           super(thisProps);
@@ -125,14 +127,15 @@ export class Toc<P = {}> {
   );
 }
 
-// const toc = new Toc<{title: string; ariaRef?: React.RefObject<any>}>();
-// const AComponent: React.SFC<{
-//   title: string;
-//   ariaRef?: React.RefObject<any>;
-// }> = props => {
-//   // tslint:disable-next-line:no-non-null-assertion
-//   return <div ref={props.ariaRef!}>{props.title}</div>;
-// };
-// const list = [{title: 'foo'}, {title: 'bar'}, {title: 'baz'}];
+const AComponent: React.SFC<TocItemProps<HTMLDivElement>> = props => {
+  return (
+    <div ref={props.ariaRef} style={{paddingBottom: 1000}}>
+      {props.title}
+    </div>
+  );
+};
+const toc = new Toc();
 
-// list.map(toc.bind(AComponent));
+const list = [{title: 'foo'}, {title: 'bar'}, {title: 'baz'}];
+
+console.log(<div>{list.map(toc.bind(AComponent))}</div>);
