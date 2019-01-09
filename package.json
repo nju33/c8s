@@ -27,6 +27,7 @@
     "docz.dev": "docz dev --port 6069",
     "docz.build": "docz build",
     "next.dev": "cd site && next",
+    "lerna.publish": "lerna run build && lerna publish",
     "deploy": "cd site && now -n c8s; sh -c 'now ls c8s | while read line; do if echo \"$line\" | grep \"c8s-\" > /dev/null; then set $line; echo \"$2\"; break; fi; done;' | xargs -I@ now ln @ c8s ; now rm asaps --safe --yes"
   },
   "contributors": [
