@@ -22,15 +22,12 @@
     "build": "yarn build.main; yarn build.module; yarn build.types"
   },
   "peerDependencies": {
+    "@c8s/flex": "^0.0.3",
+    "@c8s/theme": "^0.0.3",
     "react": "^16.3.0",
     "styled-components": "^4.0.0"
   },
-  "dependencies": {
-    "@c8s/flex": "^0.0.3",
-    "@c8s/theme": "^0.0.3",
-    "lodash.get": "^4.4.2",
-    "vwxy": "^0.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@nju33/tsconfig-react-main": "0.0.6",
     "@nju33/tsconfig-react-module": "0.0.6",
