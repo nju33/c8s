@@ -4,6 +4,10 @@
   "version": "0.0.3",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "test": ":",
+    "build": ":"
+  },
   "devDependencies": {
     "@types/next": "7.0.6",
     "@types/query-string": "6.2.0",

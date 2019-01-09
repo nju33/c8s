@@ -29,31 +29,36 @@ export type TocBindFn<P extends TocItemProps<HTMLElement>> = (
   Component: React.ComponentType<P>,
 ) => (props: P, idx: number) => JSX.Element;
 
+// tslint:disable-next-line:no-typeof-undefined
+const isServer = () => typeof window === 'undefined';
+
 // tslint:disable-next-line:no-unnecessary-class
 export class Toc {
   static provider = Provider;
   static consumer = TocContext.Consumer;
 
-  private intersectionObserver = new IntersectionObserver(entries => {
-    const items = [...this.observer('items')];
-    entries.forEach(entry => {
-      const {target, intersectionRatio} = entry;
+  private intersectionObserver: IntersectionObserver = isServer()
+    ? (undefined as any)
+    : new IntersectionObserver(entries => {
+        const items = [...this.observer('items')];
+        entries.forEach(entry => {
+          const {target, intersectionRatio} = entry;
 
-      for (const item of items) {
-        if (target.id !== item.title) {
-          continue;
-        }
+          for (const item of items) {
+            if (target.id !== item.title) {
+              continue;
+            }
 
-        if (intersectionRatio === 0) {
-          item.selected = false;
-        } else {
-          item.selected = true;
-        }
-        break;
-      }
-    });
-    this.observer('items', items);
-  });
+            if (intersectionRatio === 0) {
+              item.selected = false;
+            } else {
+              item.selected = true;
+            }
+            break;
+          }
+        });
+        this.observer('items', items);
+      });
   observer = gsw({items: [] as (TocItemRequiredProps & TocItemPrivateProps)[]});
 
   private add = memoizee(
@@ -107,8 +112,12 @@ export class Toc {
             },
           });
 
-          if (this.ariaRef.current !== null) {
-            this.ariaRef.current.setAttribute('id', props.title);
+          if (this.ariaRef.current === null) {
+            return;
+          }
+
+          this.ariaRef.current.setAttribute('id', props.title);
+          if (!isServer()) {
             intersectionObserver.observe(this.ariaRef.current);
           }
         }
@@ -126,5 +135,3 @@ export class Toc {
     },
   );
 }
-
-
