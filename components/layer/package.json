@@ -1,6 +1,6 @@
 {
   "name": "@c8s/layer",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +27,7 @@
     "styled-components": "^4.0.0"
   },
   "dependencies": {
-    "@c8s/theme": "^0.0.3"
+    "@c8s/theme": "^0.0.4"
   },
   "devDependencies": {
     "@nju33/tsconfig-react-main": "0.0.6",

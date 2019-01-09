@@ -1,6 +1,6 @@
 {
   "name": "@c8s-util/responsive",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +27,6 @@
     "react": "^16.3.0",
     "styled-components": "^4.0.0"
   },
-  "dependencies": {},
   "devDependencies": {
     "@nju33/tsconfig-react-main": "0.0.6",
     "@nju33/tsconfig-react-module": "0.0.6",
