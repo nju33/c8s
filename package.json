@@ -68,7 +68,7 @@
     "jest": "23.6.0",
     "lerna": "3.10.5",
     "markdown-loader": "4.0.0",
-    "polished": "2.3.1",
+    "polished": "2.3.3",
     "prettier": "1.15.3",
     "randomcolor": "0.5.3",
     "react": "16.7.0",
