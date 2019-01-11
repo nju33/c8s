@@ -1,0 +1,21 @@
+---
+name: '@c8s/scroll-top-button'
+route: /components/scroll-top-button
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Theme, theme} from '@c8s/theme';
+import {ScrollTopButton} from './organisms';
+
+## @c8s/scroll-top-button
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <div style={{marginTop: '200vh'}} />
+        <ScrollTopButton />
+      </Theme>
+    );
+  }}
+</Playground>

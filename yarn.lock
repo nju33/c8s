@@ -2103,7 +2103,7 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-icons@2.2.6":
+"@types/react-icons@2.2.6", "@types/react-icons@^2.2.6":
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/@types/react-icons/-/react-icons-2.2.6.tgz#02efde5582f4bbfe94e9dc277d48778289d66390"
   integrity sha512-78XIxWrft+4PGLnG2s4haAiKFTUc3ETq+dh5AElZNj1eAl0lXm+0Calk+qEyiwxXtgv9Fm1J2PNVWDTmEQFNDA==
@@ -12173,6 +12173,11 @@ react-icons@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.2.2.tgz#7b1dc795004a119a35175e62ecef91e5c9c90962"
   integrity sha512-0DiXTcECUNoMvze2zcFwYYrHAFgQ2rBM0+HIHfaECKRfE1NZYwfuUSbwyg9s1uVPuy7o/KqQKSwBGMWQFvdrhQ==
+
+react-icons@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.3.0.tgz#09409cad23c39149e419af5c928eee6f9f456b93"
+  integrity sha512-OY8yBAyww1VEro12Zbt6dZqz77zN7LXukC4oA4i4fWjxTjCbbqsPy6BrfAh7BYPtIRaTXhpoYlhdoDaT/kxdog==
 
 react-imported-component@^5.2.4:
   version "5.2.4"

@@ -10,6 +10,7 @@
     "components/markdown",
     "components/masonry",
     "components/pager",
+    "components/scroll-top-button",
     "components/slider",
     "components/stripe",
     "components/tab",

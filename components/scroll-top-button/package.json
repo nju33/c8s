@@ -1,0 +1,46 @@
+{
+  "name": "@c8s/scroll-top-button",
+  "version": "0.0.4",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/main/index.js",
+  "types": "dist/types/index.d.ts",
+  "module": "dist/module/index.js",
+  "source": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "prepare": "yarn build",
+    "test": ":",
+    "dev": "docz dev --port 2347",
+    "build.main": "tsc -P tsconfig.main.json",
+    "build.module": "tsc -P tsconfig.module.json",
+    "build.types": "tsc -P tsconfig.types.json --emitDeclarationOnly",
+    "build": "yarn build.main; yarn build.module; yarn build.types"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0",
+    "styled-components": "^4.0.0"
+  },
+  "dependencies": {
+    "@c8s/flex": "^0.0.4",
+    "@c8s/theme": "^0.0.4",
+    "polished": "^2.3.1",
+    "ramda": "^0.26.1",
+    "react-icons": "^3.3.0",
+    "vwxy": "^0.1.0"
+  },
+  "devDependencies": {
+    "@nju33/tsconfig-react-main": "0.0.6",
+    "@nju33/tsconfig-react-module": "0.0.6",
+    "@nju33/tsconfig-react-types": "0.0.6",
+    "@types/react": "16.7.18",
+    "@types/react-icons": "^2.2.6",
+    "@types/styled-components": "4.1.4",
+    "react": "16.7.0",
+    "styled-components": "4.1.3"
+  }
+}
