@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "site",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
@@ -36,7 +36,7 @@
     "@c8s/tab": "^0.0.5",
     "@c8s/table": "^0.0.5",
     "@c8s/theme": "^0.0.5",
-    "@c8s/toc": "^0.0.5",
+    "@c8s/toc": "^0.0.6",
     "@c8s/youtube": "^0.0.5",
     "@nju33/react-flex": "1.1.0",
     "query-string": "6.2.0",
