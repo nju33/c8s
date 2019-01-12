@@ -13,7 +13,6 @@ export class Provider extends React.PureComponent<TocProviderProps> {
     super(props);
 
     props.toc.observer('items', items => {
-      console.log(items.map(item => item.selected));
       this.forceUpdate();
     });
   }
