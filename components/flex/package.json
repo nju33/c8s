@@ -1,6 +1,6 @@
 {
   "name": "@c8s/flex",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publishConfig": {
     "access": "public"
   },
@@ -26,8 +26,8 @@
     "styled-components": "^4.0.0"
   },
   "dependencies": {
-    "@c8s-util/responsive": "^0.0.4",
-    "@c8s/theme": "^0.0.4",
+    "@c8s-util/responsive": "^0.0.5",
+    "@c8s/theme": "^0.0.5",
     "memoizee": "^0.4.14"
   },
   "devDependencies": {
