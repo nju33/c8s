@@ -4,7 +4,7 @@ route: /components/layer
 ---
 
 import {Playground, PropsTable} from 'docz';
-import {Layer} from './organisms'
+import {Layer} from './organisms';
 
 ## @c8s/layer
 
@@ -15,17 +15,26 @@ import {Layer} from './organisms'
     return (
       <Layer>
         <Layer.heading>H1</Layer.heading>
+        <Layer>
+          <Layer.heading>H2</Layer.heading>
           <Layer>
-            <Layer.heading>H2</Layer.heading>
+            <Layer.heading>H3</Layer.heading>
             <Layer>
-              <Layer.heading>H3</Layer.heading>
+              <Layer.heading>H4</Layer.heading>
               <Layer>
-                <Layer.heading>H4</Layer.heading>
+                <Layer.heading>H5</Layer.heading>
+                <Layer>
+                  <Layer.heading>H6</Layer.heading>
+                  <Layer>
+                    <Layer.heading>H7</Layer.heading>
+                  </Layer>
+                </Layer>
               </Layer>
             </Layer>
           </Layer>
+        </Layer>
       </Layer>
-    )
+    );
   }}
 </Playground>
 
@@ -46,25 +55,43 @@ import {Layer} from './organisms'
                     {Wall => {
                       return (
                         <>
-                        <Wall level={1} style={{textAlign: 'center'}}>foo</Wall>
-                        <Wall level={3} style={{textAlign: 'center'}}>bar</Wall>
-                        <Wall level={5} style={{textAlign: 'center'}}>baz</Wall>
+                          <Wall level={1} style={{textAlign: 'center'}}>
+                            foo
+                          </Wall>
+                          <Wall level={3} style={{textAlign: 'center'}}>
+                            bar
+                          </Wall>
+                          <Wall level={5} style={{textAlign: 'center'}}>
+                            baz
+                          </Wall>
                         </>
-                      )
+                      );
                     }}
                   </Group>
                   <Group>
                     {Wall => {
                       return (
                         <>
-                        <Wall level={0} style={{textAlign: 'center'}}>bar</Wall>
-                        <Wall level={1} style={{textAlign: 'center'}}>foo</Wall>
-                        <Wall level={2} style={{textAlign: 'center'}}>baz</Wall>
-                        <Wall level={3} style={{textAlign: 'center'}}>hoge</Wall>
-                        <Wall level={4} style={{textAlign: 'center'}}>fuga</Wall>
-                        <Wall level={5} style={{textAlign: 'center'}}>piyo</Wall>
+                          <Wall level={0} style={{textAlign: 'center'}}>
+                            bar
+                          </Wall>
+                          <Wall level={1} style={{textAlign: 'center'}}>
+                            foo
+                          </Wall>
+                          <Wall level={2} style={{textAlign: 'center'}}>
+                            baz
+                          </Wall>
+                          <Wall level={3} style={{textAlign: 'center'}}>
+                            hoge
+                          </Wall>
+                          <Wall level={4} style={{textAlign: 'center'}}>
+                            fuga
+                          </Wall>
+                          <Wall level={5} style={{textAlign: 'center'}}>
+                            piyo
+                          </Wall>
                         </>
-                      )
+                      );
                     }}
                   </Group>
                 </>
@@ -73,6 +100,6 @@ import {Layer} from './organisms'
           </Layer.parallax>
         </Layer>
       </div>
-    )
+    );
   }}
 </Playground>
