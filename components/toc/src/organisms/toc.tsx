@@ -82,9 +82,7 @@ export class Toc {
   });
 
   reset(): void {
-    this.observer = gsw({
-      items: [] as (TocItemRequiredProps & TocItemPrivateProps)[]
-    });
+    this.observer('items', []);
   }
 
   bind = memoizee<TocBindFn<TocItemProps<any>>>(
