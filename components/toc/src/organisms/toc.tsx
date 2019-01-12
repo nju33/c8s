@@ -26,7 +26,7 @@ export type TocItemProps<E extends HTMLElement> = TocItemRequiredProps &
   Partial<TocItemOptionalProps<E>>;
 
 export type TocBindFn<P extends TocItemProps<HTMLElement>> = (
-  Component: React.ComponentType<P>,
+  Component: React.ComponentType<P>
 ) => (props: P, idx: number) => JSX.Element;
 
 // tslint:disable-next-line:no-typeof-undefined
@@ -63,12 +63,12 @@ export class Toc {
 
   private add = memoizee(
     (idx: number) => (
-      props: TocItemRequiredProps & TocItemPrivateProps,
+      props: TocItemRequiredProps & TocItemPrivateProps
     ): void => {
       const items = [...this.observer('items')];
       items[idx] = props;
       this.observer('items', items);
-    },
+    }
   );
 
   private remove = memoizee((idx: number) => (): void => {
@@ -80,6 +80,12 @@ export class Toc {
   private use = memoizee((idx: number) => {
     return [this.add(idx), this.remove(idx)];
   });
+
+  reset(): void {
+    this.observer = gsw({
+      items: [] as (TocItemRequiredProps & TocItemPrivateProps)[]
+    });
+  }
 
   bind = memoizee<TocBindFn<TocItemProps<any>>>(
     Component => (props: TocItemProps<any>, idx: number) => {
@@ -107,9 +113,9 @@ export class Toc {
 
               window.scrollTo({
                 top: element.getBoundingClientRect().top + window.pageYOffset,
-                behavior: 'smooth',
+                behavior: 'smooth'
               });
-            },
+            }
           });
 
           if (this.ariaRef.current === null) {
@@ -132,6 +138,6 @@ export class Toc {
         }
       };
       return <TocComponent key={props.title} />;
-    },
+    }
   );
 }
