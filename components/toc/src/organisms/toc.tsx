@@ -61,7 +61,7 @@ export class Toc {
       });
   observer = gsw({items: [] as (TocItemRequiredProps & TocItemPrivateProps)[]});
 
-  private add = memoizee(
+  add = memoizee(
     (idx: number) => (
       props: TocItemRequiredProps & TocItemPrivateProps
     ): void => {
@@ -71,7 +71,7 @@ export class Toc {
     }
   );
 
-  private remove = memoizee((idx: number) => (): void => {
+  remove = memoizee((idx: number) => (): void => {
     const items = [...this.observer('items')];
     items.splice(idx, 1);
     this.observer('items', items);
