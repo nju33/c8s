@@ -45,7 +45,7 @@ export class Toc {
           const {target, intersectionRatio} = entry;
 
           for (const item of items) {
-            if (target.id !== item.title) {
+            if (target.id !== item.title.replace(/\s/g, '_')) {
               continue;
             }
 
