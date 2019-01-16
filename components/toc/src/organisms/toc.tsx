@@ -94,6 +94,7 @@ export class Toc {
         static displayName = `Toc#from(${Component.displayName})`;
 
         private ariaRef = React.createRef<any>();
+        private elementId = props.title.replace(/\s/g, '_');
 
         constructor(thisProps: any) {
           super(thisProps);
@@ -113,6 +114,21 @@ export class Toc {
                 top: element.getBoundingClientRect().top + window.pageYOffset,
                 behavior: 'smooth'
               });
+
+              const re = /#.*/;
+              if (re.test(location.href)) {
+                history.replaceState(
+                  {},
+                  document.title,
+                  location.href.replace(re, `#${this.elementId}`)
+                );
+              } else {
+                history.replaceState(
+                  {},
+                  document.title,
+                  `${location.href}#${this.elementId}`
+                );
+              }
             }
           });
 
@@ -120,7 +136,7 @@ export class Toc {
             return;
           }
 
-          this.ariaRef.current.setAttribute('id', props.title);
+          this.ariaRef.current.setAttribute('id', this.elementId);
           if (!isServer()) {
             intersectionObserver.observe(this.ariaRef.current);
           }
