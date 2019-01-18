@@ -37,7 +37,7 @@
     "@nju33/tsconfig-react-main": "0.0.6",
     "@nju33/tsconfig-react-module": "0.0.6",
     "@nju33/tsconfig-react-types": "0.0.6",
-    "@types/react": "16.7.18",
+    "@types/react": "16.7.20",
     "@types/react-icons": "2.2.6",
     "@types/styled-components": "4.1.5",
     "react": "16.7.0",
