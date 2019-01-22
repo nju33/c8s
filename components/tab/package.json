@@ -1,6 +1,6 @@
 {
   "name": "@c8s/tab",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publishConfig": {
     "access": "public"
   },
@@ -26,9 +26,9 @@
     "styled-components": "^4.0.0"
   },
   "dependencies": {
-    "@c8s/button": "^0.0.5",
-    "@c8s/flex": "^0.0.5",
-    "@c8s/theme": "^0.0.5",
+    "@c8s/button": "^0.0.6",
+    "@c8s/flex": "^0.0.6",
+    "@c8s/theme": "^0.0.6",
     "immer": "1.10.5",
     "react-stripe-elements": "2.0.2",
     "vwxy": "0.1.1"
