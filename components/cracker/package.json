@@ -1,5 +1,5 @@
 {
-  "name": "@c8s-util/cracker",
+  "name": "@c8s/cracker",
   "version": "0.0.0",
   "publishConfig": {
     "access": "public"
