@@ -1,0 +1,39 @@
+{
+  "name": "@c8s-util/lazyload-portal",
+  "version": "0.0.5",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/main/index.js",
+  "types": "dist/types/index.d.ts",
+  "module": "dist/module/index.js",
+  "source": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "prepare": "yarn build",
+    "test": ":",
+    "dev": "docz dev --port 2347",
+    "build.main": "tsc -P tsconfig.main.json",
+    "build.module": "tsc -P tsconfig.module.json",
+    "build.types": "tsc -P tsconfig.types.json --emitDeclarationOnly",
+    "build": "yarn build.main; yarn build.module; yarn build.types"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0",
+    "react-dom": "^16.3.0"
+  },
+  "devDependencies": {
+    "@nju33/tsconfig-react-main": "0.0.6",
+    "@nju33/tsconfig-react-module": "0.0.6",
+    "@nju33/tsconfig-react-types": "0.0.6",
+    "@types/lodash.get": "4.4.4",
+    "@types/react": "16.7.18",
+    "@types/react-dom": "16.0.11",
+    "react": "16.7.0",
+    "react-dom": "^16.7.0"
+  },
+  "gitHead": "13399d589048d140d7744ce2d5352c3b043ad83b"
+}

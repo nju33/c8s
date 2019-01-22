@@ -1,0 +1,33 @@
+---
+name: '@c8s/lazyload-portal'
+route: /components-util/lazyload-portal
+menu: components-util
+---
+
+import {Playground, PropsTable} from 'docz';
+import {LazyloadPortal} from './lazyload-portal';
+
+## @c8s-util/LazyloadPortal
+
+<Playground>
+  {() => {
+    {/* setTimeout(() => {
+      const lazyloadPortal = new LazyloadPortal(document.getElementById('container'), `[data-tag='img']`));
+    }, 1000); */}
+
+    return (
+      <div
+        id="container"
+        dangerouslySetInnerHTML={{
+          __html: `
+<div style="margin-bottom:20em" data-tag="img" data-src="https://picsum.photos/500/650?image=0" />
+<div style="margin-bottom:20em" data-tag="img" data-src="https://picsum.photos/500/650?image=1" />
+<div style="margin-bottom:20em" data-tag="img" data-src="https://picsum.photos/500/650?image=2" />
+<div style="margin-bottom:20em" data-tag="img" data-src="https://picsum.photos/500/650?image=3" />
+<div style="margin-bottom:20em" data-tag="img" data-src="https://picsum.photos/500/650?image=4" />
+      `
+        }}
+      />
+    );
+  }}
+</Playground>
