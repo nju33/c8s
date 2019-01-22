@@ -59,7 +59,7 @@ const flexType: FlexType & {[x: string]: number} = {
   centerRight: 1 << 9,
   bottomLeft: 1 << 10,
   bottomCenter: 1 << 11,
-  bottomRight: 1 << 12,
+  bottomRight: 1 << 12
 };
 
 interface FlexComponentFlag {
@@ -77,9 +77,9 @@ type FlexComponentProxyReturn<
       Pick<FlexComponentProxy, 'item' | 'itemFluid'> &
       FlexDirection
   : P extends 'item'
-  ? FlexComponent & Pick<FlexComponentProxy, 'row' | 'column'>
+  ? FlexComponent & Pick<FakeFlexComponentProxy, 'row' | 'column'>
   : P extends 'itemFluid'
-  ? FlexComponent & Pick<FlexComponentProxy, 'row' | 'column'>
+  ? FlexComponent & Pick<FakeFlexComponentProxy, 'row' | 'column'>
   : never;
 
 interface FakeFlexComponentProxy {
@@ -207,8 +207,8 @@ export const createDecls = memoizee(
   {
     normalizer: args => {
       return args[0];
-    },
-  },
+    }
+  }
 );
 
 const createFlexProxy = () => {
@@ -218,7 +218,7 @@ const createFlexProxy = () => {
   Object.defineProperty(flag, 'componentStyle', {
     get() {
       return createDecls(this.bit, {});
-    },
+    }
   });
 
   return new Proxy<FakeFlexComponentProxy>(
@@ -253,7 +253,7 @@ const createFlexProxy = () => {
       get(
         target: FakeFlexComponentProxy & FakeParentFlexComponentProxy,
         key: string,
-        receiver: FakeFlexComponentProxy & FakeParentFlexComponentProxy,
+        receiver: FakeFlexComponentProxy & FakeParentFlexComponentProxy
       ): any {
         if (
           [
@@ -269,7 +269,7 @@ const createFlexProxy = () => {
             'centerRight',
             'bottomLeft',
             'bottomCenter',
-            'bottomRight',
+            'bottomRight'
           ].indexOf(key) === -1
         ) {
           return Reflect.get(target, key, receiver);
@@ -279,24 +279,24 @@ const createFlexProxy = () => {
         _flag.bit = _flag.bit | flexType[key as string];
 
         return receiver;
-      },
-    },
+      }
+    }
   );
 };
 
 const Flex = {} as FakeFlexComponentProxy;
 Object.defineProperties(Flex, {
   row: {
-    get: () => createFlexProxy().row,
+    get: () => createFlexProxy().row
   },
   column: {
-    get: () => createFlexProxy().column,
+    get: () => createFlexProxy().column
   },
   item: {
-    get: () => createFlexProxy().item,
+    get: () => createFlexProxy().item
   },
   itemFluid: {
-    get: () => createFlexProxy().itemFluid,
-  },
+    get: () => createFlexProxy().itemFluid
+  }
 });
 export {Flex};
