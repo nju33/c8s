@@ -1,6 +1,6 @@
 {
   "name": "@c8s/pager",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publishConfig": {
     "access": "public"
   },
@@ -27,7 +27,7 @@
     "styled-components": "^4.0.0"
   },
   "dependencies": {
-    "@c8s/flex": "^0.0.6",
+    "@c8s/flex": "^0.0.7",
     "@c8s/theme": "^0.0.6",
     "polished": "^2.3.1",
     "ramda": "^0.26.1",
