@@ -8,14 +8,17 @@ export interface MediaSizes {
 }
 
 export interface Components
-  extends Record<'s' | keyof MediaSizes, React.ReactElement<any>> {}
+  extends Record<
+    's' | keyof MediaSizes,
+    React.ReactElement<any> | React.FunctionComponent<any>
+  > {}
 
 export class Responsive {
   constructor(public mediaSizes: Partial<MediaSizes>) {}
 
   getStyle = (
-    component: React.ReactElement<any>,
-    extendStyle: Partial<CSSStyleDeclaration>,
+    component: React.ReactElement<any> | React.FunctionComponent<any>,
+    extendStyle: Partial<CSSStyleDeclaration>
   ): any => {
     return {...Reflect.get(component, 'componentStyle'), ...extendStyle};
   };
@@ -29,7 +32,7 @@ export class Responsive {
 
     if (components.s !== undefined) {
       s = (
-        {s: extendStyle}: {s: Partial<CSSStyleDeclaration>} = {s: {}},
+        {s: extendStyle}: {s: Partial<CSSStyleDeclaration>} = {s: {}}
       ) => css`
         ${// tslint:disable-next-line:no-non-null-assertion
         this.getStyle(components.s!, extendStyle)}
@@ -40,7 +43,7 @@ export class Responsive {
     if (components.m !== undefined) {
       if (injected && this.mediaSizes.m !== undefined) {
         m = (
-          {m: extendStyle}: {m: Partial<CSSStyleDeclaration>} = {m: {}},
+          {m: extendStyle}: {m: Partial<CSSStyleDeclaration>} = {m: {}}
         ) => css`
           ${this.mediaSizes.m} {
             ${// tslint:disable-next-line:no-non-null-assertion
@@ -49,7 +52,7 @@ export class Responsive {
         `;
       } else {
         m = (
-          {m: extendStyle}: {m: Partial<CSSStyleDeclaration>} = {m: {}},
+          {m: extendStyle}: {m: Partial<CSSStyleDeclaration>} = {m: {}}
         ) => css`
           ${// tslint:disable-next-line:no-non-null-assertion
           this.getStyle(components.m!, extendStyle)}
@@ -60,7 +63,7 @@ export class Responsive {
     if (components.l !== undefined) {
       if (injected && this.mediaSizes.l !== undefined) {
         l = (
-          {l: extendStyle}: {l: Partial<CSSStyleDeclaration>} = {l: {}},
+          {l: extendStyle}: {l: Partial<CSSStyleDeclaration>} = {l: {}}
         ) => css`
           ${this.mediaSizes.l} {
             ${// tslint:disable-next-line:no-non-null-assertion
@@ -69,7 +72,7 @@ export class Responsive {
         `;
       } else {
         l = (
-          {l: extendStyle}: {l: Partial<CSSStyleDeclaration>} = {l: {}},
+          {l: extendStyle}: {l: Partial<CSSStyleDeclaration>} = {l: {}}
         ) => css`
           ${// tslint:disable-next-line:no-non-null-assertion
           this.getStyle(components.l!, extendStyle)}
@@ -80,7 +83,7 @@ export class Responsive {
     if (components.xl !== undefined) {
       if (injected && this.mediaSizes.xl !== undefined) {
         xl = (
-          {xl: extendStyle}: {xl: Partial<CSSStyleDeclaration>} = {xl: {}},
+          {xl: extendStyle}: {xl: Partial<CSSStyleDeclaration>} = {xl: {}}
         ) => css`
           ${this.mediaSizes.xl} {
             ${// tslint:disable-next-line:no-non-null-assertion
@@ -89,7 +92,7 @@ export class Responsive {
         `;
       } else {
         xl = (
-          {xl: extendStyle}: {xl: Partial<CSSStyleDeclaration>} = {xl: {}},
+          {xl: extendStyle}: {xl: Partial<CSSStyleDeclaration>} = {xl: {}}
         ) => css`
           ${// tslint:disable-next-line:no-non-null-assertion
           this.getStyle(components.xl!, extendStyle)}
