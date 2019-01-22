@@ -1,6 +1,6 @@
 {
-  "name": "@c8s-util/lazyload-portal",
-  "version": "0.0.5",
+  "name": "@c8s-util/cracker",
+  "version": "0.0.0",
   "publishConfig": {
     "access": "public"
   },
@@ -22,8 +22,7 @@
     "build": "yarn build.main; yarn build.module; yarn build.types"
   },
   "peerDependencies": {
-    "react": "^16.3.0",
-    "react-dom": "^16.3.0"
+    "react": "^16.3.0"
   },
   "devDependencies": {
     "@nju33/tsconfig-react-main": "0.0.6",
@@ -32,8 +31,6 @@
     "@types/lodash.get": "4.4.4",
     "@types/react": "16.7.18",
     "@types/react-dom": "16.0.11",
-    "react": "16.7.0",
-    "react-dom": "^16.7.0"
-  },
-  "gitHead": "13399d589048d140d7744ce2d5352c3b043ad83b"
+    "react": "16.7.0"
+  }
 }

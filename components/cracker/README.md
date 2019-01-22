@@ -1,9 +1,11 @@
-# @c8s-util/lazyload-portal
+# @c8s/cracker
 
-[![github](https://badgen.net/badge//nju33,c8s/000?icon=github&list=1)](https://github.com/nju33/c8s/tree/master/components/breadcrumb)
-[![npm:version](https://badgen.net/npm/v/c8s/breadcrumb?icon=npm&label=)](https://www.npmjs.com/package/@c8s/breadcrumb)
+tbw
+
+[![github](https://badgen.net/badge//nju33,c8s/000?icon=github&list=1)](https://github.com/nju33/c8s/tree/master/components/cracker)
+[![npm:version](https://badgen.net/npm/v/@c8s/cracker?icon=npm&label=)](https://www.npmjs.com/package/@c8s/cracker)
 [![typescript](https://badgen.net/badge/lang/typescript/0376c6?icon=npm)](https://www.typescriptlang.org/)
-[![license](https://badgen.net/npm/license/@c8s/breadcrumb)](https://github.com/nju33/c8s/blob/master/LICENSE)
+[![license](https://badgen.net/npm/license/@c8s/cracker)](https://github.com/nju33/c8s/blob/master/LICENSE)
 [![browserslist](https://badgen.net/badge/browserslist/chrome,edge/ffd539?list=1)](https://browserl.ist/?q=last+1+chrome+version%2C+last+1+edge+version)
 [![code style:prettier](https://badgen.net/badge//prettier/ff69b3?label=code%20style)](https://github.com/prettier/prettier)
 
@@ -13,7 +15,29 @@
 ## Usage
 
 ```ts
-import {lazyload-portal} from '@c8s-util/lazyload-portal';
+/**
+ * As to prepare of using the `cracker`
+ * 
+ * ```sh
+ * yarn add @c8s/cracker react @types/react
+ * ```
+ */
+import Cracker from '@c8s/cracker';
+```
+
+## Example
+
+```jsx
+() => (
+  <Cracker
+    // when a `[data-tag='img']` reached the display area,
+    // to insert element as `<img src="//xxx.com/xxx.png">`
+    query="[data-tag='img']"
+    dangerouslySetInnerHTML={{
+      __html: '<div data-tag="img" data-src="//xxx.com/xxx.png"></div>
+    }}
+  />
+);
 ```
 
 ## Contributors

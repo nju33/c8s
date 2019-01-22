@@ -5,6 +5,7 @@
     "components/button",
     "components/card",
     "components/code-block",
+    "components/cracker",
     "components/flex",
     "components/layer",
     "components/markdown",
@@ -17,7 +18,6 @@
     "components/theme",
     "components/toc",
     "components/youtube",
-    "components-util/responsive",
     "site"
   ],
   "name": "c8s",

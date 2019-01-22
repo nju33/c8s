@@ -1,0 +1,35 @@
+---
+name: '@c8s/cracker'
+route: /components/cracker
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Cracker} from './cracker';
+
+## @c8s/cracker
+
+<Playground>
+  {() => {
+    return (
+      <>
+        <Cracker
+          query="[data-tag='img']"
+          dangerouslySetInnerHTML={{
+            __html: `
+  <h1>Title</h1>
+  <div style="margin-bottom:20em; min-height: 50vh" data-tag="img" data-src="https://picsum.photos/500/650?image=0"></div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <div style="margin-bottom:20em; min-height: 50vh" data-tag="img" data-src="https://picsum.photos/500/650?image=1"></div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <div style="margin-bottom:20em; min-height: 50vh" data-tag="img" data-src="https://picsum.photos/500/650?image=2"></div>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <p><div style="margin-bottom:20em; min-height: 50vh" data-tag="img" data-src="https://picsum.photos/500/650?image=3"></div></p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <div style="margin-bottom:20em; min-height: 50vh" data-tag="img" data-src="https://picsum.photos/500/650?image=4"></div>
+        `
+          }}
+        />
+      </>
+    );
+  }}
+</Playground>
