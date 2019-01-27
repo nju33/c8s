@@ -5,6 +5,8 @@ export interface CrackerProps {
   dangerouslySetInnerHTML: {
     __html: string;
   };
+  className?: string;
+  style?: any;
 }
 
 export interface CrackerState {}
@@ -77,6 +79,8 @@ export class Cracker extends React.Component<CrackerProps, CrackerState> {
     return (
       <div
         ref={this.container}
+        style={this.props.style}
+        className={this.props.className}
         dangerouslySetInnerHTML={this.props.dangerouslySetInnerHTML}
       />
     );
