@@ -59,7 +59,7 @@
     "@types/throttle-debounce": "1.1.0",
     "@zeit/next-css": "1.0.1",
     "@zeit/next-typescript": "1.1.1",
-    "all-contributors-cli": "5.10.2",
+    "all-contributors-cli": "5.11.0",
     "docz": "0.13.7",
     "docz-plugin-css": "0.11.0",
     "docz-theme-default": "0.13.7",
