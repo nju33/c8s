@@ -4,11 +4,14 @@ import gsw from 'gsw';
 import {Provider} from './provider';
 import TocContext from '../context';
 
+export interface TocOptions {
+  offsetTop?: number;
+}
+
 export interface TocHocProps {
   toc: any;
 }
 
-// tslint:disable-next-line:no-empty-interface
 export interface TocItemRequiredProps {
   title: string;
 }
@@ -26,7 +29,8 @@ export type TocItemProps<E extends HTMLElement> = TocItemRequiredProps &
   Partial<TocItemOptionalProps<E>>;
 
 export type TocBindFn<P extends TocItemProps<HTMLElement>> = (
-  Component: React.ComponentType<P>
+  Component: React.ComponentType<P>,
+  options?: TocOptions
 ) => (props: P, idx: number) => JSX.Element;
 
 // tslint:disable-next-line:no-typeof-undefined
@@ -86,7 +90,10 @@ export class Toc {
   }
 
   bind = memoizee<TocBindFn<TocItemProps<any>>>(
-    Component => (props: TocItemProps<any>, idx: number) => {
+    (Component, options = {}) => (
+      props: TocItemProps<any>,
+      idx: number
+    ) => {
       const intersectionObserver = this.intersectionObserver;
       const [add, remove] = this.use(idx);
 
@@ -111,7 +118,10 @@ export class Toc {
               }
 
               window.scrollTo({
-                top: element.getBoundingClientRect().top + window.pageYOffset,
+                top:
+                  element.getBoundingClientRect().top +
+                  window.pageYOffset +
+                  (options.offsetTop || 0),
                 behavior: 'smooth'
               });
 

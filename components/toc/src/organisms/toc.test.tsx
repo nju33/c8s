@@ -22,6 +22,6 @@ test('types', () => {
 
   const list = [{title: 'foo'}, {title: 'bar'}, {title: 'baz'}];
 
-  console.log(<div>{list.map(toc.bind(AComponent))}</div>);
+  console.log(<div>{list.map(toc.bind(AComponent, {offsetTop: 1}))}</div>);
   console.log(<div>{list.map(toc.bind(BComponent))}</div>);
 });

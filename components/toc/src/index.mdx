@@ -37,7 +37,7 @@ import {Toc} from './organisms';
           </ul>
         </>
         <div>
-          {items.map(toc.bind(AComponent))}
+          {items.map(toc.bind(AComponent, {offsetTop: -50}))}
         </div>
       </Toc.provider>
     );
