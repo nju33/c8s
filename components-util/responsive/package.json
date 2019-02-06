@@ -23,7 +23,7 @@
   },
   "peerDependencies": {
     "@c8s/flex": "^0.0.3",
-    "@c8s/theme": "^0.0.3",
+    "@c8s/theme": "^0.0.3 || ^0.0.6",
     "react": "^16.3.0",
     "styled-components": "^4.0.0"
   },
