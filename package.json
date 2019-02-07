@@ -18,6 +18,7 @@
     "components/theme",
     "components/toc",
     "components/youtube",
+    "components/tmp",
     "site"
   ],
   "name": "c8s",

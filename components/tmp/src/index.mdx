@@ -1,0 +1,39 @@
+---
+name: '@c8s/layer'
+route: /components/layer
+---
+
+import {Playground, PropsTable} from 'docz';
+import {LayerTemplate} from './templates/layer-component';
+import {PayloadContext} from './payload';
+
+## @c8s/layer
+
+### Heading
+
+<Playground>
+  {() => {
+    class Foo extends LayerTemplate {
+      Content = () => {
+        return (
+          <Layer>
+            <PayloadContext.Consumer>
+              {({newLayer, handler}) => {
+                <div><button onClick={newLayer(async (({postCreate, create, preCreate})) => {
+
+                  await postCreate(async () => {}, 300);
+                  await create(async () => {}, 300);
+                  await preCreate(async () => {}, 200);
+
+                  return <div>layer</div>;
+                })}>hoge</button></div>
+              }}
+            </PayloadContext.Consumer>
+          </Layer>
+        )
+      }
+    }
+
+}}
+
+</Playground>

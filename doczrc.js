@@ -8,5 +8,5 @@ module.exports = {
 
   // https://github.com/pedronauck/docz/issues/551
   wrapper: undefined,
-  indexHtml: undefined,
+  indexHtml: undefined
 };
