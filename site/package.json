@@ -9,7 +9,7 @@
     "build": ":"
   },
   "devDependencies": {
-    "@types/next": "7.0.6",
+    "@types/next": "7.0.9",
     "@types/query-string": "6.2.0",
     "@types/randomcolor": "0.5.1",
     "@types/react": "16.7.20",
@@ -18,7 +18,7 @@
     "@zeit/next-typescript": "1.1.1",
     "html-loader": "0.5.5",
     "markdown-loader": "4.0.0",
-    "next": "7.0.2",
+    "next": "7.0.3",
     "normalize.css": "8.0.1",
     "react": "16.7.0",
     "styled-components": "4.1.3",
