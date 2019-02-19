@@ -13,6 +13,7 @@
     "components/pager",
     "components/slider",
     "components/stripe",
+    "components/swipe",
     "components/tab",
     "components/table",
     "components/theme",

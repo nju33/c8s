@@ -1,0 +1,26 @@
+---
+name: '@c8s/swipe'
+route: /components/swipe
+---
+
+import {Playground, PropsTable} from 'docz';
+import {Theme, theme} from '@c8s/theme';
+import Swipe from '.';
+
+## @c8s/swipe
+
+<Playground>
+  {() => {
+    return (
+      <Theme theme={theme}>
+        <div style={{textAlign: 'center'}}>
+          <span style={{display: 'inline-block'}}>
+            <Swipe> 
+              <div style={{width: 320, height: 568, background: '#ccc'}} />
+            </Swipe> 
+          </span>
+        </div>
+      </Theme>
+    );
+  }}
+</Playground>
