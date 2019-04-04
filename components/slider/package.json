@@ -28,7 +28,7 @@
   "dependencies": {
     "@c8s/flex": "^0.0.7",
     "@c8s/theme": "^0.0.6",
-    "immer": "^1.9.3",
+    "immer": "^2.0.0",
     "react-icons": "^3.2.2",
     "throttle-debounce": "^2.0.1",
     "vwxy": "^0.1.0",

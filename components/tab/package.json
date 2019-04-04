@@ -29,7 +29,7 @@
     "@c8s/button": "^0.0.6",
     "@c8s/flex": "^0.0.7",
     "@c8s/theme": "^0.0.6",
-    "immer": "1.10.5",
+    "immer": "2.1.5",
     "react-stripe-elements": "2.0.2",
     "vwxy": "0.1.1"
   },
