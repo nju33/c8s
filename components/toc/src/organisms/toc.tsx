@@ -36,21 +36,19 @@ export type TocBindFn<P extends TocItemProps<HTMLElement>> = (
 // tslint:disable-next-line:no-typeof-undefined
 const isServer = () => typeof window === 'undefined';
 
+export interface TocUpdateUrlArgument {
+  oldHash?: string;
+  newHash: string;
+}
+
 // tslint:disable-next-line:no-unnecessary-class
 export class Toc {
   static provider = Provider;
   static consumer = TocContext.Consumer;
 
   constructor(
-    public updateUrl = ({
-      oldHash,
-      newHash
-    }: {
-      oldHash?: string;
-      newHash: string;
-    }): void => {
+    public updateUrl = ({oldHash, newHash}: TocUpdateUrlArgument): void => {
       const re = /#.*/;
-      console.log(oldHash, newHash);
       if (typeof oldHash !== 'undefined') {
         history.replaceState(
           {},
