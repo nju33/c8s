@@ -41,6 +41,28 @@ export class Toc {
   static provider = Provider;
   static consumer = TocContext.Consumer;
 
+  constructor(
+    public updateUrl = ({
+      oldHash,
+      newHash
+    }: {
+      oldHash?: string;
+      newHash: string;
+    }): void => {
+      const re = /#.*/;
+      console.log(oldHash, newHash);
+      if (typeof oldHash !== 'undefined') {
+        history.replaceState(
+          {},
+          document.title,
+          location.href.replace(re, `#${newHash}`)
+        );
+      } else {
+        history.replaceState({}, document.title, `${location.href}#${newHash}`);
+      }
+    }
+  ) {}
+
   private intersectionObserver: IntersectionObserver = isServer()
     ? (undefined as any)
     : new IntersectionObserver(entries => {
@@ -90,11 +112,9 @@ export class Toc {
   }
 
   bind = memoizee<TocBindFn<TocItemProps<any>>>(
-    (Component, options = {}) => (
-      props: TocItemProps<any>,
-      idx: number
-    ) => {
+    (Component, options = {}) => (props: TocItemProps<any>, idx: number) => {
       const intersectionObserver = this.intersectionObserver;
+      const updateUrl = this.updateUrl;
       const [add, remove] = this.use(idx);
 
       const TocComponent = class extends React.PureComponent {
@@ -125,20 +145,10 @@ export class Toc {
                 behavior: 'smooth'
               });
 
-              const re = /#.*/;
-              if (re.test(location.href)) {
-                history.replaceState(
-                  {},
-                  document.title,
-                  location.href.replace(re, `#${this.elementId}`)
-                );
-              } else {
-                history.replaceState(
-                  {},
-                  document.title,
-                  `${location.href}#${this.elementId}`
-                );
-              }
+              updateUrl({
+                oldHash: (location.hash || '#').slice(1) || undefined,
+                newHash: this.elementId
+              });
             }
           });
 
