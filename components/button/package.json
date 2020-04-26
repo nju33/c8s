@@ -35,7 +35,7 @@
   "devDependencies": {
     "@nju33/tsconfig-react-main": "0.0.6",
     "@nju33/tsconfig-react-module": "0.0.6",
-    "@nju33/tsconfig-react-types": "0.0.6",
+    "@nju33/tsconfig-react-types": "0.0.26",
     "@types/ramda": "0.25.47",
     "@types/react": "16.7.20",
     "@types/styled-components": "4.1.6",
