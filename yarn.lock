@@ -1835,19 +1835,12 @@
   dependencies:
     "@nju33/tsconfig-react-base" "^0.0.6"
 
-"@nju33/tsconfig-react-module@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-module/-/tsconfig-react-module-0.0.3.tgz#1c3121277240f802a5937333960ee776255f51e4"
-  integrity sha512-0wFeCXahgKQk9E3I/RjWomsgP1faY/N54TFU/3RJxPgoOPAXZTdiewovoHUSwK034huOGSEsK7NmkC1u68RQIw==
+"@nju33/tsconfig-react-module@0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-module/-/tsconfig-react-module-0.0.26.tgz#6ff884c52ef9574cad85c9bc320c94b3a8a7da0a"
+  integrity sha512-LH/WfuOCS3YgQgKBLcYWpjvTYbOE4Hp2C+n9ADIoerh0FIrjiODWetq8+iN6VgXwn1C62ckkTRrbv/it0WSHUQ==
   dependencies:
-    "@nju33/tsconfig-react-base" "^0.0.3"
-
-"@nju33/tsconfig-react-module@0.0.6":
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/@nju33/tsconfig-react-module/-/tsconfig-react-module-0.0.6.tgz#8a30c671bbf8af3e4df91c24a1e5f6735af5d88c"
-  integrity sha512-8wmCT2UX7XkBHUEoozTKQq6TGj8l7hz3YpogK4QBbp9/m/9ffXJ/HessaOaOYFKfN5PGL7AONORovhTLCA6j3w==
-  dependencies:
-    "@nju33/tsconfig-react-base" "^0.0.6"
+    "@nju33/tsconfig-react-base" "^0.0.26"
 
 "@nju33/tsconfig-react-types@0.0.26":
   version "0.0.26"
