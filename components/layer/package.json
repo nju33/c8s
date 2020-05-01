@@ -35,7 +35,7 @@
     "@nju33/tsconfig-react-types": "0.0.26",
     "@types/react": "16.9.34",
     "@types/styled-components": "4.4.3",
-    "react": "16.7.0",
+    "react": "16.13.1",
     "styled-components": "4.4.1"
   },
   "gitHead": "13399d589048d140d7744ce2d5352c3b043ad83b"

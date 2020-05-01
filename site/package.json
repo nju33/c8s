@@ -20,7 +20,7 @@
     "markdown-loader": "4.0.0",
     "next": "7.0.2",
     "normalize.css": "8.0.1",
-    "react": "16.7.0",
+    "react": "16.13.1",
     "styled-components": "4.4.1",
     "svg-url-loader": "2.3.3"
   },
