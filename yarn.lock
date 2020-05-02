@@ -7670,10 +7670,10 @@ growly@^1.3.0:
   resolved "https://registry.yarnpkg.com/growly/-/growly-1.3.0.tgz#f10748cbe76af964b7c96c93c6bcc28af120c081"
   integrity sha1-8QdIy+dq+WS3yWyTxrzCivEgwIE=
 
-gsw@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/gsw/-/gsw-0.0.3.tgz#bba2b2df8a891bea14cb3cfd5589265aae222d98"
-  integrity sha512-uMvQsbVEwfULAtLpFwFQQStBbsSDIhpm8TWTxDz+q2Mt32op0xTVLQ8i8atyWhuCOhvXh39+BBOspfrzGGp2vQ==
+gsw@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/gsw/-/gsw-0.0.7.tgz#17adedcc61b247a0e7b05952721bc8d895a43d29"
+  integrity sha512-eYknWQB7RlII5IoRnuwjW3o52gkhaPNJmdVkTCwmrfBp2rm048zzppxr6poPslYnxETYM8NspnCCJs5E2tYrVg==
 
 gud@^1.0.0:
   version "1.0.0"
@@ -13016,10 +13016,10 @@ react-sizes@^1.0.4:
     lodash.throttle "^4.1.1"
     prop-types "^15.6.0"
 
-react-stripe-elements@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/react-stripe-elements/-/react-stripe-elements-2.0.2.tgz#351ed92e58bd1b69e12d57817353c4190cea6863"
-  integrity sha512-ETyOjOeCmgJdRILzJQ6YsYLqtqgdxZn8jVtdkMQvRQMJCXzu9aKTopPmNGw/iiRk1MonRfG5k46vX5vL2ZOVsA==
+react-stripe-elements@2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/react-stripe-elements/-/react-stripe-elements-2.0.3.tgz#cfd0f68d00ce52a07aab1cb2b59b29dc12309486"
+  integrity sha512-aKLiWyfP0n3Gq42BKykULgoruNVRXEaeYh8NSokdgH3ubGU3nsHFZJg3LgbT/XOquttDGHE7kLhleaX+UnN81A==
   dependencies:
     prop-types "^15.5.10"
 
