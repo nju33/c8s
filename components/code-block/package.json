@@ -36,7 +36,7 @@
     "@nju33/tsconfig-react-module": "0.0.26",
     "@nju33/tsconfig-react-types": "0.0.26",
     "@types/highlight.js": "9.12.4",
-    "@types/react": "16.9.35",
+    "@types/react": "16.9.36",
     "@types/styled-components": "4.4.3",
     "react": "16.13.1",
     "styled-components": "4.4.1"
