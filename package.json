@@ -65,7 +65,7 @@
     "docz-theme-default": "0.13.7",
     "dotenv": "6.2.0",
     "html-loader": "0.5.5",
-    "jest": "23.6.0",
+    "jest": "26.6.1",
     "lerna": "3.22.1",
     "markdown-loader": "4.0.0",
     "polished": "2.3.3",
