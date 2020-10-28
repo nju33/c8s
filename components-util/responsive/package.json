@@ -25,7 +25,7 @@
     "@c8s/flex": "^0.0.3",
     "@c8s/theme": "^0.0.3",
     "react": "^16.3.0",
-    "styled-components": "^4.0.0"
+    "styled-components": "^4.0.0 || ^5.0.0"
   },
   "devDependencies": {
     "@nju33/tsconfig-react-main": "0.0.26",
@@ -33,9 +33,9 @@
     "@nju33/tsconfig-react-types": "0.0.26",
     "@types/lodash.get": "4.4.6",
     "@types/react": "16.9.36",
-    "@types/styled-components": "4.4.3",
+    "@types/styled-components": "5.1.4",
     "react": "16.13.1",
-    "styled-components": "4.4.1"
+    "styled-components": "5.2.0"
   },
   "gitHead": "13399d589048d140d7744ce2d5352c3b043ad83b"
 }
